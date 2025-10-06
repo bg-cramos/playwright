@@ -1,51 +1,16 @@
 {
-  "cookies": [
-    {
-      "name": "_ga",
-      "value": "GA1.2.1213420314.1759780390",
-      "domain": ".igglobal.net",
-      "path": "/",
-      "expires": 1794340389.651486,
-      "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
-    },
-    {
-      "name": "_gid",
-      "value": "GA1.2.53918768.1759780390",
-      "domain": ".igglobal.net",
-      "path": "/",
-      "expires": 1759866789,
-      "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
-    },
-    {
-      "name": "_gat",
-      "value": "1",
-      "domain": ".igglobal.net",
-      "path": "/",
-      "expires": 1759780449,
-      "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
-    }
-  ],
+  "cookies": [],
   "origins": [
     {
       "origin": "http://sandbox.igglobal.net",
       "localStorage": [
         {
-          "name": "userpilot:sessions",
-          "value": "{\"27634042\":[]}"
+          "name": "userpilotSDK57540389",
+          "value": "{}"
         },
         {
           "name": "auth",
-          "value": "{\"access_token\":\"R4RjscfsiXOD3Pijog_DiMY__oSDUfn8b5vbXqwcfSW1kEaVqwbzpy43ABjBF6YEHIWhlyD2r8iYfU2tbw5_h1LJGAwjWaLGQ7UFA5UwuTxca2_6XfDEdU8PgP79zktjw_TFHY9VlRf4hwTzUfsb-Nb95peQPOTF4oNrP1A6fR2POMdaED6Q9b-qdNbD_95LrfSsXJQQj_jWQ7TS0CX2L_YlpgHFXGJBhMVgcPFaaIwrVrHwlWyo_P2Kt81sEfEjmQLpeVkrhNDCU4XjGIexdUmwivhh91fKHYpbGiaz8m1sHsDdi5Xk2Bwq0E35EhNhpJSKXphp8Erwo_gxCZVqIqp-IIhfdeIwdbGEYrtJjP1McmVKUpj5TsyQ-Sry-a3jIn7h9TO-Bk3jb3ZADAaXg32RRCWCe2RLzK-aCB4NwQ9FnkKHV06MR97MXedhpXGRhLiDw3UFfpHjgri-WFY9vMqh987YkWpOCqYg1QPNB1X5cTZyKzaaypSqrxd1_ULP62FSjW6cwrduykzySnJYCzggA92r5c_9tN7FzZfR_WY\",\"token_type\":\"bearer\",\"expires_in\":2591999,\"refresh_token\":\"tKC7dAx9uFbxsQUlZMZMjVJBKG8KhKAwPvriOKsFOzBcHM0Bwna7tk1-h_7p5zsxozqwrIbntMsuipcpc3LJ_0_MfFKH2VLRDnR5Fw45Nsq3Nh-7SOG43Fk4LTYbkSG55M24RQR_4aA0Y_nOJwrJgOUOZZfYc15X2O6j9Bzmau1VBNrUw4nwvgOI8Dsx6-7ybjKXCw7WpQKqMEt2152yCMxt1TCDuuBeXZ-Gemv6_qTemevCbY-hptZmbP8rS1ETjiPlUFXRzXgfX5Ni9RaXrQNxnKKNg0hskNh8wP8QBBkHzZh-Dp1t6_Mr6VOyOnx9RHSLFqdZzLhq8IAYjmXX8pi9XTedZYialuLss3KFVKjhV0LdNdRlhGhRMPNMYHD4626knEjiZyDzhppA0ablYLDIELsrrl1Qo5HvmLsVi5CrcklVwR-Z5QPac1ybOjF9_fJZ7e5VGsgSu55nNRAIIpC5biN2wwb430hKC-aA0BO3pIqRSaShtsmsFZTI29svtEJxkDx5nwUPDo_gvlvALL9ljzuGtaDy1wjufrQrwZI\",\"icheck\":\"False\",\"scheck\":\"True\",\"rcheck\":\"False\",\"us\":\"SUPERVISOR\",\"usrdisplay\":\"Christian Ramos\",\"dom\":\"test.com.ar\",\".issued\":\"Mon, 06 Oct 2025 19:53:06 GMT\",\".expires\":\"Wed, 05 Nov 2025 19:53:06 GMT\"}"
-        },
-        {
-          "name": "userpilotSDK57540389",
-          "value": "{\"SR-CONFIG\":{\"session_id\":\"\",\"recording_enabled\":false,\"is_recording\":false,\"pathOnly\":false},\"userpilotIdentifiedObj57540389\":\"{\\\"name\\\":\\\"Christian Ramos\\\",\\\"email\\\":\\\"cszalai@units.com.ar\\\",\\\"dictionary_id\\\":\\\"1\\\",\\\"version\\\":\\\"9.25.08\\\",\\\"domain\\\":\\\"test.com.ar\\\",\\\"port\\\":\\\"2031\\\"}\",\"userpilotUserId57540389\":\"SUPERVISOR@test.com.ar\"}"
+          "value": "{\"access_token\":\"b23ym-XU4Eks_Euzixc3nHHaztVVj3CYOXcdKg7FdOEiG5rJy0rlTdjH5IC1t8IfY4AwLMJpn_Xvkc8z3X1ajiQWe3tIthabuX0XZctCAELsTNqHSulOxb7CQ-ca4sLjZkWK9EAr9xj04nAbpTTps_PKUs8kfJQMTxm0QVbIaCGg6iEw-4krptonAtE-J6mbu_jbHdQhIqruwHMoqLr7R39su7leW10FyRGaFIeZafwdv4d89YdqEdEoIm-9oj1U35_PhfSwT5YJqNuA_ts0Q2VI6A7MCYeflNXvM4dPSdAxQcCyXRwAa8uR_TY6vNj2uCUVRqTmahNyJiWi-L8QmAlSNIbW_kxzQ1Tb31rcTpR9kXi7ZPflGJ6dObSIa2_7rh_9cafDnc6HD6Ld2w7WwAFzma72DEsdc2peQpddguuioWpphq-LwE3SkXB8GVQSNHfktV67x9HfOkKPTweYVRY0KEVxq_YcYCulqbHHJRz-Vrk2rz4OQ7OeZ163tLzlvBzhyFceCLKA9Mz3k0pjr9oFKf__T_YSeh83hMCPNlk\",\"token_type\":\"bearer\",\"expires_in\":2591999,\"refresh_token\":\"fRv3ywzbXLL-eAh1tkWtoNH7n0GUSqLg3j3OSBYoau_cw-C55rwBJpacHYq-DbH83d4kCmSin4ob4XR_3UaEF518IgbWcGti5me0XAcxZz4dKCNJ3t5KM4r7R2JlGpnfcEm1Jm7Ca7ZoDKNjLlA2IzpWmqYBcSULvILDYeq8NVktVA_WgJhko14eibOEK-tHmagivA7q0my6eoUb3gdgSnn0FGRxehhIbTjRTMDfHrjGJ-maPfyUgtNsiigJPkDNTwEcPY3nTDmhW3hU08XireqrmCJc5gyzXh8P7rB4rQuDYStqMtqkBMJ4sZ6UDkXHG20JrIq2TPaNSDHixvbjCVfNqfo0R31RFU1gfHQiQZD8LUnE95IbztnsVzJU0xDsvYKNWwvgiIX7jz3IWA6lw-sHGVIetJX1PysfBhVHBaSeUvHzyU2cqAd877rPEKvP2oC7iN3kEUUDDKbiMR-KA7p87AelIXditRBBW9RrW0G3LRQOBI5wetC_OfaYZfKUcWER4LZ58IWCU4HbIj3j6AE5ahvB9AvqJbUgSgGe-1Q\",\"icheck\":\"False\",\"scheck\":\"True\",\"rcheck\":\"False\",\"us\":\"SUPERVISOR\",\"usrdisplay\":\"Christian Ramos\",\"dom\":\"test.com.ar\",\".issued\":\"Mon, 06 Oct 2025 20:17:59 GMT\",\".expires\":\"Wed, 05 Nov 2025 20:17:59 GMT\"}"
         },
         {
           "name": "version",
