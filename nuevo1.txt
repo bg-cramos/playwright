@@ -1,0 +1,13 @@
+Empezar a codear la pantalla
+npx playwright codegen http://sandbox.igglobal.net/
+
+
+debug
+npx playwright test tests/ventas/igglobal.pedidos.spec.ts --project=chromium --debug
+npx playwright test tests/ventas/igglobal.remito.spec.ts --project=chromium --debug
+npx playwright test tests/ventas/igglobal.factura.spec.ts --project=chromium --debug
+npx playwright test testsig/ventas/igglobal.ventas.spec.ts --project=chromium --debug
+
+
+
+H:\CRAMOS\Playwright
