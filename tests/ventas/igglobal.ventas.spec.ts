@@ -118,7 +118,6 @@ test('flujo completo: pedido -> remito -> factura', async ({ page }) => {
   await inputArticuloRemito.fill('trigo');
   await page.getByRole('link', { name: '(21105) TRIGO (R) MOJADO' }).click();
   await page.waitForTimeout(4000);
-
   await inputArticuloRemito.press('Tab');
   await page.locator('#CantidadOriginal').fill('25');
   await page.locator('#CantidadOriginal').press('Tab');
