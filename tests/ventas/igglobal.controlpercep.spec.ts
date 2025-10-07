@@ -72,16 +72,16 @@ test('flujo control de percepciones', async ({ page }) => {
   await page.locator('#dropdownMenuButton').click();
   await expect(page.getByText('Percepciones *')).toBeVisible();
   await page.getByText('Percepciones *').click();
+
   await expect(page.getByText('Capital Federal')).toBeVisible();
   const percepcionCapitalFederalPre = await page.getByText('5.00', { exact: true }).textContent();
   const percepcionCapitalPre = await page.getByRole('gridcell', { name: '10,241.92' }).locator('div').textContent();
   const percepcionCapitalTotalPre = await page.getByText('204,838.38', { exact: true }).nth(1).textContent();
+
   await expect(page.getByText('Misiones', { exact: true })).toBeVisible();
   const percepcionMisionesPre = await page.getByText('3.31', { exact: true }).textContent();
   const percepcionMisionesImportePre = await page.getByText('6,780.15').textContent();
   const percepcionMisionesTotalPre = await page.getByText('204,838.38', { exact: true }).nth(2).textContent();
-
-
 
 //Cambio de Sección a Totales
 
@@ -124,21 +124,21 @@ test('flujo control de percepciones', async ({ page }) => {
 
   //CONSULTAR.
   await expect(page.getByText('Grupo NovaTech', { exact: true })).toBeVisible();
-  await page.getByText('Grupo NovaTech', { exact: true }).click({
-    button: 'right'
-  });
+  await page.getByText('Grupo NovaTech', { exact: true }).click({ button: 'right'  }); 
   await page.getByRole('menuitem', { name: 'Consultar', exact: true }).locator('a').click();
 
   
- // Consultar - Percepciones
+  // Consultar - Percepciones
   await expect(page.locator('#dropdownMenuButton')).toBeVisible();
   await page.locator('#dropdownMenuButton').click();
   await expect(page.getByText('Percepciones *')).toBeVisible();
   await page.getByText('Percepciones *').click();
+
   await expect(page.getByText('Capital Federal')).toBeVisible();
   const percepcionCapitalFederalPost = await page.getByText('5.00', { exact: true }).textContent();
   const percepcionCapitalPost = await page.getByRole('gridcell', { name: '10,241.92' }).locator('div').textContent();
   const percepcionCapitalTotalPost = await page.getByText('204,838.38', { exact: true }).nth(1).textContent();
+
   await expect(page.getByText('Misiones', { exact: true })).toBeVisible();
   const percepcionMisionesPost = await page.getByText('3.31', { exact: true }).textContent();
   const percepcionMisionesImportePost = await page.getByText('6,780.15').textContent();
