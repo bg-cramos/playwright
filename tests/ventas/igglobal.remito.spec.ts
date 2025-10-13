@@ -82,8 +82,7 @@ test('crear remito y validar comprobante', async ({ page }) => {
   // Guardar remito
   await expect(page.getByRole('button', { name: '' })).toBeVisible();
   await page.getByRole('button', { name: '' }).click();
-  await page.waitForTimeout(8000); // Espera después de hacer clic en "Guardar"
-
+  await page.waitForTimeout(8000); 
   // Generar remito
   await expect(page.getByText('3254')).toBeVisible();
   await page.getByRole('gridcell', { name: '3254' }).click({
