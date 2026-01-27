@@ -41,7 +41,9 @@ test('flujo control de percepciones', async ({ page }) => {
   await inputArticuloRemito.fill('trigo');
   await page.getByRole('link', { name: '(21105) TRIGO (R) MOJADO' }).click();
   await page.waitForTimeout(4000);
-  await page.getByRole('textbox', { name: 'Buscar...' }).press('Tab');
+  await page.locator('#CoArticulo').press('Tab');
+  await page.locator('#CoRuta').press('Tab');
+  await page.locator('#CantidadBultosArticulo').press('Tab');
   await page.locator('#CantidadOriginal').fill('25');
   await page.locator('#CantidadOriginal').press('Tab');
   await page.locator('#CantidadBultosArticulo').press('Tab');
@@ -58,7 +60,9 @@ test('flujo control de percepciones', async ({ page }) => {
   await inputArticuloRemito.fill('margarina');
   await page.getByRole('link', { name: '(17009) EMULSION MARGARINA' }).click();
   await page.waitForTimeout(4000);
-  await page.getByRole('textbox', { name: 'Buscar...' }).press('Tab');
+  await page.locator('#CoArticulo').press('Tab');
+  await page.locator('#CoRuta').press('Tab');
+  await page.locator('#CantidadBultosArticulo').press('Tab');
   await page.locator('#CantidadOriginal').fill('963');
   await page.locator('#CantidadOriginal').press('Tab');
   await page.locator('#CantidadBultosArticulo').press('Tab');
@@ -68,10 +72,10 @@ test('flujo control de percepciones', async ({ page }) => {
 
 //Cambio de sección a Percepciones 
 
-  await expect(page.locator('#dropdownMenuButton')).toBeVisible();
-  await page.locator('#dropdownMenuButton').click();
-  await expect(page.getByText('Percepciones *')).toBeVisible();
+  await page.locator('#dropdownMenuButton:visible').click();
   await page.getByText('Percepciones *').click();
+  await page.waitForTimeout(1000);
+  //await page.getByText('Percepciones *').click();
 
   await expect(page.getByText('Capital Federal')).toBeVisible();
   const percepcionCapitalFederalPre = await page.getByText('5.00', { exact: true }).textContent();
@@ -85,8 +89,10 @@ test('flujo control de percepciones', async ({ page }) => {
 
 //Cambio de Sección a Totales
 
-  await expect(page.locator('#dropdownMenuButton')).toBeVisible();
-  await page.locator('#dropdownMenuButton').click();
+  await page.locator('#dropdownMenuButton:visible').click();
+  await page.getByText('Percepciones *').click();
+  await page.waitForTimeout(1000);
+  await page.locator('#dropdownMenuButton:visible').click();
   await expect(page.getByText('Totales *')).toBeVisible();
   await page.getByText('Totales *').click();
   await expect(page.locator('span').filter({ hasText: 'GRAV 21%' })).toBeVisible();
@@ -122,15 +128,21 @@ test('flujo control de percepciones', async ({ page }) => {
   await page.getByRole('button', { name: 'Aceptar' }).click();
   await page.waitForTimeout(6000);
 
-  //CONSULTAR.
-  await expect(page.getByText('Grupo NovaTech', { exact: true })).toBeVisible();
-  await page.getByText('Grupo NovaTech', { exact: true }).click({ button: 'right'  }); 
-  await page.getByRole('menuitem', { name: 'Consultar', exact: true }).locator('a').click();
 
-  
+ // CONSULTA EL COMPROBANTE 3877
+const fila3877 = page.locator('span.explorer-grid-clickable-cell', { hasText: '3877' });
+
+await expect(fila3877).toBeVisible();
+await fila3877.click({ button: 'right' });
+
+const opcionConsultar = page.locator('a[ng-click="details()"]:visible', { hasText: 'Consultar' });
+
+await expect(opcionConsultar).toBeVisible();
+await opcionConsultar.click();
+
+ 
   // Consultar - Percepciones
-  await expect(page.locator('#dropdownMenuButton')).toBeVisible();
-  await page.locator('#dropdownMenuButton').click();
+  await page.locator('#dropdownMenuButton:visible').click();
   await expect(page.getByText('Percepciones *')).toBeVisible();
   await page.getByText('Percepciones *').click();
 
@@ -145,9 +157,7 @@ test('flujo control de percepciones', async ({ page }) => {
   const percepcionMisionesTotalPost = await page.getByText('204,838.38', { exact: true }).nth(2).textContent();
 
 // Consultar - Totales
-
-  await expect(page.locator('#dropdownMenuButton')).toBeVisible();
-  await page.locator('#dropdownMenuButton').click();
+  await page.locator('#dropdownMenuButton:visible').click();
   await expect(page.getByText('Totales *')).toBeVisible();
   await page.getByText('Totales *').click();
 
