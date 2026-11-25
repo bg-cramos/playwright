@@ -42,6 +42,9 @@ Ejecutar: `npx playwright test`.
 - `utils/igglobal.ts`: login, `abrirPedidos`, `nuevoComprobante`, `cargarClienteYArticulos`,
   `irASeccion`, `leerImputacion`, `leerTotales`, `guardarComprobante`, `consultarUltimoComprobante`.
   Usarlos en los tests nuevos en lugar de duplicar selectores.
+- Compras: `abrirExploradorCompras`, `seleccionarProveedor`/`seleccionarCuenta`, `cargarArticulos`,
+  `comprobanteFicticio`, `cargarComprobanteProveedor`, `agregarPercepcionCompra`, `cargarPercepcionesTotales`,
+  `leerTotalesOtros`, `leerPercepcionesConsulta` (ver "Circuito de Compras").
 - Circuito: `abrirExplorador`, `seleccionarCliente`, `invocarPendiente`, `leerDetalle`,
   `generarRemito`, `accionMas`, `leerSidebarDetalles`, `volverAlExplorador`, `capturarImportes` (Contables, Conceptos, Provincias,
   Percepciones opcional y Totales).
@@ -172,6 +175,54 @@ Ejecutar: `npx playwright test`.
   (No. Operación / subcuenta / importe) y total; grilla: Total = factura y liquidado = pagado.
 - Cada corrida **cancela la factura del circuito** con esa cobranza (en el sandbox quedan cobradas).
 
+## Circuito de Compras: Orden de Compra → Remito → Factura
+Spec `tests/circuito-orden-remito-factura-compra.spec.ts` (primera etapa, sin pagos). Cada corrida arma
+el circuito desde cero; Remito y Factura se invocan desde Pendientes.
+- **Searchlight categoría `Compras`** (`abrirExploradorCompras(page, 'Ordenes de Compra' | 'Remitos' | 'Facturas')`).
+  URLs `#/60/1550` (OC), `#/60/9609` (Remitos), `#/60/9610` (Facturas). La grilla filtra por fecha "Hoy":
+  sin comprobantes del día aparece vacía. "+" = `button[ng-click="add()"]` (sin texto; `nuevoComprobante` lo contempla).
+- **Proveedor `10` (ALBERTO VIDAL)**: `PROVEEDOR_CODIGO`, `seleccionarProveedor` (= `seleccionarCuenta(page, '10')`,
+  mismo typeahead `#CoCuenta`, búsqueda `PR-2`). Elegir siempre por código.
+- **Artículos (`ARTICULOS_COMPRA`)**: el `(1002)` de Ventas no está habilitado para compras →
+  `(1003) Frasco Vidrio 500ml` x 4 a $1250 + caja `CJ-LOEN-001` x 5 a precio de lista (hoy 30.00; el test lo
+  deja en lo que proponga el sistema). Mismo modal "Detalle" que Pedidos: `cargarArticulos` + `tabularHasta`.
+- **Pendientes**: prefijos `OCCP` (orden de compra) y `RTCP` (remito de compra) en `tr[data-key="<PREFIJO>-<nro>-10"]`.
+  En el detalle, la OC de origen viaja en **`NoDespacho`** (no en `NoPedido`) y el remito en `NoRemito`.
+  El Remito de compra **no se "Genera"** (no hay "Generar" en Más): aparece pendiente en Facturas al grabarlo.
+- **Letra-Lugar-Número ficticio + `NoOperacion`** (Remito y Factura, Datos Básicos): `#LetraLugarNumero`
+  (máx. 20, `ng-blur=validarCAI`) y `#NoOperacion` (1..999999, obligatorio). `comprobanteFicticio('R' | 'A', desplazamiento)`
+  genera por corrida un No. Operación de 6 dígitos y `<letra>-0003-000NNNNN` con sus últimos 5 dígitos
+  (p. ej. Op. 480408 → `R-0003-00080408`); `cargarComprobanteProveedor` los carga. Consultar muestra
+  "Remito | R-0003-…" / "FACTURA | A-0003-…" (el spec lo pasa como cabecera a `consultarUltimoComprobante`).
+- **Imputaciones**: en Compras se exigen **Contables** (116120 INSUMOS) y **Provincias** (1 CABA) por el neto.
+  **Conceptos** queda en 0 antes de grabar la factura y aparece al grabarla ("Concepto de Ventas Genérico"):
+  se informa como observación, no se exige.
+- **Factura de compra**: secciones Datos Básicos, Proveedor, Imputaciones, Percepciones, Totales, Totales Otros;
+  "Co. Comprobante" propone `(11) FACTURA`.
+  - **Percepciones**: "+" `[ng-click="percepciones.add()"]` → modal con `#CoProvincia` (ui-select "(N) Provincia",
+    `elegirUiSelect`) e `#Importe` (`agregarPercepcionCompra`). Grilla: `CoProvinciaDesc`, `Alicuota`, **`Importe` =
+    monto percibido**, `Sujeto` (al revés que en Ventas; `leerPercepciones` normaliza a `monto`). El test carga 2
+    provincias distintas al azar con importes aleatorios de 2 decimales; PERC. IIBB = suma.
+  - **PERC. IVA / PERC. GAN.**: en "Totales" son solo lectura (`p.form-control-static`). Se cargan en
+    **"Totales Otros"** (directiva `tasas-impuestos-totales`, `#Impuesto4` = PERC. IVA, `#Impuesto6` = PERC. GAN.,
+    `cargarPercepcionesTotales`), sección que solo se muestra con `PriorizaTotalesOtros` (se activa al agregar
+    percepciones) o el switch "Detalle Otros" (parámetro `FU50082`). Con eso la factura graba los importes de
+    Totales Otros (`leerTotalesOtros`): son los "totales efectivos" que el test compara (Pre-grabado, Consultar, Sidebar).
+    La sección "Totales" no se actualiza con Totales Otros (IMPORTE $ queda sin PERC. IVA/GAN.): se informa.
+- **Sidebar Más › Ver Detalles**: mismo `#showComprobanteDetallesRightSidebar` en los 3 módulos; cabeceras
+  "Ordenes de Compra: 41 - ALBERTO VIDAL", "Remitos: 25 - 0 - - ALBERTO VIDAL - R-0003-…", "Facturas: 31 - … - A-0003-…".
+  El de OC agrega AJUSTE IMPUESTOS, AJUSTE DIFERENCIA DIVISA e **IMPORTE Divisa** (no se confunde con "IMPORTE ARS";
+  el spec los separa en `sidebarExtras`). No tiene solapa de Percepciones: se valida PERC. IIBB de Totales.
+- **Defecto conocido del sandbox (25/11/2026)**: en **Consultar** de la Factura de compra la grilla de Percepciones
+  vuelve vacía (`percepciones.data = []`, request `Directives/ComprobantesPercepciones`) y Totales Otros muestra
+  PERC. IIBB 0.00, mientras el Sidebar y la grilla muestran el total con percepciones. El test lo marca como falla
+  (Consultar ≠ Pre-grabado) — no ocultarlo. **Regla:** mientras persista, el spec queda en ROJO y el informe
+  muestra en "Fallas" la alerta `⚠️ PÉRDIDA DE DATOS EN CONSULTAR` (percepciones no recuperadas) y
+  `⚠️ TOTAL DISTINTO EN CONSULTAR` (`alertaPerdidaConsultar` en `informeHtml.ts`). No usar `test.fail`, `test.skip`
+  ni bajar la diferencia a observación; se retira solo cuando Consultar devuelva las percepciones grabadas.
+- Resumen: claves `ordenCompra`, `remitoCompra`, `facturaCompra` (forma comercial + `diferencias`, `observaciones`,
+  `noOperacion`, `percepcionesCargadas`, `percepcionesTotales`); adaptador `etapaCompra` en `informeHtml.ts`.
+
 ## Convenciones de tests
 - Nunca hardcodear números de comprobante: tomar el más reciente de la grilla.
 - Preferir esperas por estado (`expect(...).toBeVisible()`, `waitFor`) en lugar de `waitForTimeout`.
@@ -211,7 +262,11 @@ Ejecutar: `npx playwright test`.
      de Totales / Imputaciones / Percepciones que no coinciden, con el valor de cada fuente y el
      distinto en rojo. Si todo está OK no hay detalle: el detalle completo de importes queda en los
      adjuntos (`resumen-ejecucion.json`, reporte de Playwright).
-- **Etapas nuevas:** (Cobranzas ya tiene adaptador propio) el spec las registra con `registrarEtapa('<clave>', datos)`; si
+- **Varios circuitos en la misma corrida:** el informe combina las etapas de todos los tests con `resumen.json`
+  (Ventas y Compras); cada adaptador tiene `circuito: 'ventas' | 'compras'` y las "Etapa no completada" se
+  agregan solo para el circuito del test que falló. Compras suma tarjetas OC / Remito / Factura (+ Letra-Lugar-Número
+  y No. Operación) e importe grabado con PERC. IIBB / IVA / GAN.
+- **Etapas nuevas:** (Cobranzas y Compras ya tienen adaptador propio) el spec las registra con `registrarEtapa('<clave>', datos)`; si
   `datos` tiene la forma comercial (`numero`, `pre`, `post`, `sidebar?`) aparecen solas en la matriz
   (adaptador genérico); con otra forma, agregar un adaptador en `ADAPTADORES` de `informeHtml.ts`.
 - El spec del circuito adjunta `resumen.json` **después de cada etapa** (`registrarEtapa`); el reporter

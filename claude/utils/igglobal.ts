@@ -90,12 +90,17 @@ export async function irASeccion(page: Page, seccion: string) {
   await opcion.click();
 }
 
-/** Selecciona el cliente por defecto (por código) en el comprobante abierto. */
-export async function seleccionarCliente(page: Page) {
+/** Selecciona la cuenta (cliente en Ventas, proveedor en Compras) por código en el comprobante abierto. */
+export async function seleccionarCuenta(page: Page, codigo: string) {
   const cuenta = page.locator('#CoCuenta');
   await expect(cuenta).toBeEditable();
-  await seleccionarTypeahead(page, cuenta, CLIENTE_CODIGO, new RegExp(`^\\s*\\(${CLIENTE_CODIGO}\\)`));
-  await expect(cuenta).toHaveValue(new RegExp(`^\\(${CLIENTE_CODIGO}\\)`));
+  await seleccionarTypeahead(page, cuenta, codigo, new RegExp(`^\\s*\\(${codigo}\\)`));
+  await expect(cuenta).toHaveValue(new RegExp(`^\\(${codigo}\\)`));
+}
+
+/** Selecciona el cliente por defecto (por código) en el comprobante abierto. */
+export function seleccionarCliente(page: Page) {
+  return seleccionarCuenta(page, CLIENTE_CODIGO);
 }
 
 /**
@@ -115,7 +120,7 @@ export const ARTICULOS_POR_DEFECTO: ArticuloACargar[] = [
 ];
 
 /** Presiona Tab (hasta `maxTabs` veces) hasta que `campo` tenga el foco. */
-async function tabularHasta(page: Page, campo: Locator, maxTabs = 5) {
+export async function tabularHasta(page: Page, campo: Locator, maxTabs = 5) {
   for (let i = 0; i < maxTabs; i++) {
     if (await campo.evaluate((e) => e === document.activeElement).catch(() => false)) return;
     // Dar tiempo a que la app mueva el foco tras el Tab anterior (carga del artículo, precio…)
@@ -159,6 +164,11 @@ export async function cargarArticulo(page: Page, art: ArticuloACargar) {
 /** Carga cliente (por código) y las líneas de artículos indicadas (1 o N). */
 export async function cargarClienteYArticulos(page: Page, articulos: ArticuloACargar[] = ARTICULOS_POR_DEFECTO) {
   await seleccionarCliente(page);
+  await cargarArticulos(page, articulos);
+}
+
+/** Carga las líneas de artículos (1 o N) en el comprobante abierto, con la cuenta ya elegida. */
+export async function cargarArticulos(page: Page, articulos: ArticuloACargar[]) {
   for (const art of articulos) await cargarArticulo(page, art);
   await expect.poll(async () => (await leerDetalle(page)).length, { message: 'líneas cargadas en el detalle' }).toBe(articulos.length);
 }
@@ -215,16 +225,29 @@ export async function leerImputacion(page: Page, solapa: 'Contables' | 'Concepto
 
 export type Percepcion = { provincia: string; alicuota: number; monto: number; sujeto: number };
 
-/** Lee la grilla de la sección Percepciones (facturas). */
+/**
+ * Lee la grilla de la sección Percepciones.
+ * - Ventas Facturas: `PIBAlicuota`, `Monto` = percibido, `Importe` = sujeto.
+ * - Compras Facturas: `Alicuota`, `Importe` = percibido (lo que se carga en el modal), `Sujeto`.
+ * (La grilla de Imputaciones › Provincias también tiene `CoProvinciaDesc`, pero no estos campos.)
+ */
 export async function leerPercepciones(page: Page): Promise<Percepcion[]> {
   await expect(page.locator('.ibox-title:visible', { hasText: /^\s*Percepciones\s*$/ })).toBeVisible();
   return page.evaluate(() => {
     const $ = (window as any).$;
     for (const g of Array.from(document.querySelectorAll<HTMLElement>('.jqx-grid'))) {
       if (!g.offsetParent) continue;
-      const filas = $(g).jqxGrid('getrows') as any[];
+      let filas: any[] = [];
+      try {
+        filas = ($(g).jqxGrid('getrows') ?? []) as any[];
+      } catch {
+        continue;
+      }
       if (filas.length && 'PIBAlicuota' in filas[0]) {
         return filas.map((r) => ({ provincia: r.CoProvinciaDesc, alicuota: r.PIBAlicuota, monto: r.Monto, sujeto: r.Importe }));
+      }
+      if (filas.length && 'Sujeto' in filas[0] && 'CoProvinciaDesc' in filas[0]) {
+        return filas.map((r) => ({ provincia: r.CoProvinciaDesc, alicuota: r.Alicuota, monto: r.Importe, sujeto: r.Sujeto }));
       }
     }
     return [];
@@ -264,12 +287,15 @@ export type LineaDetalle = {
   Total: number;
   NoPedido: number;
   NoRemito: number;
+  /** En Compras, el número de la Orden de Compra de origen viaja en `NoDespacho`. */
+  NoDespacho: number;
 };
 
 /** Lee las líneas del detalle del comprobante abierto desde la grilla jqx (por nombre de campo). */
 export async function leerDetalle(page: Page): Promise<LineaDetalle[]> {
   return page.evaluate(() => {
-    const filas = (window as any).$('#grid_comprobante_detalles').jqxGrid('getrows') as any[];
+    // Mientras se procesan los pendientes `getrows` puede devolver undefined
+    const filas = ((window as any).$('#grid_comprobante_detalles').jqxGrid('getrows') ?? []) as any[];
     return filas.map((r) => ({
       CoArticulo: r.CoArticulo,
       Descripcion: r.CoArticuloDesc ?? r.DescripcionArticulo ?? r.Descripcion ?? null,
@@ -278,17 +304,19 @@ export async function leerDetalle(page: Page): Promise<LineaDetalle[]> {
       Total: r.Total,
       NoPedido: r.NoPedido,
       NoRemito: r.NoRemito,
+      NoDespacho: r.NoDespacho,
     }));
   });
 }
 
 /**
  * Abre "Pendientes" en el comprobante nuevo, filtra por número, tilda el comprobante origen y lo invoca.
- * `prefijo` es el código del origen en la clave de la fila: PDVT (pedido de venta), RTVT (remito de venta).
+ * `prefijo` es el código del origen en la clave de la fila "<PREFIJO>-<nro>-<cuenta>": PDVT (pedido de venta),
+ * RTVT (remito de venta), OCCP (orden de compra), RTCP (remito de compra).
  */
 export async function invocarPendiente(
   page: Page,
-  prefijo: 'PDVT' | 'RTVT',
+  prefijo: 'PDVT' | 'RTVT' | 'OCCP' | 'RTCP',
   nro: number,
   opciones: { reabrirComprobante?: () => Promise<void> } = {},
 ) {
@@ -376,7 +404,9 @@ export function abrirPedidos(page: Page): Promise<number> {
 
 /** Presiona "+" en el explorador y espera el formulario nuevo. */
 export async function nuevoComprobante(page: Page) {
-  await accionConContinuar(page, () => page.getByRole('button', { name: '+' }).click({ timeout: 3000 }), page.locator('#CoCuenta'));
+  // Ventas: botón "+"; Compras: `button[ng-click="add()"]` (tooltip "Agregar", sin texto)
+  const agregar = page.getByRole('button', { name: '+' }).or(page.locator('button[ng-click="add()"]:visible')).first();
+  await accionConContinuar(page, () => agregar.click({ timeout: 3000 }), page.locator('#CoCuenta'));
 }
 
 const conDialogos = new WeakSet<Page>();
@@ -577,8 +607,9 @@ export async function leerSidebarDetalles(
         const label = g.querySelector(':scope > label') as HTMLElement | null;
         const valor = g.querySelector(':scope > div > p.form-control-static') as HTMLElement | null;
         if (!label || !valor || !(g as HTMLElement).offsetParent) return null;
-        // El sidebar muestra la moneda ("IMPORTE ARS"); el formulario, el símbolo ("IMPORTE $")
-        const etiqueta = label.innerText.replace(/\s+/g, ' ').trim().replace(/^IMPORTE\s+\S+$/, 'IMPORTE $');
+        // El sidebar muestra la moneda ("IMPORTE ARS"); el formulario, el símbolo ("IMPORTE $").
+        // Ordenes de Compra agrega "IMPORTE Divisa" (y AJUSTE …): esas etiquetas se dejan como están.
+        const etiqueta = label.innerText.replace(/\s+/g, ' ').trim().replace(/^IMPORTE\s+(?!Divisa$)\S+$/, 'IMPORTE $');
         return [etiqueta, valor.innerText.trim()];
       })
       .filter((p): p is string[] => p !== null),
@@ -897,7 +928,7 @@ export async function seleccionarComprobanteCobranza(page: Page, letraLugarNumer
 }
 
 /** Abre el ui-select (si está cerrado), busca `texto` y elige la opción que empieza con "(texto)". */
-async function elegirUiSelect(page: Page, contenedor: Locator, texto: string) {
+export async function elegirUiSelect(page: Page, contenedor: Locator, texto: string) {
   const buscar = contenedor.locator('input.ui-select-search');
   if (!(await buscar.isVisible())) await contenedor.locator('.ui-select-toggle').filter({ visible: true }).first().click();
   await buscar.fill(texto);
@@ -965,3 +996,140 @@ export async function filaCobranzaEnGrilla(page: Page, nro: number) {
 
 /** Cabecera de la cobranza consultada: breadcrumb "Financiera / Cobranzas / No. Liquidación: 101". */
 export const cabeceraCobranza = (nro: number) => new RegExp(`No\\. Liquidación:\\s*${nro}\\b`);
+
+// ---- Compras: Orden de Compra → Remito de Compra → Factura de Compra --------------------------
+/** Proveedor por defecto (se elige por código; hoy "(10) ALBERTO VIDAL"). */
+export const PROVEEDOR_CODIGO = '10';
+export const PROVEEDOR_NOMBRE = 'ALBERTO VIDAL';
+
+/**
+ * Artículos de la Orden de Compra (análogo a Pedidos). El (1002) de Ventas no está habilitado para
+ * compras: se usa (1003) Frasco Vidrio 500ml con precio digitado y la caja de cartón a precio de lista.
+ */
+export const ARTICULOS_COMPRA: ArticuloACargar[] = [
+  { busqueda: '1003', opcion: '(1003) Frasco Vidrio 500ml', cantidad: 4, precio: 1250 },
+  { busqueda: ARTICULO_CAJA, cantidad: 5 },
+];
+
+/** Abre un explorador de Compras (Searchlight, categoría "Compras"): "Ordenes de Compra", "Remitos", "Facturas". */
+export function abrirExploradorCompras(page: Page, modulo: 'Ordenes de Compra' | 'Remitos' | 'Facturas'): Promise<number> {
+  return abrirExplorador(page, modulo, 'Compras');
+}
+
+/** Selecciona el proveedor por defecto (por código) en el comprobante de compra abierto. */
+export function seleccionarProveedor(page: Page, codigo = PROVEEDOR_CODIGO) {
+  return seleccionarCuenta(page, codigo);
+}
+
+/** Comprobante del proveedor (Letra-Lugar-Número + No. Operación) a cargar en Remito/Factura de compra. */
+export type ComprobanteProveedor = { letraLugarNumero: string; noOperacion: number };
+
+/**
+ * Genera un comprobante ficticio único por corrida: No. Operación de 6 dígitos (1..999999) y
+ * Letra-Lugar-Número `<letra>-<lugar>-000NNNNN` con los últimos 5 dígitos del No. Operación
+ * (p. ej. No. Operación 486986 → R-0003-00086986). `desplazamiento` separa Remito y Factura de la misma corrida.
+ */
+export function comprobanteFicticio(letra: string, desplazamiento = 0, lugar = '0003'): ComprobanteProveedor {
+  // Base temporal (cambia cada 10 ms) + azar: evita repetir el número de corridas anteriores
+  const base = (Math.floor(Date.now() / 10) + Math.floor(Math.random() * 1000)) % 900_000;
+  const noOperacion = 100_000 + ((base + desplazamiento) % 900_000);
+  const ultimos = String(noOperacion).slice(-5);
+  return { noOperacion, letraLugarNumero: `${letra}-${lugar}-${ultimos.padStart(8, '0')}` };
+}
+
+/** Datos Básicos de Remito/Factura de compra: No. Comprobante Fiscal (`#LetraLugarNumero`) y `#NoOperacion`. */
+export async function cargarComprobanteProveedor(page: Page, cp: ComprobanteProveedor) {
+  const lln = page.locator('#LetraLugarNumero');
+  const noOp = page.locator('#NoOperacion');
+  if (!(await lln.isVisible())) await irASeccion(page, 'Datos Básicos');
+  await lln.fill(cp.letraLugarNumero);
+  await lln.press('Tab'); // ng-blur="validarCAI('LetraLugarNumero')"
+  await noOp.fill(String(cp.noOperacion));
+  await noOp.press('Tab');
+  await expect(lln).toHaveValue(cp.letraLugarNumero);
+  await expect(noOp).toHaveValue(new RegExp(`^${cp.noOperacion}$|^${cp.noOperacion.toLocaleString('en-US')}$`));
+}
+
+/** Percepción a cargar en la Factura de compra: provincia por código (ui-select) e importe percibido. */
+export type PercepcionACargar = { provincia: string; importe: string };
+
+/**
+ * Factura de compra › Percepciones › "+" (`percepciones.add()`, tooltip "Agregar") → modal "Percepciones":
+ * Co. Provincia/Estado (`#CoProvincia`, ui-select "(N) Provincia") + `#Importe` → Aceptar.
+ * Espera a que la fila aparezca en la grilla de percepciones.
+ */
+export async function agregarPercepcionCompra(page: Page, perc: PercepcionACargar) {
+  await irASeccion(page, 'Percepciones');
+  const antes = (await leerPercepciones(page)).length;
+  await page.locator('[ng-click="percepciones.add()"]:visible').first().click();
+  const modal = page.locator('.modal-dialog:visible', { has: page.locator('#CoProvincia') }).last();
+  await expect(modal).toBeVisible();
+  await elegirUiSelect(page, modal.locator('#CoProvincia'), perc.provincia);
+  const importe = modal.locator('#Importe');
+  await importe.fill(perc.importe);
+  await importe.press('Tab');
+  await modal.getByRole('button', { name: 'Aceptar' }).click();
+  await expect(modal).toBeHidden({ timeout: 15_000 });
+  await expect.poll(async () => (await leerPercepciones(page)).length, { message: 'percepción agregada' }).toBe(antes + 1);
+}
+
+/** ¿La sección del formulario está habilitada (no oculta por `section.visible()`)? */
+export async function seccionDisponible(page: Page, seccion: string): Promise<boolean> {
+  return page
+    .locator('li[ng-repeat="section in sections"]:not(.ng-hide)', { hasText: new RegExp(`^\\s*${seccion}\\s*\\*?\\s*$`) })
+    .count()
+    .then((n) => n > 0);
+}
+
+export type ResultadoPercepcionesTotales = { cargado: boolean; motivo: string | null; percIva: string; percGan: string };
+
+/**
+ * Carga PERC. IVA (`#Impuesto4`) y PERC. GAN. (`#Impuesto6`). En Facturas de Compra la sección "Totales"
+ * es de solo lectura (`p.form-control-static`); los inputs están en la directiva `tasas-impuestos-totales`
+ * de la sección **"Totales Otros"**, que solo se muestra con `model.cabezal.PriorizaTotalesOtros` o con el
+ * switch "Detalle Otros" (`#FU50082 == '1'`). Si la sección no está disponible no se fuerza nada desde el
+ * DOM: se informa el motivo y el test lo registra como observación.
+ */
+export async function cargarPercepcionesTotales(page: Page, percIva: string, percGan: string): Promise<ResultadoPercepcionesTotales> {
+  if (!(await seccionDisponible(page, 'Totales Otros'))) {
+    return {
+      cargado: false,
+      percIva,
+      percGan,
+      motivo:
+        'En "Totales" PERC. IVA / PERC. GAN. son de solo lectura y la sección "Totales Otros" (inputs #Impuesto4 / #Impuesto6) ' +
+        'está oculta en el alta: requiere que el comprobante priorice Totales Otros (PriorizaTotalesOtros) o el switch "Detalle Otros" (parámetro FU50082).',
+    };
+  }
+  await irASeccion(page, 'Totales Otros');
+  for (const [id, valor] of [['#Impuesto4', percIva], ['#Impuesto6', percGan]] as const) {
+    const input = page.locator(`#_tasas_impuestos_totales ${id}`);
+    await expect(input).toBeEditable();
+    await input.fill(valor);
+    await input.press('Tab');
+  }
+  return { cargado: true, motivo: null, percIva, percGan };
+}
+
+/**
+ * Lee la sección "Totales Otros" de la Factura de compra (directiva `tasas-impuestos-totales`, mismo bloque
+ * `#_tasas_impuestos_totales` que Comprobantes de Ventas) con las claves de Totales (`IMPORTE $`,
+ * `DESCUENTO / RECARGO`…). Devuelve null si la sección no está disponible.
+ */
+export async function leerTotalesOtros(page: Page): Promise<Record<string, string> | null> {
+  if (!(await seccionDisponible(page, 'Totales Otros'))) return null;
+  await irASeccion(page, 'Totales Otros');
+  const { ['Total a Discriminar']: _, ...totales } = await leerTotalesComprobante(page);
+  return totales;
+}
+
+/** Percepciones del comprobante consultado: la grilla se carga al abrir la sección (espera hasta `timeout`). */
+export async function leerPercepcionesConsulta(page: Page, timeout = 10_000): Promise<Percepcion[]> {
+  await irASeccion(page, 'Percepciones');
+  let filas: Percepcion[] = [];
+  await expect
+    .poll(async () => (filas = await leerPercepciones(page)).length, { timeout })
+    .toBeGreaterThan(0)
+    .catch(() => {});
+  return filas;
+}
