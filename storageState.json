@@ -1,81 +1,20 @@
 {
-  "cookies": [
-    {
-      "name": "_ga",
-      "value": "GA1.2.1247032506.1769534566",
-      "domain": ".igglobal.net",
-      "path": "/",
-      "expires": 1804094565.966581,
-      "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
-    },
-    {
-      "name": "_gid",
-      "value": "GA1.2.2027651308.1769534566",
-      "domain": ".igglobal.net",
-      "path": "/",
-      "expires": 1769620965,
-      "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
-    },
-    {
-      "name": "_gat",
-      "value": "1",
-      "domain": ".igglobal.net",
-      "path": "/",
-      "expires": 1769534625,
-      "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
-    },
-    {
-      "name": "_ga_XLHHTKSB6B",
-      "value": "GS2.2.s1769534566$o1$g1$t1769534566$j60$l0$h0",
-      "domain": ".igglobal.net",
-      "path": "/",
-      "expires": 1804094566.243552,
-      "httpOnly": false,
-      "secure": false,
-      "sameSite": "Lax"
-    }
-  ],
+  "cookies": [],
   "origins": [
     {
       "origin": "http://sandbox.igglobal.net",
       "localStorage": [
         {
-          "name": "LastTenancy_1769534564929",
-          "value": "{\"razon_social\":\"TEST\",\"nombre_base_datos\":\"TEST\",\"logo_sistema\":\"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMzc1LjMxIj4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsOiAjMzQzY2VjOwogICAgICB9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xMjUtLjk1SDB2NTBoMjVDOS4zLDY5Ljk0LDAsOTUuOSwwLDEyNC4wNSwwLDE5My4wOCw1NS45NiwyNDkuMDUsMTI1LDI0OS4wNXMxMjUtNTUuOTYsMTI1LTEyNVMxOTQuMDQtLjk1LDEyNS0uOTVoMFpNMTI1LDE5NS41N2MtMzkuNDQsMC03MS41Mi0zMi4wOC03MS41Mi03MS41MlM4NS41Niw1Mi41MiwxMjUsNTIuNTJzNzEuNTIsMzIuMDgsNzEuNTIsNzEuNTItMzIuMDgsNzEuNTItNzEuNTIsNzEuNTJoMFoiLz4KICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xMjUsMzIwLjg3Yy0zOS40NCwwLTcxLjUyLTMyLjA4LTcxLjUyLTcxLjUySDBjMCw2OS4wNCw1NS45NiwxMjUsMTI1LDEyNXMxMjUtNTUuOTYsMTI1LTEyNWgtNTMuNDhjMCwzOS40NC0zMi4wOCw3MS41Mi03MS41Miw3MS41MloiLz4KPC9zdmc+\",\"logo_sistema_custom\":0,\"logo_empresa\":\"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMzc1LjMxIj4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsOiAjMzQzY2VjOwogICAgICB9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xMjUtLjk1SDB2NTBoMjVDOS4zLDY5Ljk0LDAsOTUuOSwwLDEyNC4wNSwwLDE5My4wOCw1NS45NiwyNDkuMDUsMTI1LDI0OS4wNXMxMjUtNTUuOTYsMTI1LTEyNVMxOTQuMDQtLjk1LDEyNS0uOTVoMFpNMTI1LDE5NS41N2MtMzkuNDQsMC03MS41Mi0zMi4wOC03MS41Mi03MS41MlM4NS41Niw1Mi41MiwxMjUsNTIuNTJzNzEuNTIsMzIuMDgsNzEuNTIsNzEuNTItMzIuMDgsNzEuNTItNzEuNTIsNzEuNTJoMFoiLz4KICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xMjUsMzIwLjg3Yy0zOS40NCwwLTcxLjUyLTMyLjA4LTcxLjUyLTcxLjUySDBjMCw2OS4wNCw1NS45NiwxMjUsMTI1LDEyNXMxMjUtNTUuOTYsMTI1LTEyNWgtNTMuNDhjMCwzOS40NC0zMi4wOCw3MS41Mi03MS41Miw3MS41MloiLz4KPC9zdmc+\"}"
-        },
-        {
           "name": "auth",
-          "value": "{\"access_token\":\"8PFlb8lkwz_z5Ouy61yRmtrIXS4rt-dWENcLr_sO1Y3QA5JduM_O8_I2eHmcU5vdUVT5tqb5STg-tEo66ANNuMQdB3dLoZqS5eYbn6nytyKeB2uT8RlQjaZ49mEW14PShmwftUpo-yPl9Ks7RnLiuIAVbO0jDfWRYxeOam8MURyvGAmjhXdimYwtTHUcdHsiKfsD76PRmxb93xwG8QTB234YuV_8nZ099vscizdC7DkLvg064FrefiNENFre2bUbBkwoVa9qonkiOiWT6JZdM2VgDEA_4nfMnyu3IXMMvNGB50SbxgwPok5cI6DpL1FCDk_2gg_DE4hBBwTGWadDh2BV-x8qlCQ984EW0T7ebV0H5Z3NN3bqLx5joOztg00GsgtOiz_CFIW5uyEyPmrZUaEvYeP3MXEDW1Y5fh1QGGFTvPXWzv10swQupna4tneBJjDSttaw-Lkgj-TwNfQPL3cB_xJ4wKM27Z5FJNg5DJwxgEeVRKenidWi_MsOLlant51TEw36Xw-ZTd_pE3cVqc-U8qkDuubQ8glzeXR2t4Q\",\"token_type\":\"bearer\",\"expires_in\":2591999,\"refresh_token\":\"eJxLapd3fRtDZjgJpRUmvDbS1MKsvjnIkXiVxz15bZbF7rWLjM46Ia5obeZT4Y7sxYJpKzofmXVfP4Zdgiki5ZiLu0LDOug-kBBCKLlsvEcNAz03J5JTEdRP4E-zGSn4zv8ECqego4sPVwE_mri-gttd1Ze0vE79qXj56VZBObXwpOd5-VneY67ZG_oQ0BJ_R6ir0TBPwaTVDu7kKFVpoEiBO32GkseqIau6QGHPkC0n55A8DGRWJHJcLz7s4QBjj8mW0J9KLRBr0HQtzQg_tbGhQRFe8KyXXtkM9Zod4Qv3JTeIpITtYruVzaOUjk3obgIz-4aDYTezrlks52L-Fw-b8EkxUcdx07yJ39coHeHQJCDC6VSd44Yv38HuicCTfomey-9yubOSpnUDvneyBKAxGu-l9Vv2gAi7MZMtFEgqLmb0OW0YzoaDYteDd8b3wiw_RkqMRP4WQWDu6ZwK0-HCYHGZLTpdC6KSG6PhNLnY_3Iz4nIcVugcayrc9fFXwpq_DZEPQ8LuYyNGf3pYFw9LFufLqFjI8t3jCJOpy0U\",\"icheck\":\"False\",\"scheck\":\"True\",\"rcheck\":\"False\",\"us\":\"SUPERVISOR\",\"usrdisplay\":\"Christian Ramos\",\"dom\":\"test.com.ar\",\".issued\":\"Tue, 27 Jan 2026 17:22:43 GMT\",\".expires\":\"Thu, 26 Feb 2026 17:22:43 GMT\"}"
-        },
-        {
-          "name": "CID",
-          "value": "TEST"
-        },
-        {
-          "name": "LastTenancy",
-          "value": "{\"razon_social\":\"TEST\",\"nombre_base_datos\":\"TEST\",\"logo_sistema\":\"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMzc1LjMxIj4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsOiAjMzQzY2VjOwogICAgICB9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xMjUtLjk1SDB2NTBoMjVDOS4zLDY5Ljk0LDAsOTUuOSwwLDEyNC4wNSwwLDE5My4wOCw1NS45NiwyNDkuMDUsMTI1LDI0OS4wNXMxMjUtNTUuOTYsMTI1LTEyNVMxOTQuMDQtLjk1LDEyNS0uOTVoMFpNMTI1LDE5NS41N2MtMzkuNDQsMC03MS41Mi0zMi4wOC03MS41Mi03MS41MlM4NS41Niw1Mi41MiwxMjUsNTIuNTJzNzEuNTIsMzIuMDgsNzEuNTIsNzEuNTItMzIuMDgsNzEuNTItNzEuNTIsNzEuNTJoMFoiLz4KICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xMjUsMzIwLjg3Yy0zOS40NCwwLTcxLjUyLTMyLjA4LTcxLjUyLTcxLjUySDBjMCw2OS4wNCw1NS45NiwxMjUsMTI1LDEyNXMxMjUtNTUuOTYsMTI1LTEyNWgtNTMuNDhjMCwzOS40NC0zMi4wOCw3MS41Mi03MS41Miw3MS41MloiLz4KPC9zdmc+\",\"logo_sistema_custom\":0,\"logo_empresa\":\"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMzc1LjMxIj4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsOiAjMzQzY2VjOwogICAgICB9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xMjUtLjk1SDB2NTBoMjVDOS4zLDY5Ljk0LDAsOTUuOSwwLDEyNC4wNSwwLDE5My4wOCw1NS45NiwyNDkuMDUsMTI1LDI0OS4wNXMxMjUtNTUuOTYsMTI1LTEyNVMxOTQuMDQtLjk1LDEyNS0uOTVoMFpNMTI1LDE5NS41N2MtMzkuNDQsMC03MS41Mi0zMi4wOC03MS41Mi03MS41MlM4NS41Niw1Mi41MiwxMjUsNTIuNTJzNzEuNTIsMzIuMDgsNzEuNTIsNzEuNTItMzIuMDgsNzEuNTItNzEuNTIsNzEuNTJoMFoiLz4KICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xMjUsMzIwLjg3Yy0zOS40NCwwLTcxLjUyLTMyLjA4LTcxLjUyLTcxLjUySDBjMCw2OS4wNCw1NS45NiwxMjUsMTI1LDEyNXMxMjUtNTUuOTYsMTI1LTEyNWgtNTMuNDhjMCwzOS40NC0zMi4wOCw3MS41Mi03MS41Miw3MS41MloiLz4KPC9zdmc+\"}"
+          "value": "{\"access_token\":\"UQeQC-cVSuNhHVyth_-Q83Y0J7rcJXUrviVGDt7gBZWxpZkCAXDlmYW36s4htvv26VFSoBG8SxxH08ZmmhujTaGr8OVyquO5muOfI0b76h2_Xu_AmI0GndrzbS2GS2FyGXupkZ1Dc5Gb1-DYF0kP2vfKekrVBd8qNL802VGHaqSRv6Cfy8ejxu56HFf4zvz_fMEYv2FjXVFKI81OXlpc_R1iGBUT6EQFASqgZYjgLLO1dKRmeGXhc33bp4wxrasAOauZHQkkItZ_TFMpBofuCjSjL5IXgJyuUoDGTUWjYJzj0TXbfKw3Efm3Si84ANpTJZoiiiPNtU6z4GwXM3quAKTXvtUX7O81shKfImLFXszYzBK2wwjqXa1ByWQBCmxYo3idcGFKqm_yHXRqGPDfKTNY5DdWQy1XXDC3ErEPzYiZLmj7NgVrcxT7PX_roajzMW36wKLU0u_GyONQIhvijiKex_QntEfge9ZE2UGg6EyRCUtC_K4BW2cyZ0lZe5Swm6dqcJLtc6gXcq5ZBChypHhC40OY58mBNiv11W4eMsA\",\"token_type\":\"bearer\",\"expires_in\":2591999,\"refresh_token\":\"JVKApGvjcd3CWXObrlceQ2qOiThFxq1LSgPDgAov5hDM5le4mOc4ZU7L1_LyhWSzxayi1r4w7oku-JZHnMTeVGu7eMecgIVPT5iWz_QEDJj_SRXkQm_xZp_eZqsE5mJlX08116G_gk7CTyxz-CBO0i6HmhvX4Edxnh6sG-Tx_L3k6HncyQ0-6mSjCnleVm9fSVsvbfcW7vm_hJ6dR8Mo5FEhEgHp0Y83ugU-mayo78ysL2cgYdVz4I74Xjr6PZfgqZy1jfJYLYJgoYApgskPM_ZktsR9mmrN6aCXOuCgdktCfJUiMI4t0VGCyZJUJcAVWScJA6sO4aMGdBzsZMN_0tt4AFoFui5_z8UKs_hxrGcgVkGSDmFDHWxJpvIJP11fg4mzjTam_LKgGR6D2HHacpe-3LT-kCa3ADDrXhy4nCKs6u0Fi-QpYUR5cf1-vQxSdwqgdAUfXkxnSY8EJPr1JQqePA63LOFAKLY6sN19ePpOTmMH-LgC9U6xzO91U0iKbeAG1c9-PFjCChWqYQXfKoKCH5TZDSLr26k7S4dKfSs\",\"icheck\":\"False\",\"scheck\":\"True\",\"rcheck\":\"False\",\"us\":\"SUPERVISOR\",\"usrdisplay\":\"Christian Ramos\",\"dom\":\"test.com.ar\",\".issued\":\"Mon, 02 Feb 2026 20:12:38 GMT\",\".expires\":\"Wed, 04 Mar 2026 20:12:38 GMT\"}"
         },
         {
           "name": "userpilotSDK57540389",
-          "value": "{\"userpilotIdentifiedObj57540389\":\"{\\\"name\\\":\\\"Christian Ramos\\\",\\\"email\\\":\\\"cszalai@units.com.ar\\\",\\\"dictionary_id\\\":\\\"1\\\",\\\"version\\\":\\\"9.26.01\\\",\\\"domain\\\":\\\"test.com.ar\\\",\\\"port\\\":\\\"2031\\\"}\",\"userpilotUserId57540389\":\"SUPERVISOR@test.com.ar\"}"
-        },
-        {
-          "name": "LastCID",
-          "value": "TEST"
+          "value": "{}"
         },
         {
           "name": "version",
           "value": "9.26.01"
-        },
-        {
-          "name": "LastCID_1769534564929",
-          "value": "TEST"
         }
       ]
     }

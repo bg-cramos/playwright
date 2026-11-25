@@ -9,7 +9,7 @@ async function globalSetup() {
   await expect(page.getByRole('textbox', { name: 'Alias' })).toBeVisible();
 
   // 👉 Usuario
-  await page.getByRole('textbox', { name: 'Alias' }).fill('supervisor@test.com.ar');
+  await page.getByRole('textbox', { name: 'Alias' }).fill('supervisor@global.com.ar');
   await page.getByRole('button', { name: 'Siguiente' }).click();
 
   // 👉 Contraseña
