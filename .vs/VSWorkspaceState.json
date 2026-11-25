@@ -2,10 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\claude",
-    "\\claude\\tests",
-    "\\playwright-report",
-    "\\test-results"
+    "\\claude\\utils"
   ],
-  "SelectedNode": "\\claude\\tests\\circuito-pedido-remito-factura.spec.ts",
+  "SelectedNode": "\\claude\\utils\\informeHtml.ts",
   "PreviewInSolutionExplorer": false
 }
