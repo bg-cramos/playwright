@@ -21,12 +21,34 @@ import {
   consultarUltimoComprobante,
   volverAlExplorador,
   leerSidebarDetalles,
-  ARTICULOS_COMPRA,
+  articulosCompraAleatorios,
+  MONTO_MINIMO_OC,
   PROVEEDOR_CODIGO,
   Importes,
   LineaDetalle,
   SidebarDetalles,
   ComprobanteProveedor,
+  abrirComprobantesCompra,
+  buscarComprobanteCompra,
+  filaComprobante,
+  intentarEditarComprobante,
+  consultarComprobante,
+  leerTotalesComprobante,
+  leerImputacionesComprobante,
+  leerPercepcionesComprobante,
+  leerSidebarComprobante,
+  abrirPagos,
+  nuevoPago,
+  seleccionarComprobanteCobranza,
+  leerRetencionesPago,
+  totalRetenciones,
+  RetencionComprobante,
+  agregarValorCobranza,
+  leerSaldoCobranza,
+  leerValoresCobranza,
+  leerComprobantesCobranza,
+  filaCobranzaEnGrilla,
+  cabeceraCobranza,
 } from '../utils/igglobal';
 
 /**
@@ -38,7 +60,8 @@ import {
  * guardan en `diferencias` de cada etapa del resumen.json.
  */
 
-const ARTICULOS = ARTICULOS_COMPRA;
+/** (1003) x 4 a un precio aleatorio con decimales (neto > $ 869,000.00) + caja a precio de lista. */
+const ARTICULOS = articulosCompraAleatorios(MONTO_MINIMO_OC);
 /** Imputaciones que se exigen en Compras (Conceptos depende de la parametrización: se informa). */
 const IMPUTACIONES_EXIGIDAS = ['contables', 'provincias'] as const;
 const PROVINCIAS_PERCEPCION = ['2', '3', '6', '8', '12', '13', '18', '21']; // Bs. As., Entre Ríos, Córdoba, Santa Fe, Tucumán, Salta, Mendoza, Río Negro
@@ -177,6 +200,9 @@ test('circuito de compras: Orden de Compra -> Remito -> Factura (desde Pendiente
     const pre = await capturarImportes(page);
     verificarImputacionesCompras(c, 'Pre-grabado', pre);
     verificarCuadreTotales(c, 'Pre-grabado', pre.totales);
+    // Monto alto para que Pagos calcule retenciones reales (IIBB, Ganancias)
+    c.igual(aNumero(pre.totales['TOTAL NETO']) > MONTO_MINIMO_OC, true, `Pre-grabado › Total Neto ${pre.totales['TOTAL NETO']} > ${fmt(MONTO_MINIMO_OC)}`);
+    c.igual(aNumero(pre.totales['IMPORTE $']) > MONTO_MINIMO_OC, true, `Pre-grabado › IMPORTE $ ${pre.totales['IMPORTE $']} > ${fmt(MONTO_MINIMO_OC)}`);
 
     const { numero } = await guardarYConsultar(page, maxPrevio);
     const post = await capturarImportes(page);
@@ -347,5 +373,216 @@ test('circuito de compras: Orden de Compra -> Remito -> Factura (desde Pendiente
     };
   });
   await registrarEtapa('facturaCompra', facturaCompra);
+
+  // ---- Etapa 4: Comprobantes de Compra (solo importes) ----------------------------------------
+  // Referencia = lo GRABADO en la factura (Pre-grabado con Totales Otros, que coincide con su Sidebar). La vista
+  // Consultar de Facturas pierde las percepciones (defecto conocido): se contrasta aparte, sin tomarla como verdad.
+  const comprobanteCompra = await test.step('Etapa 4 - Comprobantes de Compra', async () => {
+    const c = controlador('Comprobantes de Compra');
+    const lln = facturaCompra.numeracionFiscal;
+    const grabado = facturaCompra.pre;
+    const percepcionesGrabadas = (grabado.percepciones ?? []).map((p) => [p.provincia, fmt(Number(p.monto))]);
+    const sinDiscriminar = (t: Record<string, string>) => Object.fromEntries(Object.entries(t).filter(([k]) => k !== 'Total a Discriminar'));
+
+    await abrirComprobantesCompra(page);
+    const datosFila = await buscarComprobanteCompra(page, lln);
+    const fila = filaComprobante(page, lln);
+    // Grilla: proveedor, No. Operación e importes (Impuesto4 = PERC. IVA, Impuesto5 = PERC. IIBB, Impuesto6 = PERC. GAN.)
+    c.igual(datosFila.coCliente, Number(PROVEEDOR_CODIGO), 'Grilla › proveedor');
+    c.igual(datosFila.noOperacion, facturaCompra.noOperacion, 'Grilla › No. Operación = el cargado en la factura');
+    c.igual(fmt(datosFila.importe), grabado.totales['IMPORTE $'], 'Grilla › Importe Original = IMPORTE $ grabado');
+    const columnasGrilla: [string, string][] = [['Monto1', 'GRAV 21%'], ['Impuesto1', 'IVA 21%'], ['Impuesto4', 'PERC. IVA'], ['Impuesto5', 'PERC. IIBB'], ['Impuesto6', 'PERC. GAN.']];
+    for (const [campo, concepto] of columnasGrilla) {
+      c.igual(fmt(datosFila.montos[campo] ?? NaN), grabado.totales[concepto], `Grilla › ${concepto} (${campo})`);
+    }
+
+    // Editar: según el estado puede estar bloqueado; si abre, se leen Totales y Percepciones y se sale SIN grabar
+    const edicion = await intentarEditarComprobante(page, fila, lln, async () => ({
+      totales: sinDiscriminar(await leerTotalesComprobante(page)), // antes de sacar el foco de "Total a Discriminar"
+      percepciones: await leerPercepcionesComprobante(page),
+    }));
+    c.observar(`Estado "${datosFila.estado}": edición ${edicion.permitido ? 'permitida (se salió sin grabar)' : `bloqueada (${edicion.mensaje})`}`);
+    if (edicion.datos) {
+      for (const [k, v] of Object.entries(grabado.totales)) c.igual(edicion.datos.totales[k], v, `Editar vs. Factura grabada › Totales › ${k}`);
+      c.igual(edicion.datos.percepciones.map((p) => [p.provincia, fmt(Number(p.monto))]), percepcionesGrabadas, 'Editar vs. Factura grabada › Percepciones');
+    }
+
+    // Consultar: Totales apenas abre (recálculo al salir de "Total a Discriminar"), Imputaciones y Percepciones
+    await consultarComprobante(page, fila, lln);
+    const totales = sinDiscriminar(await leerTotalesComprobante(page));
+    const imputaciones = await leerImputacionesComprobante(page);
+    const percepciones = await leerPercepcionesComprobante(page);
+    await irASeccion(page, 'Datos Básicos');
+    const totalesTrasRecalculo = sinDiscriminar(await leerTotalesComprobante(page));
+    const recalculados = Object.keys(totales).filter((k) => totalesTrasRecalculo[k] !== totales[k]);
+    if (recalculados.length) c.observar(`Recálculo en pantalla al salir de "Total a Discriminar": ${recalculados.map((k) => `${k} ${totales[k]} → ${totalesTrasRecalculo[k]}`).join(', ')}`);
+    await volverAlExplorador(page);
+
+    for (const [k, v] of Object.entries(grabado.totales)) c.igual(totales[k], v, `Consultar vs. Factura grabada › Totales › ${k}`);
+    c.igual(percepciones.map((p) => [p.provincia, fmt(Number(p.monto))]), percepcionesGrabadas, 'Consultar vs. Factura grabada › Percepciones');
+    for (const tipo of IMPUTACIONES_EXIGIDAS) {
+      c.igual(imputaciones[tipo].totalImputado, grabado[tipo].totalImputado, `Consultar vs. Factura grabada › Imputaciones › ${tipo} › Total Imputado`);
+      c.igual(imputaciones[tipo].importes, grabado[tipo].importes, `Consultar vs. Factura grabada › Imputaciones › ${tipo} › importes`);
+    }
+    if (JSON.stringify(imputaciones.conceptos.importes) !== JSON.stringify(facturaCompra.post.conceptos.importes)) {
+      c.observar(`Imputaciones › Conceptos [${imputaciones.conceptos.importes.join(' + ') || 'sin filas'}] vs. Factura › Consultar [${facturaCompra.post.conceptos.importes.join(' + ') || 'sin filas'}]`);
+    }
+
+    // Sidebar Más › Ver Detalles (#showFacturasDebitosCreditosDetallesRightSidebar)
+    await buscarComprobanteCompra(page, lln);
+    const sidebarLeido = await leerSidebarComprobante(page, fila, lln);
+    const { sidebar } = normalizarSidebar(c, sidebarLeido, Object.keys(grabado.totales));
+    for (const [k, v] of Object.entries(totales)) c.igual(sidebar.totales[k], v, `Sidebar vs. Consultar › Totales › ${k}`);
+    c.igual(sidebar.resumen.total, totales['IMPORTE $'], 'Sidebar vs. Consultar › Total (encabezado)');
+    c.igual(sidebar.resumen.neto, totales['TOTAL NETO'], 'Sidebar vs. Consultar › Neto (encabezado)');
+    for (const tipo of IMPUTACIONES_EXIGIDAS) c.igual(sidebar.imputaciones[tipo], imputaciones[tipo].importes, `Sidebar vs. Consultar › Imputaciones › ${tipo}`);
+    for (const [k, v] of Object.entries(facturaCompra.sidebar.totales)) c.igual(sidebar.totales[k], v, `Sidebar vs. Sidebar de Facturas › Totales › ${k}`);
+
+    // Contraste con la vista Consultar de Facturas (defecto conocido): se informa qué recupera Comprobantes
+    const perdidasEnFactura = Object.keys(totales).filter((k) => facturaCompra.post.totales[k] !== undefined && facturaCompra.post.totales[k] !== totales[k]);
+    if (perdidasEnFactura.length || (facturaCompra.post.percepciones ?? []).length !== percepciones.length) {
+      c.observar(
+        `Comprobantes recupera lo que Facturas › Consultar pierde: percepciones ${percepciones.length} vs. ${(facturaCompra.post.percepciones ?? []).length}` +
+          `${perdidasEnFactura.length ? `; ${perdidasEnFactura.map((k) => `${k} ${totales[k]} vs. ${facturaCompra.post.totales[k]}`).join(', ')}` : ''}`,
+      );
+    }
+    return {
+      numero: datosFila.noOperacion,
+      ...datosFila,
+      edicion,
+      totales,
+      totalesTrasRecalculo,
+      percepciones,
+      imputaciones,
+      sidebar,
+      referencia: { factura: facturaCompra.numero, totales: grabado.totales, percepciones: grabado.percepciones ?? [] },
+      diferencias: c.diferencias,
+      observaciones: c.observaciones,
+    };
+  });
+  await registrarEtapa('comprobanteCompra', comprobanteCompra);
+
+  // ---- Etapa 5: Pago de la factura (retenciones + 2 valores, cuenta 1000) ---------------------------
+  const pago = await test.step('Etapa 5 - Pago', async () => {
+    const c = controlador('Pago');
+    const lln = facturaCompra.numeracionFiscal;
+    const totalFactura = facturaCompra.pre.totales['IMPORTE $']; // lo grabado (= Sidebar y Comprobantes de Compra)
+    const noOperacionAleatorio = () => Math.floor(100_000 + Math.random() * 900_000);
+    const suma = (vs: { importe: number }[]) => Math.round(vs.reduce((s, v) => s + Number(v.importe), 0) * 100) / 100;
+
+    const maxPrevio = await abrirPagos(page);
+    await nuevoPago(page);
+    await seleccionarProveedor(page); // Datos Básicos: solo el proveedor 10
+
+    // Comprobantes: la factura del circuito; "Importe Aplicar" = deuda = total grabado
+    const aplicado = await seleccionarComprobanteCobranza(page, lln);
+    c.igual(fmt(aplicado.importeAplicar), totalFactura, 'Pre-grabado › Importe a aplicar = Total de la factura grabada');
+    c.igual(fmt(aplicado.deuda), totalFactura, 'Pre-grabado › Deuda del comprobante = Total de la factura grabada');
+    c.igual(fmt(aplicado.importeAplicar), fmt(comprobanteCompra.importe), 'Pre-grabado › Importe a aplicar = Importe en Comprobantes de Compra');
+
+    // Retenciones: se abre el detalle de cada una (Ret. IVA / Ganancias / IIBB / SUSS / Otros)
+    const retencionesPre = await leerRetencionesPago(page, { detalle: true });
+    const retPre = retencionesPre.find((r) => r.letraLugarNumero === lln);
+    c.igual(!!retPre, true, `Pre-grabado › Retenciones › fila de ${lln}`);
+    const totalRet = retPre ? totalRetenciones(retPre) : 0;
+    if (retPre) {
+      c.igual(fmt(retPre.aplicado), fmt(aplicado.importeAplicar), 'Pre-grabado › Retenciones › Aplicado = Importe a aplicar');
+      c.igual(fmt(retPre.sujeto), facturaCompra.pre.totales['TOTAL NETO'], 'Pre-grabado › Retenciones › Sujeto = Neto de la factura');
+      c.igual(fmt(retPre.iva), facturaCompra.pre.totales['IVA 21%'], 'Pre-grabado › Retenciones › IVA = IVA de la factura');
+      for (const [clave, d] of Object.entries(retPre.detalle ?? {})) {
+        if (typeof d === 'string') c.observar(`Retención ${clave}: ${d}`);
+        else c.igual(fmt(suma(d.filas.map((f) => ({ importe: f.importe })))), fmt(Number(retPre[clave as keyof typeof retPre] ?? 0)), `Pre-grabado › Retenciones › ${d.titulo || clave}: detalle = celda`);
+      }
+      // Con neto > $ 869,000.00 el ERP debe calcular retenciones reales de IIBB y Ganancias
+      if (aNumero(facturaCompra.pre.totales['TOTAL NETO']) > MONTO_MINIMO_OC) {
+        c.igual(retPre.retIIBB > 0, true, `Pre-grabado › Retención IIBB calculada (> 0) con neto ${facturaCompra.pre.totales['TOTAL NETO']}`);
+        c.igual(retPre.retGanancias > 0, true, `Pre-grabado › Retención Ganancias calculada (> 0) con neto ${facturaCompra.pre.totales['TOTAL NETO']}`);
+      }
+      c.observar(`Retenciones calculadas: IVA ${fmt(retPre.retIva)}, Ganancias ${fmt(retPre.retGanancias)}, IIBB ${fmt(retPre.retIIBB)}, SUSS ${fmt(retPre.retSUSS)}, Otros ${fmt(retPre.retOtros)} (total ${fmt(totalRet)})`);
+    }
+
+    // Valores: neto a pagar = aplicado - retenciones, repartido al azar entre subcuentas 1 y 2 (2 decimales)
+    const netoAPagar = Math.round((aplicado.importeAplicar - totalRet) * 100);
+    const saldos: string[] = [await leerSaldoCobranza(page, { esperarSaldo: true })];
+    c.igual(saldos[0], fmt(netoAPagar / 100), 'Pre-grabado › Saldo inicial = Importe a aplicar - Retenciones');
+    const primero = Math.round(netoAPagar * (0.3 + Math.random() * 0.4));
+    const valoresACargar = [primero, netoAPagar - primero].map((cent, i) => ({
+      operacion: '53',
+      noOperacion: String(noOperacionAleatorio()),
+      cuenta: '1000',
+      subCuenta: String(i + 1),
+      importe: (cent / 100).toFixed(2),
+    }));
+    for (const [i, valor] of valoresACargar.entries()) {
+      await agregarValorCobranza(page, valor);
+      saldos.push(await leerSaldoCobranza(page, { esperarSaldo: i < valoresACargar.length - 1 }));
+    }
+    const valoresPre = await leerValoresCobranza(page);
+    c.igual(valoresPre.length, 2, 'Pre-grabado › 2 valores cargados');
+    c.igual(fmt(suma(valoresPre) + totalRet), fmt(aplicado.importeAplicar), 'Pre-grabado › Valores + Retenciones = Importe a aplicar');
+    c.igual(saldos[saldos.length - 1], '0.00', 'Pre-grabado › Saldo final');
+
+    // Grabar y Consultar
+    await guardarComprobante(page);
+    const numero = await consultarUltimoComprobante(page, maxPrevio, cabeceraCobranza);
+    await irASeccion(page, 'Comprobantes');
+    await expect.poll(async () => (await leerComprobantesCobranza(page)).length, { message: 'comprobantes del pago consultado' }).toBeGreaterThan(0);
+    const comprobantesPost = await leerComprobantesCobranza(page);
+    const aplicadoPost = comprobantesPost.find((x) => x.letraLugarNumero === lln);
+    c.igual(comprobantesPost.map((x) => x.letraLugarNumero), [lln], 'Consultar › Comprobantes › solo la factura del circuito');
+    c.igual(aplicadoPost && fmt(aplicadoPost.importeAplicar), fmt(aplicado.importeAplicar), 'Consultar › Comprobantes › Importe aplicado = antes de grabar');
+    c.igual(aplicadoPost && fmt(aplicadoPost.deuda), '0.00', 'Consultar › Comprobantes › Deuda cancelada');
+    const retencionesPost = await leerRetencionesPago(page, { detalle: true });
+    const retPost = retencionesPost.find((r) => r.letraLugarNumero === lln);
+    const sinDetalle = (r?: RetencionComprobante) => r && { ...r, detalle: undefined };
+    c.igual(sinDetalle(retPost), sinDetalle(retPre), 'Consultar › Retenciones = antes de grabar');
+    await irASeccion(page, 'Detalle de Valores');
+    await expect.poll(async () => (await leerValoresCobranza(page)).length, { message: 'valores del pago consultado' }).toBeGreaterThan(0);
+    const valoresPost = await leerValoresCobranza(page);
+    const clave = (v: { noOperacion: number; cuenta: string; subCuenta: string; importe: number }) => `${v.noOperacion}|${v.cuenta}|${v.subCuenta}|${fmt(Number(v.importe))}`;
+    c.igual(valoresPost.map(clave).sort(), valoresPre.map(clave).sort(), 'Consultar › Valores = cargados (No. Operación | cuenta | subcuenta | importe)');
+    c.igual(fmt(suma(valoresPost)), fmt(netoAPagar / 100), 'Consultar › Total valores = neto a pagar');
+
+    await volverAlExplorador(page);
+    await expect.poll(() => filaCobranzaEnGrilla(page, numero), { timeout: 20_000 }).not.toBeNull().catch(() => {});
+    const grilla = await filaCobranzaEnGrilla(page, numero);
+    c.igual(grilla?.coCliente, Number(PROVEEDOR_CODIGO), `Grilla › pago ${numero} del proveedor ${PROVEEDOR_CODIGO}`);
+    if (grilla) {
+      c.igual(fmt(grilla.total), totalFactura, 'Grilla › Total = Total de la factura grabada');
+      // Con retenciones: Liquidado (comprobantes) = Pagado (valores) + Retenciones
+      c.igual(fmt(grilla.liquidado), fmt(aplicado.importeAplicar), 'Grilla › Liquidado = Importe aplicado');
+      c.igual(fmt(grilla.pagado), fmt(suma(valoresPre)), 'Grilla › Pagado = Total valores');
+      c.igual(fmt(grilla.liquidado - grilla.pagado), fmt(totalRet), 'Grilla › Liquidado - Pagado = Retenciones');
+      if (retPre) {
+        const r = grilla.retenciones;
+        c.igual(
+          [r.iva, r.ganancias, r.iibb, r.suss, r.otros].map((n) => fmt(Number(n))),
+          [retPre.retIva, retPre.retGanancias, retPre.retIIBB, retPre.retSUSS, retPre.retOtros].map((n) => fmt(Number(n))),
+          'Grilla › Retenciones por tipo (IVA, Ganancias, IIBB, SUSS, Otros) = solapa Retenciones',
+        );
+      }
+      const conImporte = [retPre?.retIva, retPre?.retGanancias, retPre?.retIIBB, retPre?.retSUSS, retPre?.retOtros].filter((n) => Number(n) !== 0).length;
+      if (grilla.cantidadRetenciones !== conImporte) c.observar(`Grilla › campo "Retenciones" = ${grilla.cantidadRetenciones} (retenciones con importe en la solapa: ${conImporte})`);
+    }
+    console.log(`Pago ${numero}: aplica ${lln} por ${fmt(aplicado.importeAplicar)}, retenciones ${fmt(totalRet)}, valores ${valoresPre.map((v) => `${v.subCuenta} ${fmt(v.importe)}`).join(' + ')}${c.diferencias.length ? ` · DIFERENCIAS: ${c.diferencias.join(' | ')}` : ''}`);
+    return {
+      numero,
+      letraLugarNumero: lln,
+      totalFactura,
+      aplicado,
+      retencionesPre,
+      retencionesPost,
+      totalRetenciones: totalRet,
+      saldos,
+      valoresCargados: valoresACargar,
+      valoresPre,
+      comprobantesPost,
+      valoresPost,
+      grilla,
+      diferencias: c.diferencias,
+      observaciones: c.observaciones,
+    };
+  });
+  await registrarEtapa('pago', pago);
   console.log(`RESUMEN ${JSON.stringify(resumen)}`);
 });

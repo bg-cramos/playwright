@@ -183,9 +183,12 @@ el circuito desde cero; Remito y Factura se invocan desde Pendientes.
   sin comprobantes del día aparece vacía. "+" = `button[ng-click="add()"]` (sin texto; `nuevoComprobante` lo contempla).
 - **Proveedor `10` (ALBERTO VIDAL)**: `PROVEEDOR_CODIGO`, `seleccionarProveedor` (= `seleccionarCuenta(page, '10')`,
   mismo typeahead `#CoCuenta`, búsqueda `PR-2`). Elegir siempre por código.
-- **Artículos (`ARTICULOS_COMPRA`)**: el `(1002)` de Ventas no está habilitado para compras →
-  `(1003) Frasco Vidrio 500ml` x 4 a $1250 + caja `CJ-LOEN-001` x 5 a precio de lista (hoy 30.00; el test lo
-  deja en lo que proponga el sistema). Mismo modal "Detalle" que Pedidos: `cargarArticulos` + `tabularHasta`.
+- **Artículos y monto de la OC (> $ 869,000.00)**: el `(1002)` de Ventas no está habilitado para compras →
+  `(1003) Frasco Vidrio 500ml` x 4 + caja `CJ-LOEN-001` x 5 a precio de lista (el sistema propone el último precio
+  de compra). `articulosCompraAleatorios(MONTO_MINIMO_OC)` genera **en cada corrida un precio unitario aleatorio con
+  2 decimales** para el (1003) (entre 869,000/4 + 0.01 y + 5,000) → el Total Neto de la OC supera **$ 869,000.00**
+  (el test lo exige en Pre-grabado). Con ese monto Pagos calcula retenciones reales: el test exige **Ret. IIBB > 0 y
+  Ret. Ganancias > 0** (si el ERP no las calcula queda en rojo). Mismo modal "Detalle" que Pedidos: `cargarArticulos` + `tabularHasta`.
 - **Pendientes**: prefijos `OCCP` (orden de compra) y `RTCP` (remito de compra) en `tr[data-key="<PREFIJO>-<nro>-10"]`.
   En el detalle, la OC de origen viaja en **`NoDespacho`** (no en `NoPedido`) y el remito en `NoRemito`.
   El Remito de compra **no se "Genera"** (no hay "Generar" en Más): aparece pendiente en Facturas al grabarlo.
@@ -220,7 +223,62 @@ el circuito desde cero; Remito y Factura se invocan desde Pendientes.
   muestra en "Fallas" la alerta `⚠️ PÉRDIDA DE DATOS EN CONSULTAR` (percepciones no recuperadas) y
   `⚠️ TOTAL DISTINTO EN CONSULTAR` (`alertaPerdidaConsultar` en `informeHtml.ts`). No usar `test.fail`, `test.skip`
   ni bajar la diferencia a observación; se retira solo cuando Consultar devuelva las percepciones grabadas.
-- Resumen: claves `ordenCompra`, `remitoCompra`, `facturaCompra` (forma comercial + `diferencias`, `observaciones`,
+- **Etapa 4: Comprobantes de Compra** (Searchlight "Comprobantes", categoría `Compras`; `abrirComprobantesCompra`,
+  URL `#/60/1580`). Grilla: Estado, No. Operación, Fecha, Operación, Proveedor, Condición de Cobranza, Importe Original ARS,
+  No. Comprobante Fiscal. jqx: `LetraLugarNumero`, `CoProveedor`, `Proveedor`, `NoOperacion`, `_state_text`
+  ("Pendiente de Pago"), `ImporteOriginal_Base`, `Monto1..4`, `Impuesto1..6` (**4 = PERC. IVA, 5 = PERC. IIBB, 6 = PERC. GAN.**).
+  - **Búsqueda:** `#s2_explorer_search` (`search_like`) **no encuentra por número** (ni No. Operación ni Letra-Lugar-Número):
+    solo por texto. `buscarComprobanteCompra(page, lln)` busca "ALBERTO VIDAL" y confirma la fila por `LetraLugarNumero` +
+    `CoProveedor === 10` (`ensurerowvisible`). La grilla muestra solo comprobantes del día.
+  - **Editar habilitado** en "Pendiente de Pago" (en Ventas "Pendiente" está bloqueado), sin avisos; menú contextual
+    Editar/Consultar, Más = Notas, Etiquetar, Ver Detalles, Eliminar (**nunca Eliminar**). `intentarEditarComprobante(page, fila,
+    lln, leer)` lee Totales y Percepciones dentro de la edición y sale con Volver **sin grabar** (no pide confirmación).
+  - Formulario (Editar/Consultar): cabecera "FACTURA | A-0003-…", secciones Datos Básicos, Proveedor, Imputaciones, Percepciones.
+    Totales en Datos Básicos = `#_tasas_impuestos_totales` (mismo bloque que Comprobantes de Ventas y Totales Otros:
+    `leerTotalesComprobante`), foco inicial en `#TotalDiscriminar`; hoy no recalcula al salir. Percepciones: grilla del ibox
+    "Percepciones" con `CoProvinciaDesc` / `Importe` (= monto; la columna se titula "Sujeto") → `leerPercepcionesComprobante`.
+  - **Acá SÍ aparecen las percepciones grabadas** y PERC. IIBB/Total correctos: confirma que el dato está grabado y que la
+    pérdida es de la vista Consultar de Facturas de compra.
+  - Sidebar: `#showFacturasDebitosCreditosDetallesRightSidebar` (`leerSidebarComprobante`), cabecera
+    "Comprobantes: ALBERTO VIDAL - FACTURA - A-0003-…", resumen "Total: $ …"; imputaciones Contables/Conceptos/Provincias
+    (Conceptos = "Concepto de Compras Genérico"; Facturas › Consultar muestra "Concepto de Ventas Genérico").
+  - Validaciones (`comprobanteCompra` en el resumen): referencia = **factura grabada** (Pre-grabado con Totales Otros = su
+    Sidebar), no la vista Consultar de Facturas. Grilla (proveedor, No. Operación, importe, Impuesto1/4/5/6), Editar, Consultar
+    (Totales, Percepciones, Contables/Provincias) y Sidebar (= Consultar y = Sidebar de Facturas). Toda diferencia es FALLA;
+    si faltan percepciones el informe muestra `⚠️ PÉRDIDA DE DATOS EN COMPROBANTES`. Lo que Comprobantes recupera frente a
+    Facturas › Consultar se informa como observación (el defecto de Facturas sigue en rojo en su etapa).
+- **Etapa 5: Pagos** (Searchlight "Pagos", categoría **`Financiera`**; `abrirPagos`, URL `#/30/30040`). Mismo formulario
+  y toolbar que Cobranzas: grilla con "No. Liquidación" (`NoAplicacion`/`NoLiquidacion`, `CoProveedor`, `TotalPesos`,
+  `LiqPesos`, `PagPesos`, `Retenciones`, `RetencionesIva/Ganancias/IngBru/SSocial/Otros`, estado "Pagado"); no hay Editar.
+  Nuevo = `add()` (`nuevoPago`); secciones Datos Básicos (`#CoCuenta` = proveedor `(10)`), Comprobantes, Detalle de Valores.
+  Se reutilizan los helpers de Cobranzas: `seleccionarComprobanteCobranza` (grilla "Deuda ARS", tildar → Importe Aplicar =
+  deuda), `agregarValorCobranza`, `leerSaldoCobranza`, `leerComprobantesCobranza`, `leerValoresCobranza`,
+  `filaCobranzaEnGrilla` (ahora devuelve también `retenciones` y `estado`) y `cabeceraCobranza` ("No. Liquidación: N").
+  - **Solapas de Comprobantes**: "Comprobantes (N)" (`#tab-1`) y **"Retenciones (N)"** (`#tab-2`, `retencionesInitBoundData()`;
+    herramientas Parámetros / Detalle de Retenciones). Grilla: `LetraLugarNumero`, `AplicadoBase`, `Sujeto`, `Iva` y celdas-botón
+    `IvaButton`, `GananciasButton`, `IIBBButton`, `SUSSButton`, `OtrosButton` (`span.explorer-grid-clickable-cell`, title
+    "Editar Retenciones"). Clic → modal **"Edición de Retenciones <I.V.A. | Ganancias | Ingresos Brutos | Seguridad Social | Otros>"**
+    con grilla (`ImporteSujeto`, `ImporteIva`, `CoConceptoPagoDescripcion`, `Alicuota`, `Importe`) y Cerrar (`ok()`); el primer
+    clic a veces solo selecciona la fila (se reintenta). `leerRetencionesPago(page, { detalle: true })`.
+  - **Valores**: modal "Detalle de Valor" igual a Cobranzas: Tipo `53`, `#NoOperacion`, `#CoBancoOrigen` `1000` ICBC (la búsqueda
+    asíncrona a veces no responde al primer tipeo: `seleccionarTypeahead` reintenta), subcuenta `#CoCuentaOrigen` `(1)` Cuenta
+    Corriente Pesos / `(2)` Caja de Ahorros Pesos (aparece con demora), `#Importe`. **Saldo real a pagar = Importe aplicado −
+    total de retenciones calculadas** (= "Saldo: X" inicial). El test reparte ese saldo al azar (2 decimales, 30-70 %) entre
+    `1000/1` y `1000/2`; el segundo absorbe el resto → saldo 0.00.
+  - Validaciones (`pago` en el resumen; `diferencias` con prefijo Pre-grabado / Consultar / Grilla): aplicado = deuda = total
+    grabado de la factura = importe en Comprobantes de Compra; Retenciones: Aplicado, Sujeto = Neto, IVA = IVA de la factura y
+    detalle de cada modal = celda; saldo inicial = aplicado − retenciones; valores + retenciones = aplicado; saldo final 0;
+    Consultar: solo esa factura aplicada con el mismo importe y deuda 0, Retenciones iguales, Valores iguales (No. Operación |
+    banco | subcuenta | importe); Grilla: proveedor 10, Total = factura, **Liquidado = aplicado, Pagado = valores y
+    Liquidado − Pagado = Retenciones**; `RetencionesIva/Ganancias/IngBru/SSocial/Otros` = solapa. El campo `Retenciones`
+    de la grilla **no es un importe** (vale 2 con IVA 693 + IIBB 924): se informa como observación si no coincide con la
+    cantidad de retenciones con importe.
+  - Las retenciones **varían entre corridas** con el mismo neto (exploración: todas 0.00; corrida 25/11 19:40: IVA 693.00 =
+    10 % del IVA, IIBB 924.00 = 5.6 % del sujeto): nunca hardcodearlas; el test toma las que calcula el sistema.
+  - En **Consultar** las celdas de Retenciones no son clickeables (sin `span.explorer-grid-clickable-cell`): se validan los
+    importes de la grilla y el detalle queda "sin detalle (celda no clickeable)".
+  - Cada corrida **cancela la factura de compra del circuito** con ese pago.
+- Resumen: claves `ordenCompra`, `remitoCompra`, `facturaCompra`, `comprobanteCompra`, `pago` (forma comercial + `diferencias`, `observaciones`,
   `noOperacion`, `percepcionesCargadas`, `percepcionesTotales`); adaptador `etapaCompra` en `informeHtml.ts`.
 
 ## Convenciones de tests
@@ -249,6 +307,13 @@ el circuito desde cero; Remito y Factura se invocan desde Pendientes.
      `test-results/informe-email.html` (cuerpo del correo, sirve de vista previa);
   2. envía el correo HTML a `MAIL_TO`, adjuntando el JSON, el informe HTML y `playwright-report/index.html`.
   Corridas sin tests (p. ej. `npx playwright test --list`) no escriben ni envían nada.
+- **Asunto del correo** (`asuntoCorreo(resumen)` en `informeHtml.ts`, usado por `emailReporter.ts` y `npm run reenviar-informe`),
+  exactamente uno de: `Global - Circuito Ventas ✅` · `Global - Circuito Ventas ❌` · `Global - Circuito Compras ✅` ·
+  `Global - Circuito Compras ❌`. Sin otros textos (ni cantidad de pruebas ni numeración). El circuito de cada test sale de sus
+  etapas del resumen o del nombre del spec (`compra` → Compras; el resto, incluidos los specs sueltos de Pedidos → Ventas).
+  ✅ solo si **todos** los tests del circuito pasaron y **ninguna etapa tiene fallas** (las alertas en rojo vigentes, como la
+  pérdida de percepciones en Consultar de Factura de Compra, dan ❌). Si una corrida incluye ambos circuitos (`npx playwright test`
+  completo) se envía un solo correo con los dos asuntos unidos por ` | `. El cuerpo no cambia.
 - **Formato ejecutivo** (`utils/informeHtml.ts`, función pura `construirInforme(resumen)`):
   1. Banner con semáforo: `✅ TODO EN VERDE — CIRCUITO OK` / `⚠️ ATENCIÓN — SE DETECTARON FALLAS`,
      fecha/hora (Argentina), duración, pruebas OK/total y etapas OK/total.

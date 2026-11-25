@@ -2,12 +2,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import type { FullConfig, FullResult, Reporter, Suite, TestCase, TestResult } from '@playwright/test/reporter';
 import { enviarInforme } from './mailer';
-import { construirInforme, documentoHtml, type Circuito, type ResultadoTest, type ResumenEjecucion } from './informeHtml';
+import { asuntoCorreo, construirInforme, documentoHtml, type Circuito, type ResultadoTest, type ResumenEjecucion } from './informeHtml';
 
 /**
  * Reporter de Playwright que, al terminar la corrida:
  *  1. escribe `test-results/resumen-ejecucion.json` (estado de cada test + datos de su circuito: Ventas
- *     `pedido`…`cobranza`; Compras `ordenCompra`, `remitoCompra`, `facturaCompra`),
+ *     `pedido`…`cobranza`; Compras `ordenCompra`, `remitoCompra`, `facturaCompra`, `comprobanteCompra`, `pago`),
  *  2. arma el informe ejecutivo (`utils/informeHtml.ts`) y lo guarda en `test-results/informe-email.html`,
  *  3. lo envía por correo adjuntando el JSON, el informe HTML y el reporte de Playwright.
  *
@@ -64,7 +64,11 @@ class EmailReporter implements Reporter {
     const jsonPath = path.join(dir, 'resumen-ejecucion.json');
     fs.writeFileSync(jsonPath, JSON.stringify(resumen, null, 2));
 
-    const { asunto, html } = construirInforme(resumen);
+    // Cuerpo: informe ejecutivo sin cambios. Asunto: solo el estado de cada circuito ejecutado
+    //   "Global - Circuito Ventas ✅|❌" / "Global - Circuito Compras ✅|❌" (ambos unidos con " | " si la corrida
+    //   incluye los dos). ✅ = todos los tests del circuito pasaron y ninguna etapa tiene fallas; si no, ❌.
+    const { html } = construirInforme(resumen);
+    const asunto = asuntoCorreo(resumen);
     const htmlPath = path.join(dir, 'informe-email.html');
     fs.writeFileSync(htmlPath, documentoHtml(asunto, html));
 

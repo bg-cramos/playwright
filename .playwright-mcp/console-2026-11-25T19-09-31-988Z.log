@@ -1,0 +1,775 @@
+[    2859ms] [LOG] [cycle] terminating; too few slides: 1 @ http://sandbox.igglobal.net/Scripts/plugins/maximage/jquery.cycle.all.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:25
+[   17819ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ http://rawgithub.com/angular/code.angularjs.org/master/1.5.0/angular-csp.css:1
+[   17819ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ http://rawgithub.com/justin-lau/ui-iconpicker/v0.1.4/dist/styles/ui-iconpicker.min.css:1
+[   17885ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ http://rawgithub.com/justin-lau/ui-iconpicker/v0.1.4/dist/scripts/ui-iconpicker.min.js:1
+[   17918ms] [WARNING] Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading @ http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyC8oz3Gg28rxkGvfQy_lxDcPg2KJyVgpMM&libraries=places:2845
+[   17948ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://rawgit.com/schmich/instascan-builds/master/instascan.min.js:1
+[   17983ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://rawgit.com/marceljuenemann/angular-drag-and-drop-lists/master/angular-drag-and-drop-lists.min.js:1
+[   18097ms] [LOG] Loaded claygl, version 1.2.1 @ http://sandbox.igglobal.net/Scripts/plugins/echarts4/echarts-gl.min.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:30
+[   18097ms] [LOG] Loaded echarts, version 4.1.0 @ http://sandbox.igglobal.net/Scripts/plugins/echarts4/echarts-gl.min.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:30
+[   18689ms] [ERROR] Permissions policy violation: unload is not allowed in this document. @ http://sandbox.igglobal.net/Scripts/plugins/jqwidgets/jqxdata.export.js:8
+[   18834ms] [LOG] refresh_instanceId @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.module.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:500
+[   18834ms] [LOG] 1795633790820 @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.module.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:501
+[   18862ms] [ERROR] Permissions policy violation: unload is not allowed in this document. @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.module.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:4186
+[   22936ms] [WARNING] Google Maps JavaScript API warning: SensorNotRequired https://developers.google.com/maps/documentation/javascript/error-messages#sensor-not-required @ http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyC8oz3Gg28rxkGvfQy_lxDcPg2KJyVgpMM&libraries=places:2189
+[   23602ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://sandbox.igglobal.net/api/request?cid=DEMOIG&id=S2-1&version=9.26.08:1
+[   23602ms] [LOG] localForageInterceptor_responseError @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.platform.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:986
+[   23602ms] [LOG] {data: Object, status: 401, headers: , config: Object, statusText: Unauthorized} @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.platform.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:987
+[   23603ms] TypeError: Cannot read properties of null (reading 'access_token')
+    at http://sandbox.igglobal.net/Scripts/igglobal/igglobal.module.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:1154:55
+    at responseError (http://sandbox.igglobal.net/Scripts/framework/s2.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:114:38)
+    at processQueue (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:15552:28)
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:15568:27
+    at Scope.$eval (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16820:28)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16636:31)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7)
+    at XMLHttpRequest.requestLoaded (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11405:9)
+[   23604ms] [ERROR] {data: Object, status: 401, headers: , config: Object, statusText: Unauthorized} undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23605ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23605ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23606ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23606ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23606ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23606ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23606ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23606ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23606ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23606ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23606ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23606ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23606ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23606ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23606ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23606ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23606ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23606ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23606ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23607ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23607ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23627ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23627ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23627ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23627ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23627ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23627ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23627ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23627ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23627ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23628ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23628ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23628ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23628ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23628ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23628ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23628ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23628ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23628ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23628ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23628ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23628ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23632ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23632ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23632ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23632ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23632ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23632ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23632ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23632ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23632ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23633ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23633ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23633ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23633ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23633ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23633ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23633ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23633ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23633ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23633ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23633ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23633ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   23747ms] [LOG] [cycle] terminating; too few slides: 1 @ http://sandbox.igglobal.net/Scripts/plugins/maximage/jquery.cycle.all.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:25
+[   25735ms] [ERROR] An invalid form control with name='u' is not focusable. @ http://sandbox.igglobal.net/Auth/Login?YWN0aW9uPXdhcm5pbmcmdT1zdXBlcnZpc29yQGdsb2JhbC5jb20uYXImbWVzc2FnZUlkPTEmdGl0bGU9TnVldm8gaW5pY2lvIGRlIHNlc2nDs24mc3VidGl0bGU9VHUgY3VlbnRhIGRlIElHR0xPQkFMICUodSlzIGhhIHNpZG8gdXRpbGl6YWRhIHBhcmEgaW5pY2lhciBzZXNpw7NuIGVuIG90cm8gZGlzcG9zaXRpdm8u:1
+[   25856ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/Auth/Files/Images/global.com.ar/BG_Canicas1.png:1
+[   25857ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/Auth/Files/Images/global.com.ar/logo.png:1
+[   25857ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/Auth/Files/Images/global.com.ar/BG_Canicas2.png:1
+[   26734ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/Auth/Files/Images/global.com.ar/BG_Canicas1.png:1
+[   26735ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/Auth/Files/Images/global.com.ar/BG_Canicas2.png:1
+[   27734ms] [ERROR] An invalid form control with name='u' is not focusable. @ http://sandbox.igglobal.net/Auth/Login?YWN0aW9uPXdhcm5pbmcmdT1zdXBlcnZpc29yQGdsb2JhbC5jb20uYXImbWVzc2FnZUlkPTEmdGl0bGU9TnVldm8gaW5pY2lvIGRlIHNlc2nDs24mc3VidGl0bGU9VHUgY3VlbnRhIGRlIElHR0xPQkFMICUodSlzIGhhIHNpZG8gdXRpbGl6YWRhIHBhcmEgaW5pY2lhciBzZXNpw7NuIGVuIG90cm8gZGlzcG9zaXRpdm8u:1
+[   28044ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ http://rawgithub.com/angular/code.angularjs.org/master/1.5.0/angular-csp.css:1
+[   28045ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ http://rawgithub.com/justin-lau/ui-iconpicker/v0.1.4/dist/styles/ui-iconpicker.min.css:1
+[   28061ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ http://rawgithub.com/justin-lau/ui-iconpicker/v0.1.4/dist/scripts/ui-iconpicker.min.js:1
+[   28061ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://rawgit.com/schmich/instascan-builds/master/instascan.min.js:1
+[   28061ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://rawgit.com/marceljuenemann/angular-drag-and-drop-lists/master/angular-drag-and-drop-lists.min.js:1
+[   28068ms] [WARNING] Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading @ http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyC8oz3Gg28rxkGvfQy_lxDcPg2KJyVgpMM&libraries=places:2845
+[   28121ms] [LOG] Loaded claygl, version 1.2.1 @ http://sandbox.igglobal.net/Scripts/plugins/echarts4/echarts-gl.min.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:30
+[   28121ms] [LOG] Loaded echarts, version 4.1.0 @ http://sandbox.igglobal.net/Scripts/plugins/echarts4/echarts-gl.min.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:30
+[   28210ms] [ERROR] Permissions policy violation: unload is not allowed in this document. @ http://sandbox.igglobal.net/Scripts/plugins/jqwidgets/jqxdata.export.js:8
+[   28827ms] [LOG] refresh_instanceId @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.module.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:500
+[   28827ms] [LOG] 1795633800814 @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.module.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:501
+[   28845ms] [ERROR] Permissions policy violation: unload is not allowed in this document. @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.module.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:4186
+[   30497ms] [ERROR] WebSocket connection to 'ws://sandbox.igglobal.net/signalr/connect?transport=webSockets&clientProtocol=1.5&connectionToken=rUmmOBFhrRdbYZy9lRWwZJ2IgkJwXsYSqZrm9Hr5HZOwKJtpahwX7l0rsrUQkLJg4Fl%2FNQ5olBkAEwjCO94v3qnsj9CLXahQRImAY8uv%2FXOtGahp15HLnhut4%2BOck3d5&connectionData=%5B%7B%22name%22%3A%22notificationshub%22%7D%5D&tid=9' failed: Error during WebSocket handshake: Unexpected response code: 403 @ http://sandbox.igglobal.net/Scripts/jquery.signalR-2.2.2.js:1739
+[   30604ms] [ERROR] Failed to load resource: the server responded with a status of 403 (Forbidden) @ http://sandbox.igglobal.net/signalr/connect?transport=serverSentEvents&clientProtocol=1.5&connectionToken=rUmmOBFhrRdbYZy9lRWwZJ2IgkJwXsYSqZrm9Hr5HZOwKJtpahwX7l0rsrUQkLJg4Fl%2FNQ5olBkAEwjCO94v3qnsj9CLXahQRImAY8uv%2FXOtGahp15HLnhut4%2BOck3d5&connectionData=%5B%7B%22name%22%3A%22notificationshub%22%7D%5D&tid=3:1
+[   30868ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/%7B%7Bdb.logo_sistema%7D%7D:1
+[   30898ms] [ERROR] Permissions policy violation: unload is not allowed in this document. @ http://sandbox.igglobal.net/Scripts/jquery/jquery-3.1.1.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5057
+[   31028ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/%7B%7Bcontacto._gallery_picture%7D%7D:1
+[   31074ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/%7B%7Blegajo._gallery_picture%7D%7D:1
+[   31535ms] [WARNING] The database "igglobal" can't be downgraded from version 2 to version 1.1. @ http://sandbox.igglobal.net/Scripts/plugins/localForage/localforage.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:689
+[   31730ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/%7B%7Bdb.logo_sistema%7D%7D:1
+[   32675ms] [LOG] success:  {data: Object, status: 200, headers: , config: Object, statusText: OK} @ http://sandbox.igglobal.net/Scripts/framework/s2.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:927
+[   33079ms] [WARNING] Google Maps JavaScript API warning: SensorNotRequired https://developers.google.com/maps/documentation/javascript/error-messages#sensor-not-required @ http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyC8oz3Gg28rxkGvfQy_lxDcPg2KJyVgpMM&libraries=places:2189
+[   48953ms] [LOG] {name: Compras, items: Array(2), $$hashKey: object:1519} @ http://sandbox.igglobal.net/Scripts/plugins/angular-spotlight/angularSpotlight.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:154
+[  194096ms] [LOG] _onContextMenu @ http://sandbox.igglobal.net/Scripts/framework/s2.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5748
+[  194096ms] [LOG] {clearSelection: , getSelectedIndex: , getSelectedIndexes: , getSelectedItems: , getRowData: } @ http://sandbox.igglobal.net/Scripts/framework/s2.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5749
+[  204375ms] [LOG] [object Object] cleared @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.config.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:319
+[  205019ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23605:11
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7955:13
+    at Scope.$eval (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16820:28)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16636:31) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205019ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23605:11
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7955:13
+    at Scope.$eval (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16820:28)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16636:31) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205019ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23605:11
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7955:13
+    at Scope.$eval (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16820:28)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16636:31) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205019ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23605:11
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7955:13
+    at Scope.$eval (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16820:28)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16636:31) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205020ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23605:11
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7955:13
+    at Scope.$eval (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16820:28)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16636:31) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205020ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23605:11
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7955:13
+    at Scope.$eval (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16820:28)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16636:31) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205020ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23605:11
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7955:13
+    at Scope.$eval (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16820:28)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16636:31) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205020ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23605:11
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7955:13
+    at Scope.$eval (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16820:28)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16636:31) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205021ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23605:11
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7955:13
+    at Scope.$eval (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16820:28)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16636:31) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205048ms] [ERROR] Error: [$parse:syntax] Syntax Error: Token '}' not a primary expression at column 16 of the expression [{'btn-danger': }] starting at [}].
+http://errors.angularjs.org/1.5.0/$parse/syntax?p0=%7D&p1=not%20a%20primary%20expression&p2=16&p3=%7B'btn-danger'%3A%20%7D&p4=%7D
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:68:12
+    at AST.throwError (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13816:11)
+    at AST.primary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13719:12)
+    at AST.unary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13699:19)
+    at AST.multiplicative (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13686:21)
+    at AST.additive (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13677:21)
+    at AST.relational (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13668:21)
+    at AST.equality (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13659:21)
+    at AST.logicalAND (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13651:21)
+    at AST.logicalOR (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13643:21) <button type="button" class="btn btn-primary ng-scope" ng-if="!disabledUISelect('FechaOperacion', false)" ng-class="{'btn-danger': }" ng-click="openCalendarPopUp('FechaOperacionCalendarOpened')"> @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205052ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at ngShowWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:28763:53)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7)
+    at XMLHttpRequest.requestLoaded (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11405:9) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205052ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205053ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at ngShowWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:28763:53)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7)
+    at XMLHttpRequest.requestLoaded (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11405:9) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205053ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205054ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at ngShowWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:28763:53)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7)
+    at XMLHttpRequest.requestLoaded (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11405:9) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205054ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205055ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at ngShowWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:28763:53)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7)
+    at XMLHttpRequest.requestLoaded (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11405:9) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205055ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205056ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at ngShowWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:28763:53)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7)
+    at XMLHttpRequest.requestLoaded (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11405:9) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205056ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205057ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at ngShowWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:28763:53)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7)
+    at XMLHttpRequest.requestLoaded (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11405:9) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205057ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205058ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at ngShowWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:28763:53)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7)
+    at XMLHttpRequest.requestLoaded (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11405:9) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205058ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205059ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at ngShowWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:28763:53)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7)
+    at XMLHttpRequest.requestLoaded (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11405:9) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205059ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205060ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at ngShowWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:28763:53)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7)
+    at XMLHttpRequest.requestLoaded (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11405:9) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205060ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205063ms] [ERROR] Error: [$parse:syntax] Syntax Error: Token '}' not a primary expression at column 16 of the expression [{'btn-danger': }] starting at [}].
+http://errors.angularjs.org/1.5.0/$parse/syntax?p0=%7D&p1=not%20a%20primary%20expression&p2=16&p3=%7B'btn-danger'%3A%20%7D&p4=%7D
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:68:12
+    at AST.throwError (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13816:11)
+    at AST.primary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13719:12)
+    at AST.unary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13699:19)
+    at AST.multiplicative (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13686:21)
+    at AST.additive (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13677:21)
+    at AST.relational (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13668:21)
+    at AST.equality (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13659:21)
+    at AST.logicalAND (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13651:21)
+    at AST.logicalOR (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13643:21) <button type="button" class="btn btn-primary ng-scope" ng-if="!disabledUISelect('FechaEmision', false)" ng-class="{'btn-danger': }" ng-click="openCalendarPopUp('FechaEmisionCalendarOpened')"> @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  205067ms] [ERROR] Error: [$parse:syntax] Syntax Error: Token '}' not a primary expression at column 16 of the expression [{'btn-danger': }] starting at [}].
+http://errors.angularjs.org/1.5.0/$parse/syntax?p0=%7D&p1=not%20a%20primary%20expression&p2=16&p3=%7B'btn-danger'%3A%20%7D&p4=%7D
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:68:12
+    at AST.throwError (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13816:11)
+    at AST.primary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13719:12)
+    at AST.unary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13699:19)
+    at AST.multiplicative (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13686:21)
+    at AST.additive (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13677:21)
+    at AST.relational (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13668:21)
+    at AST.equality (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13659:21)
+    at AST.logicalAND (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13651:21)
+    at AST.logicalOR (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13643:21) <button type="button" class="btn btn-primary ng-scope" ng-if="!disabledUISelect('FechaVencimiento', false)" ng-class="{'btn-danger': }" ng-click="openCalendarPopUp('FechaVencimientoCalendarOpened')"> @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274233ms] [LOG] [object Object] cleared @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.config.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:319
+[  274370ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23605:11
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7955:13
+    at Scope.$eval (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16820:28)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16636:31) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274370ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23605:11
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7955:13
+    at Scope.$eval (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16820:28)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16636:31) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274370ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23605:11
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7955:13
+    at Scope.$eval (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16820:28)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16636:31) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274371ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23605:11
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7955:13
+    at Scope.$eval (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16820:28)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16636:31) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274371ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23605:11
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7955:13
+    at Scope.$eval (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16820:28)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16636:31) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274371ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23605:11
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7955:13
+    at Scope.$eval (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16820:28)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16636:31) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274371ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23605:11
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7955:13
+    at Scope.$eval (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16820:28)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16636:31) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274371ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23605:11
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7955:13
+    at Scope.$eval (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16820:28)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16636:31) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274372ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23605:11
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7955:13
+    at Scope.$eval (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16820:28)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16636:31) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274397ms] [ERROR] Error: [$parse:syntax] Syntax Error: Token '}' not a primary expression at column 16 of the expression [{'btn-danger': }] starting at [}].
+http://errors.angularjs.org/1.5.0/$parse/syntax?p0=%7D&p1=not%20a%20primary%20expression&p2=16&p3=%7B'btn-danger'%3A%20%7D&p4=%7D
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:68:12
+    at AST.throwError (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13816:11)
+    at AST.primary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13719:12)
+    at AST.unary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13699:19)
+    at AST.multiplicative (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13686:21)
+    at AST.additive (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13677:21)
+    at AST.relational (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13668:21)
+    at AST.equality (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13659:21)
+    at AST.logicalAND (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13651:21)
+    at AST.logicalOR (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13643:21) <button type="button" class="btn btn-primary ng-scope" ng-if="!disabledUISelect('FechaOperacion', false)" ng-class="{'btn-danger': }" ng-click="openCalendarPopUp('FechaOperacionCalendarOpened')"> @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274400ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at ngShowWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:28763:53)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7)
+    at XMLHttpRequest.requestLoaded (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11405:9) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274400ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274401ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at ngShowWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:28763:53)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7)
+    at XMLHttpRequest.requestLoaded (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11405:9) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274401ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274402ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at ngShowWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:28763:53)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7)
+    at XMLHttpRequest.requestLoaded (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11405:9) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274402ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274402ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at ngShowWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:28763:53)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7)
+    at XMLHttpRequest.requestLoaded (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11405:9) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274403ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274403ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at ngShowWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:28763:53)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7)
+    at XMLHttpRequest.requestLoaded (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11405:9) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274403ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274404ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at ngShowWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:28763:53)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7)
+    at XMLHttpRequest.requestLoaded (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11405:9) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274404ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274405ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at ngShowWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:28763:53)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7)
+    at XMLHttpRequest.requestLoaded (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11405:9) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274405ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274406ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at ngShowWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:28763:53)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7)
+    at XMLHttpRequest.requestLoaded (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11405:9) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274406ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274407ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at ngShowWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:28763:53)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7)
+    at XMLHttpRequest.requestLoaded (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11405:9) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274407ms] [ERROR] TypeError: element.parent is not a function
+    at queueAnimation (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2425:26)
+    at Object.push (http://sandbox.igglobal.net/Scripts/angular/angular-animate.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:2377:16)
+    at Object.addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5401:31)
+    at Attributes.$addClass (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:7776:20)
+    at addClasses (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23624:16)
+    at ngClassWatchAction (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:23666:15)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16664:23)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274410ms] [ERROR] Error: [$parse:syntax] Syntax Error: Token '}' not a primary expression at column 16 of the expression [{'btn-danger': }] starting at [}].
+http://errors.angularjs.org/1.5.0/$parse/syntax?p0=%7D&p1=not%20a%20primary%20expression&p2=16&p3=%7B'btn-danger'%3A%20%7D&p4=%7D
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:68:12
+    at AST.throwError (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13816:11)
+    at AST.primary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13719:12)
+    at AST.unary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13699:19)
+    at AST.multiplicative (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13686:21)
+    at AST.additive (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13677:21)
+    at AST.relational (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13668:21)
+    at AST.equality (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13659:21)
+    at AST.logicalAND (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13651:21)
+    at AST.logicalOR (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13643:21) <button type="button" class="btn btn-primary ng-scope" ng-if="!disabledUISelect('FechaEmision', false)" ng-class="{'btn-danger': }" ng-click="openCalendarPopUp('FechaEmisionCalendarOpened')"> @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  274414ms] [ERROR] Error: [$parse:syntax] Syntax Error: Token '}' not a primary expression at column 16 of the expression [{'btn-danger': }] starting at [}].
+http://errors.angularjs.org/1.5.0/$parse/syntax?p0=%7D&p1=not%20a%20primary%20expression&p2=16&p3=%7B'btn-danger'%3A%20%7D&p4=%7D
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:68:12
+    at AST.throwError (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13816:11)
+    at AST.primary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13719:12)
+    at AST.unary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13699:19)
+    at AST.multiplicative (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13686:21)
+    at AST.additive (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13677:21)
+    at AST.relational (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13668:21)
+    at AST.equality (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13659:21)
+    at AST.logicalAND (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13651:21)
+    at AST.logicalOR (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13643:21) <button type="button" class="btn btn-primary ng-scope" ng-if="!disabledUISelect('FechaVencimiento', false)" ng-class="{'btn-danger': }" ng-click="openCalendarPopUp('FechaVencimientoCalendarOpened')"> @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236

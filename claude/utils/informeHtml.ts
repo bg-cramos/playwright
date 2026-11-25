@@ -59,15 +59,55 @@ export type EtapaCompra = EtapaComercial & {
   percepcionesCargadas?: { provincia: string; importe: string }[];
   percepcionesTotales?: { cargado: boolean; motivo: string | null; percIva: string; percGan: string };
 };
+/** Compras › Comprobantes: factura de compra ubicada por Letra-Lugar-Número + proveedor. */
+export type ComprobanteCompra = {
+  numero: number;
+  noOperacion: number;
+  letraLugarNumero: string;
+  coCliente: number;
+  cliente: string;
+  estado: string;
+  importe: number;
+  montos: Record<string, number>;
+  edicion: { permitido: boolean; mensaje: string | null; datos?: { totales: Totales; percepciones: Percepcion[] } };
+  totales: Totales;
+  totalesTrasRecalculo?: Totales;
+  percepciones: Percepcion[];
+  imputaciones: Imputaciones;
+  sidebar: Sidebar;
+  referencia: { factura: number; totales: Totales; percepciones: Percepcion[] };
+  diferencias: string[];
+  observaciones: string[];
+};
+type Retencion = { letraLugarNumero: string; aplicado: number; sujeto: number; iva: number; retIva: number; retGanancias: number; retIIBB: number; retSUSS: number; retOtros: number; detalle?: Record<string, unknown> };
+/** Pagos (Compras): como Cobranza + solapa Retenciones. */
+export type Pago = {
+  numero: number;
+  letraLugarNumero: string;
+  totalFactura: string;
+  aplicado: { letraLugarNumero: string; importeOriginal: number; deuda: number; importeAplicar: number };
+  retencionesPre: Retencion[];
+  retencionesPost: Retencion[];
+  totalRetenciones: number;
+  saldos: string[];
+  valoresPre: ValorCobranza[];
+  valoresPost: ValorCobranza[];
+  comprobantesPost: { letraLugarNumero: string; importeAplicar: number; deuda?: number }[];
+  grilla: { total: number; liquidado: number; pagado: number; cantidadRetenciones?: number; retenciones?: Record<string, number>; estado?: string } | null;
+  diferencias: string[];
+  observaciones: string[];
+};
 export type Circuito = {
   pedido?: EtapaComercial;
   remito?: EtapaComercial;
   factura?: EtapaComercial;
   comprobante?: Comprobante;
   cobranza?: Cobranza;
+  pago?: Pago;
   ordenCompra?: EtapaCompra;
   remitoCompra?: EtapaCompra;
   facturaCompra?: EtapaCompra;
+  comprobanteCompra?: ComprobanteCompra;
   [etapa: string]: unknown;
 };
 export type ResultadoTest = { titulo: string; archivo: string; estado: string; duracionSeg: number; error?: string; circuito?: Circuito };
@@ -334,6 +374,103 @@ function alertaPerdidaConsultar(e: EtapaCompra, deConsultar: string[]): string[]
   return alertas;
 }
 
+/**
+ * Comprobantes de Compra: referencia = lo grabado en la Factura de compra. Columnas de la matriz:
+ * Pre-grabado = Grilla + Editar (lo que muestra el módulo antes de consultar), Consultar, Sidebar.
+ */
+function etapaComprobanteCompra(cp: ComprobanteCompra): FilaEtapa {
+  const dif = cp.diferencias ?? [];
+  const de = (re: RegExp) => dif.filter((d) => re.test(d));
+  const dePre = de(/^(Grilla|Editar)/);
+  const deConsultar = de(/^Consultar/);
+  const deSidebar = de(/^Sidebar/);
+  const check = (l: string[]): Check => (l.length ? 'fail' : 'ok');
+  const linea = (k: string, v: string) => `<span style="color:${C.suave}">${k}</span>&nbsp;<span style="${numStyle}">${esc(v)}</span>`;
+  const sumaPerc = cp.percepciones.reduce((s, p) => s + Number(p.monto), 0);
+  const imputaciones = [
+    linea('Contables', cp.imputaciones.contables.totalImputado),
+    linea('Provincias', cp.imputaciones.provincias.totalImputado),
+    linea('Conceptos', cp.imputaciones.conceptos.totalImputado),
+    linea('Percepciones', `${cp.percepciones.length} · ${fmt(sumaPerc)}`),
+  ].join('<br>');
+  const alertas: string[] = [];
+  if (cp.referencia.percepciones.length && cp.percepciones.length < cp.referencia.percepciones.length) {
+    alertas.push(`⚠️ PÉRDIDA DE DATOS EN COMPROBANTES: ${cp.referencia.percepciones.length - cp.percepciones.length} percepciones grabadas no aparecen al consultar.`);
+  }
+  let detalle = '';
+  if (dif.length) {
+    const fuentes: [string, Totales | undefined][] = [['Factura grabada', cp.referencia.totales], ['Editar', cp.edicion.datos?.totales], ['Consultar', cp.totales], ['Sidebar', cp.sidebar.totales]];
+    const claves = [...new Set([...difTotales(cp.referencia.totales, cp.totales), ...difTotales(cp.totales, cp.sidebar.totales), ...(cp.edicion.datos ? difTotales(cp.referencia.totales, cp.edicion.datos.totales) : [])])];
+    const tablaTot = claves.length ? tabla(['Concepto', ...fuentes.map(([n]) => n)], filasDiferencias(fuentes, claves), 1) : '';
+    const lista = `<ul style="margin:4px 0;padding-left:18px;font-size:12px">${dif.map((d) => `<li>${esc(d)}</li>`).join('')}</ul>`;
+    detalle = bloqueError(`Compras › Comprobantes · ${esc(cp.letraLugarNumero)}`, [tablaTot, lista]);
+  }
+  return {
+    etapa: 'Compras › Comprobantes',
+    comprobante: `${esc(cp.letraLugarNumero)}<br><span style="color:${C.suave}">Op. ${esc(cp.noOperacion)} · ${esc(cp.estado)} · ${cp.edicion.permitido ? 'editable' : 'edición bloqueada'}</span>`,
+    pre: check(dePre),
+    consultar: check(deConsultar),
+    sidebar: check(deSidebar),
+    importes: resumenImportes(cp.totales),
+    imputaciones,
+    observaciones: (cp.observaciones ?? []).map(esc),
+    fallas: alertas.concat(dif),
+    detalle,
+  };
+}
+
+/** Pagos: Pre-grabado = aplicado/retenciones/valores sin saldo; Consultar = Comprobantes, Retenciones y Valores; Grilla. */
+function etapaPago(pg: Pago): FilaEtapa {
+  const dif = pg.diferencias ?? [];
+  const dePre = dif.filter((d) => d.startsWith('Pre-grabado'));
+  const dePost = dif.filter((d) => /^(Consultar|Grilla)/.test(d));
+  const linea = (k: string, v: string, fuerte = false) => `<span style="color:${C.suave}">${k}</span>&nbsp;<span style="${numStyle}${fuerte ? ';font-weight:700' : ''}">${v}</span>`;
+  const valores = pg.valoresPost.length ? pg.valoresPost : pg.valoresPre;
+  const ret = pg.retencionesPost.find((r) => r.letraLugarNumero === pg.letraLugarNumero) ?? pg.retencionesPre.find((r) => r.letraLugarNumero === pg.letraLugarNumero);
+  const importes = [
+    linea('Aplicado', fmt(pg.aplicado.importeAplicar)),
+    linea('Retenciones', fmt(pg.totalRetenciones)),
+    ...valores.map((v, i) => linea(`Valor ${i + 1} (${esc(v.subCuenta)})`, fmt(Number(v.importe)))),
+    linea('Total valores', fmt(sumaValores(valores)), true),
+    linea('Saldo', esc(pg.saldos[pg.saldos.length - 1] ?? '—')),
+  ].join('<br>');
+  const retenciones = ret
+    ? [
+        linea('Sujeto', fmt(ret.sujeto)),
+        linea('Ret. IVA', fmt(ret.retIva)),
+        linea('Ret. Ganancias', fmt(ret.retGanancias)),
+        linea('Ret. IIBB', fmt(ret.retIIBB)),
+        linea('Ret. SUSS', fmt(ret.retSUSS)),
+        linea('Ret. Otros', fmt(ret.retOtros)),
+      ].join('<br>')
+    : `<span style="color:${C.malTexto}">sin fila de retenciones</span>`;
+  let detalle = '';
+  if (dif.length) {
+    const lista = `<ul style="margin:4px 0;padding-left:18px;font-size:12px">${dif.map((d) => `<li>${esc(d)}</li>`).join('')}</ul>`;
+    const filas = [
+      ['Total factura', esc(pg.totalFactura)],
+      ['Importe a aplicar', fmt(pg.aplicado.importeAplicar)],
+      ['Retenciones', fmt(pg.totalRetenciones)],
+      ['Valores (antes de grabar)', fmt(sumaValores(pg.valoresPre))],
+      ['Valores (Consultar)', pg.valoresPost.length ? fmt(sumaValores(pg.valoresPost)) : '—'],
+      ['Grilla: total / liquidado / pagado / retenciones', pg.grilla ? `${fmt(pg.grilla.total)} / ${fmt(pg.grilla.liquidado)} / ${fmt(pg.grilla.pagado)} / ${fmt(Object.values(pg.grilla.retenciones ?? {}).reduce((x, n) => x + Number(n), 0))}` : '—'],
+    ].map(([k, v]) => [`<b>${k}</b>`, v]);
+    detalle = bloqueError(`Pagos N° ${pg.numero} · aplica ${esc(pg.letraLugarNumero)}`, [tabla(['Concepto', 'Importe'], filas, 1), lista]);
+  }
+  return {
+    etapa: 'Compras › Pago',
+    comprobante: `N° ${pg.numero}<br><span style="color:${C.suave}">aplica ${esc(pg.letraLugarNumero)}${pg.grilla?.estado ? ` · ${esc(pg.grilla.estado)}` : ''}</span>`,
+    pre: dePre.length ? 'fail' : 'ok',
+    consultar: dePost.length ? 'fail' : 'ok',
+    sidebar: 'na',
+    importes,
+    imputaciones: retenciones,
+    observaciones: (pg.observaciones ?? []).map(esc),
+    fallas: dif,
+    detalle,
+  };
+}
+
 function detalleErrorCompra(nombre: string, e: EtapaCompra) {
   if (!e.diferencias?.length) return '';
   const fuentes: [string, Totales | undefined][] = [['Pre-grabado', e.pre.totales], ['Consultar', e.post?.totales], ...(e.sidebar ? ([['Sidebar', e.sidebar.totales]] as [string, Totales][]) : [])];
@@ -376,6 +513,8 @@ const ADAPTADORES: Adaptador[] = [
   { clave: 'ordenCompra', nombre: 'Compras › Orden de Compra', circuito: 'compras', fila: (c) => etapaCompra('Compras › Orden de Compra', c.ordenCompra!) },
   { clave: 'remitoCompra', nombre: 'Compras › Remito', circuito: 'compras', fila: (c) => etapaCompra('Compras › Remito', c.remitoCompra!) },
   { clave: 'facturaCompra', nombre: 'Compras › Factura', circuito: 'compras', fila: (c) => etapaCompra('Compras › Factura', c.facturaCompra!) },
+  { clave: 'comprobanteCompra', nombre: 'Compras › Comprobantes', circuito: 'compras', fila: (c) => etapaComprobanteCompra(c.comprobanteCompra!) },
+  { clave: 'pago', nombre: 'Compras › Pago', circuito: 'compras', fila: (c) => etapaPago(c.pago!) },
 ];
 
 /** Circuito al que pertenece un test (por las etapas registradas o el nombre del spec). */
@@ -383,6 +522,33 @@ function tipoCircuito(t: ResultadoTest): 'ventas' | 'compras' {
   const claves = Object.keys(t.circuito ?? {});
   if (claves.some((k) => ADAPTADORES.find((a) => a.clave === k)?.circuito === 'compras') || /compra/i.test(t.archivo)) return 'compras';
   return 'ventas';
+}
+
+/**
+ * Estado de cada circuito presente en la corrida, en orden Ventas → Compras. Un circuito está OK solo si
+ * TODOS sus tests pasaron y ninguna de sus etapas tiene fallas (incluidas las alertas en rojo vigentes,
+ * p. ej. la pérdida de percepciones en Consultar de Factura de Compra).
+ */
+export function estadoCircuitos(r: ResumenEjecucion): { circuito: 'Ventas' | 'Compras'; ok: boolean }[] {
+  const estados: { circuito: 'Ventas' | 'Compras'; ok: boolean }[] = [];
+  for (const tipo of ['ventas', 'compras'] as const) {
+    const tests = r.tests.filter((t) => tipoCircuito(t) === tipo);
+    if (!tests.length) continue;
+    const ok = tests.every((t) => t.estado === 'passed' && filasDelCircuito(t.circuito ?? {}, false, tipo).every((f) => !f.fallas.length));
+    estados.push({ circuito: tipo === 'ventas' ? 'Ventas' : 'Compras', ok });
+  }
+  return estados;
+}
+
+/**
+ * Asunto del correo, exactamente: `Global - Circuito Ventas ✅` / `Global - Circuito Ventas ❌` /
+ * `Global - Circuito Compras ✅` / `Global - Circuito Compras ❌`. Si una misma corrida incluye los dos
+ * circuitos (p. ej. `npx playwright test` completo), se unen ambos asuntos con " | ".
+ */
+export function asuntoCorreo(r: ResumenEjecucion): string {
+  return estadoCircuitos(r)
+    .map((e) => `Global - Circuito ${e.circuito} ${e.ok ? '✅' : '❌'}`)
+    .join(' | ');
 }
 
 function filasDelCircuito(c: Circuito, testFallo: boolean, circuito: 'ventas' | 'compras' = 'ventas'): FilaEtapa[] {
@@ -500,10 +666,8 @@ export function construirInforme(r: ResumenEjecucion): { asunto: string; html: s
   const oc = circuito?.ordenCompra;
   const rc = circuito?.remitoCompra;
   const fc = circuito?.facturaCompra;
-  const asunto =
-    `[IG Global E2E] ${todoOk ? '✅ Circuito OK' : '❌ Atención: fallas'} · ${r.pasaron}/${r.total} pruebas` +
-    (f ? ` · Factura ${f.numeracionFiscal ?? f.numero}` : '') +
-    (fc ? ` · Factura compra ${fc.numeracionFiscal ?? fc.numero}` : '');
+  // Asunto: "Global - Circuito Ventas ✅" / "Global - Circuito Compras ❌" (ver `asuntoCorreo`)
+  const asunto = asuntoCorreo(r);
 
   // 1. Banner
   const fondo = todoOk ? C.okTexto : C.malTexto;
@@ -511,7 +675,7 @@ export function construirInforme(r: ResumenEjecucion): { asunto: string; html: s
   html +=
     `<table role="presentation" style="width:100%;border-collapse:collapse;margin-bottom:12px"><tr>` +
     `<td style="background:${fondo};color:#fff;padding:16px 20px;border-radius:8px">` +
-    `<div style="font-size:12px;letter-spacing:.5px;opacity:.9">INFORME E2E · IG GLOBAL (SANDBOX)</div>` +
+    `<div style="font-size:12px;letter-spacing:.5px;opacity:.9">GLOBAL</div>` +
     `<div style="font-size:22px;font-weight:700;margin:4px 0">${todoOk ? '✅ TODO EN VERDE — CIRCUITO OK' : '⚠️ ATENCIÓN — SE DETECTARON FALLAS'}</div>` +
     `<div style="font-size:13px;opacity:.95">${esc(fechaAR(r.inicio))} · Duración ${duracion(r.inicio, r.fin)} · Pruebas ${r.pasaron}/${r.total} OK` +
     `${filas.length ? ` · Etapas ${filas.filter((x) => !x.fallas.length).length}/${filas.length} OK` : ''}</div>` +
@@ -535,9 +699,13 @@ export function construirInforme(r: ResumenEjecucion): { asunto: string; html: s
     // Compras: Orden de Compra → Remito → Factura (comprobantes del proveedor ficticios, únicos por corrida)
     if (oc || rc || fc) {
       html += `<table role="presentation" style="border-collapse:separate;border-spacing:6px 0;margin:0 -6px 14px"><tr>`;
-      if (oc) html += tarjeta('Orden de Compra', `N° ${oc.numero}`, oc.detalle ? `${oc.detalle.length} ítems` : '');
+      if (oc) html += tarjeta('Orden de Compra', `N° ${oc.numero}`, `${oc.detalle ? `${oc.detalle.length} ítems · ` : ''}$ ${esc((oc.post ?? oc.pre).totales['IMPORTE $'])}`);
       if (rc) html += tarjeta('Remito de Compra', `N° ${rc.numero}`, `${esc(rc.numeracionFiscal ?? '')}${rc.noOperacion ? ` · Op. ${rc.noOperacion}` : ''}`);
       if (fc) html += tarjeta('Factura de Compra', `N° ${fc.numero}`, `${esc(fc.numeracionFiscal ?? '')}${fc.noOperacion ? ` · Op. ${fc.noOperacion}` : ''}`);
+      const cc = circuito.comprobanteCompra;
+      const pg = circuito.pago;
+      if (cc) html += tarjeta('Comprobante compra', esc(cc.letraLugarNumero), `${esc(cc.estado)} · ${cc.edicion.permitido ? 'editable' : 'edición bloqueada'} · $ ${esc(cc.totales['IMPORTE $'])}`);
+      if (pg) html += tarjeta('Pago', `N° ${pg.numero}`, `$ ${fmt(sumaValores(pg.valoresPost.length ? pg.valoresPost : pg.valoresPre))} · ${pg.valoresPre.length} valores · Ret. ${fmt(pg.totalRetenciones)}`);
       if (fc) {
         // Importe grabado: el del sidebar (servidor) o, si no llegó, el cargado antes de grabar
         const t = fc.sidebar?.totales ?? fc.pre.totales;
@@ -550,7 +718,7 @@ export function construirInforme(r: ResumenEjecucion): { asunto: string; html: s
   // 3. Matriz gerencial
   if (filas.length) {
     html += `<h3 style="margin:8px 0 4px">Validación por etapa</h3>`;
-    const cab = ['Etapa / Comprobante', 'Pre-grabado', 'Consultar', 'Sidebar', 'Importes', 'Imputaciones (imputado)', 'Estado'];
+    const cab = ['Etapa / Comprobante', 'Pre-grabado', 'Consultar', 'Sidebar', 'Importes', 'Imputaciones (imputado) / Retenciones', 'Estado'];
     html += `<table style="border-collapse:collapse;font-size:13px;margin:6px 0 6px"><thead><tr>${cab.map((h) => `<th style="${th}">${h}</th>`).join('')}</tr></thead><tbody>`;
     for (const fila of filas) {
       const ok = !fila.fallas.length;
@@ -566,7 +734,7 @@ export function construirInforme(r: ResumenEjecucion): { asunto: string; html: s
         `</tr>`;
     }
     html += `</tbody></table>`;
-    html += `<div style="font-size:11px;color:${C.suave};margin-bottom:12px">Pre-grabado = importes capturados antes de grabar (en Cobranzas: importe a aplicar = total y valores sin saldo) · Consultar = igual a Pre-grabado (en Comprobantes: Datos Básicos igual a la Factura) · Sidebar = Más › Ver detalles igual a lo grabado · — = no aplica.</div>`;
+    html += `<div style="font-size:11px;color:${C.suave};margin-bottom:12px">Pre-grabado = importes capturados antes de grabar (en Cobranzas: importe a aplicar = total y valores sin saldo) · Consultar = igual a Pre-grabado (en Comprobantes: Datos Básicos igual a la Factura) · Sidebar = Más › Ver detalles igual a lo grabado · Compras › Comprobantes: Pre-grabado = Grilla + Editar vs. la factura grabada · — = no aplica.</div>`;
   }
 
   // Fallas y observaciones (visibles: es lo que hay que leer)

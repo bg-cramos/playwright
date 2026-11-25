@@ -72,10 +72,13 @@ export async function abrirModulo(page: Page, modulo: string, destino: Locator, 
 // ---- Formularios --------------------------------------------------------------------
 /** Selecciona una opción del typeahead escribiendo de a una tecla (dispara la búsqueda). */
 export async function seleccionarTypeahead(page: Page, input: Locator, texto: string, opcion: string | RegExp) {
-  await input.fill('');
-  await input.pressSequentially(texto, { delay: 100 });
   const item = page.locator('ul[role=listbox] li:visible', { hasText: opcion }).first();
-  await expect(item).toBeVisible();
+  // La búsqueda asíncrona a veces no devuelve resultados al primer tipeo (p. ej. Co.Cta.Ig/Eg en Pagos): se reescribe
+  await expect(async () => {
+    await input.fill('');
+    await input.pressSequentially(texto, { delay: 100 });
+    await expect(item).toBeVisible({ timeout: 8000 });
+  }).toPass({ timeout: 45_000 });
   await item.click();
 }
 
@@ -650,17 +653,22 @@ export type FilaComprobante = {
   estado: string;
   porcentajeDescuento: number;
   importe: number;
+  /** Importes de la fila: Monto1..4 (GRAV/NO GR) e Impuesto1..6 (IVA, 4 = PERC. IVA, 5 = PERC. IIBB, 6 = PERC. GAN.). */
+  montos: Record<string, number>;
 };
 
-/** Abre Ventas > Comprobantes (Searchlight) y espera su grilla ("No. Comprobante Fiscal"). */
-export async function abrirComprobantes(page: Page) {
+/**
+ * Abre `<categoria>` > Comprobantes (Searchlight) y espera su grilla ("No. Comprobante Fiscal").
+ * Ventas: `#/10/1600`; Compras: `#/60/1580` (`abrirComprobantesCompra`).
+ */
+export async function abrirComprobantes(page: Page, categoria: 'Ventas' | 'Compras' = 'Ventas') {
   const breadcrumb = page
     .getByRole('list')
-    .filter({ has: page.getByText('Ventas', { exact: true }) })
+    .filter({ has: page.getByText(categoria, { exact: true }) })
     .locator('li > strong', { hasText: /^\s*Comprobantes\s*$/ })
     .filter({ visible: true })
     .first();
-  await abrirModulo(page, 'Comprobantes', breadcrumb, 'Ventas');
+  await abrirModulo(page, 'Comprobantes', breadcrumb, categoria);
   await expect(page.locator('#s2_explorer_search')).toBeVisible({ timeout: 30_000 });
   await esperarGrillaCargada(page);
 }
@@ -670,44 +678,68 @@ export function filaComprobante(page: Page, letraLugarNumero: string) {
   return page.locator('.jqx-grid:visible [role=row]').filter({ hasText: letraLugarNumero });
 }
 
+/** Datos jqx de la fila `letraLugarNumero` de la cuenta (cliente o proveedor); la deja visible (`ensurerowvisible`). */
+function datosFilaComprobante(page: Page, letraLugarNumero: string, cuenta: number): Promise<FilaComprobante | null> {
+  return page.evaluate(
+    ({ lln, cli }) => {
+      for (const g of Array.from(document.querySelectorAll<HTMLElement>('.jqx-grid'))) {
+        if (!g.offsetParent) continue;
+        let filas: any[] = [];
+        try {
+          filas = ((window as any).$(g).jqxGrid('getrows') ?? []) as any[];
+        } catch {
+          continue;
+        }
+        const i = filas.findIndex((x) => x.LetraLugarNumero === lln && Number(x.CoCliente ?? x.CoProveedor) === cli);
+        if (i < 0) continue;
+        (window as any).$(g).jqxGrid('ensurerowvisible', i);
+        const r = filas[i];
+        const montos: Record<string, number> = {};
+        for (const k of Object.keys(r)) if (/^(Monto|Impuesto)\d$/.test(k)) montos[k] = r[k];
+        return {
+          noOperacion: r.NoOperacion,
+          letraLugarNumero: r.LetraLugarNumero,
+          coCliente: r.CoCliente ?? r.CoProveedor,
+          cliente: r.Cliente ?? r.Proveedor,
+          operacion: r.Operacion,
+          estado: r._state_text,
+          porcentajeDescuento: r.PorcentajeDescuento,
+          importe: r.ImporteOriginal_Base,
+          montos,
+        };
+      }
+      return null;
+    },
+    { lln: letraLugarNumero, cli: cuenta },
+  );
+}
+
 /**
  * Busca en Comprobantes la factura `letraLugarNumero` (p. ej. A-0010-00000064) del cliente `cliente`.
  * El buscador de la grilla (`#s2_explorer_search`) filtra por No. Comprobante = parte numérica de la
  * numeración fiscal; la fila se confirma por `LetraLugarNumero` y `CoCliente` (jqx `getrows`).
  * Reintenta porque el comprobante recién generado puede tardar en aparecer.
+ *
+ * Compras: el buscador (`search_like`) NO encuentra por número (ni No. Operación ni Letra-Lugar-Número), solo
+ * por texto (proveedor): se pasa `opciones.busqueda` = nombre del proveedor y la cuenta se valida con `CoProveedor`.
+ * La fila se ubica con `ensurerowvisible` por si la grilla tiene más filas que las visibles.
  */
-export async function buscarComprobante(page: Page, letraLugarNumero: string, cliente = Number(CLIENTE_CODIGO)): Promise<FilaComprobante> {
-  const numero = String(Number(letraLugarNumero.split('-').pop()));
+export async function buscarComprobante(
+  page: Page,
+  letraLugarNumero: string,
+  cuenta = Number(CLIENTE_CODIGO),
+  opciones: { busqueda?: string } = {},
+): Promise<FilaComprobante> {
+  const texto = opciones.busqueda ?? String(Number(letraLugarNumero.split('-').pop()));
   const buscador = page.locator('#s2_explorer_search');
   let encontrada: FilaComprobante | null = null;
   await expect(async () => {
     await clickIfVisible(page.getByRole('button', { name: 'Continuar' }), page, 500);
-    await buscador.fill(numero);
+    await buscador.fill(texto);
     await buscador.press('Enter');
-    await expect(filaComprobante(page, letraLugarNumero)).toBeVisible({ timeout: 8000 });
-    encontrada = await page.evaluate(
-      ({ lln, cli }) => {
-        for (const g of Array.from(document.querySelectorAll<HTMLElement>('.jqx-grid'))) {
-          if (!g.offsetParent) continue;
-          const filas = ((window as any).$(g).jqxGrid('getrows') ?? []) as any[];
-          const r = filas.find((x) => x.LetraLugarNumero === lln && Number(x.CoCliente) === cli);
-          if (r)
-            return {
-              noOperacion: r.NoOperacion,
-              letraLugarNumero: r.LetraLugarNumero,
-              coCliente: r.CoCliente,
-              cliente: r.Cliente,
-              operacion: r.Operacion,
-              estado: r._state_text,
-              porcentajeDescuento: r.PorcentajeDescuento,
-              importe: r.ImporteOriginal_Base,
-            };
-        }
-        return null;
-      },
-      { lln: letraLugarNumero, cli: cliente },
-    );
-    expect(encontrada, `${letraLugarNumero} del cliente ${cliente} en Comprobantes`).not.toBeNull();
+    await expect.poll(async () => (encontrada = await datosFilaComprobante(page, letraLugarNumero, cuenta)), { timeout: 8000 }).not.toBeNull();
+    await expect(filaComprobante(page, letraLugarNumero)).toBeVisible({ timeout: 5000 });
+    expect(encontrada, `${letraLugarNumero} de la cuenta ${cuenta} en Comprobantes`).not.toBeNull();
   }).toPass({ timeout: 90_000, intervals: [3000, 5000, 10_000] });
   return encontrada!;
 }
@@ -730,16 +762,22 @@ async function seleccionarFila(page: Page, fila: Locator) {
   }).toPass({ timeout: 20_000 });
 }
 
-export type ResultadoEdicion = { permitido: boolean; mensaje: string | null };
+export type ResultadoEdicion<T = unknown> = { permitido: boolean; mensaje: string | null; datos?: T };
 
 /**
  * Intenta Editar el comprobante. El botón `#s2_explorer_edit` tiene
  * `ng-disabled="getSelectedRowCount() != 1 || !checkActualStateCanEdit()"`: el ESTADO de la fila
  * define si se puede editar (hoy "Pendiente" no permite). Si está habilitado y el sistema muestra un
  * aviso (p. ej. comprobante pagado / con cobranza imputada), se acepta y se informa el mensaje.
- * Nunca graba: si llega a abrirse el formulario de edición, se sale sin guardar.
+ * Nunca graba: si llega a abrirse el formulario de edición, se ejecuta `leer` (si se pasa) y se sale sin guardar.
+ * (Ventas "Pendiente": Editar deshabilitado; Compras "Pendiente de Pago": Editar habilitado, sin avisos.)
  */
-export async function intentarEditarComprobante(page: Page, fila: Locator, letraLugarNumero: string): Promise<ResultadoEdicion> {
+export async function intentarEditarComprobante<T = unknown>(
+  page: Page,
+  fila: Locator,
+  letraLugarNumero: string,
+  leer?: () => Promise<T>,
+): Promise<ResultadoEdicion<T>> {
   await seleccionarFila(page, fila);
   const editar = page.locator('#s2_explorer_edit');
   if (!(await editar.isEnabled())) return { permitido: false, mensaje: 'Botón Editar deshabilitado por el estado del comprobante' };
@@ -754,9 +792,14 @@ export async function intentarEditarComprobante(page: Page, fila: Locator, letra
     if (await formulario.isVisible()) await volverAlExplorador(page);
     return { permitido: false, mensaje };
   }
-  // Se pudo entrar en edición: salir sin guardar
-  await volverAlExplorador(page);
-  return { permitido: true, mensaje: null };
+  // Se pudo entrar en edición: leer lo pedido y salir sin guardar (también si la lectura falla)
+  let datos: T | undefined;
+  try {
+    if (leer) datos = await leer();
+  } finally {
+    await volverAlExplorador(page);
+  }
+  return { permitido: true, mensaje: null, ...(leer ? { datos } : {}) };
 }
 
 /** Consultar el comprobante y esperar la cabecera "FACTURA | <Letra-Lugar-Número>". */
@@ -988,7 +1031,26 @@ export async function filaCobranzaEnGrilla(page: Page, nro: number) {
         continue;
       }
       const r = filas.find((x) => Number(x.NoAplicacion) === n && x.TotalPesos !== undefined);
-      if (r) return { coCliente: r.CoCliente, cliente: r.Cliente, total: r.TotalPesos, liquidado: r.LiqPesos, pagado: r.PagPesos, anulado: r.Anulado };
+      // Pagos: la cuenta es `CoProveedor` (también trae `CoCuenta`) y suma `Retenciones`
+      if (r)
+        return {
+          coCliente: r.CoCliente ?? r.CoProveedor ?? r.CoCuenta,
+          cliente: r.Cliente ?? r.Proveedor,
+          total: r.TotalPesos,
+          liquidado: r.LiqPesos,
+          pagado: r.PagPesos,
+          anulado: r.Anulado,
+          // Pagos: `Retenciones` NO es un importe (vale 2 con 2 retenciones ≠ 0); los importes vienen por tipo
+          cantidadRetenciones: r.Retenciones ?? 0,
+          retenciones: {
+            iva: r.RetencionesIva ?? 0,
+            ganancias: r.RetencionesGanancias ?? 0,
+            iibb: r.RetencionesIngBru ?? 0,
+            suss: r.RetencionesSSocial ?? 0,
+            otros: r.RetencionesOtros ?? 0,
+          },
+          estado: r._state_text,
+        };
     }
     return null;
   }, nro);
@@ -1010,6 +1072,19 @@ export const ARTICULOS_COMPRA: ArticuloACargar[] = [
   { busqueda: '1003', opcion: '(1003) Frasco Vidrio 500ml', cantidad: 4, precio: 1250 },
   { busqueda: ARTICULO_CAJA, cantidad: 5 },
 ];
+
+/** Monto mínimo de la Orden de Compra para que Pagos calcule retenciones reales (IIBB, Ganancias…). */
+export const MONTO_MINIMO_OC = 869_000;
+
+/**
+ * Artículos de la OC con un precio unitario ALEATORIO con 2 decimales para el (1003) x 4, de modo que el neto de
+ * esa sola línea ya supere `minimo` (precio entre minimo/4 + 0.01 y minimo/4 + 5,000). La caja queda a precio de lista.
+ */
+export function articulosCompraAleatorios(minimo = MONTO_MINIMO_OC): ArticuloACargar[] {
+  const [frasco, caja] = ARTICULOS_COMPRA;
+  const centavos = Math.ceil((minimo / frasco.cantidad) * 100) + 1 + Math.floor(Math.random() * 500_000);
+  return [{ ...frasco, precio: centavos / 100 }, caja];
+}
 
 /** Abre un explorador de Compras (Searchlight, categoría "Compras"): "Ordenes de Compra", "Remitos", "Facturas". */
 export function abrirExploradorCompras(page: Page, modulo: 'Ordenes de Compra' | 'Remitos' | 'Facturas'): Promise<number> {
@@ -1131,5 +1206,162 @@ export async function leerPercepcionesConsulta(page: Page, timeout = 10_000): Pr
     .poll(async () => (filas = await leerPercepciones(page)).length, { timeout })
     .toBeGreaterThan(0)
     .catch(() => {});
+  return filas;
+}
+
+// ---- Comprobantes de Compra (Compras › Comprobantes, solo importes) ---------------------------
+/** Abre Compras › Comprobantes (`#/60/1580`): grilla con Estado, No. Operación, Proveedor, No. Comprobante Fiscal. */
+export function abrirComprobantesCompra(page: Page) {
+  return abrirComprobantes(page, 'Compras');
+}
+
+/** Busca la factura de compra por Letra-Lugar-Número + proveedor (el buscador solo filtra por texto: nombre del proveedor). */
+export function buscarComprobanteCompra(page: Page, letraLugarNumero: string, proveedor = Number(PROVEEDOR_CODIGO), nombre = PROVEEDOR_NOMBRE) {
+  return buscarComprobante(page, letraLugarNumero, proveedor, { busqueda: nombre });
+}
+
+/**
+ * Percepciones del comprobante abierto en Comprobantes (Editar o Consultar): grilla dentro del ibox
+ * "Percepciones" con `CoProvinciaDesc` e `Importe` (= monto percibido, aunque la columna se titula "Sujeto").
+ * La grilla se carga al abrir la sección: espera hasta `timeout` a que tenga filas.
+ */
+export async function leerPercepcionesComprobante(page: Page, timeout = 10_000): Promise<Percepcion[]> {
+  await irASeccion(page, 'Percepciones');
+  const leer = () =>
+    page.evaluate(() => {
+      for (const g of Array.from(document.querySelectorAll<HTMLElement>('.jqx-grid'))) {
+        if (!g.offsetParent) continue;
+        const titulo = g.closest('.ibox')?.querySelector('.ibox-title')?.textContent?.trim() ?? '';
+        if (!/^Percepciones/.test(titulo)) continue;
+        let filas: any[] = [];
+        try {
+          filas = ((window as any).$(g).jqxGrid('getrows') ?? []) as any[];
+        } catch {
+          continue;
+        }
+        return filas.map((r) => ({ provincia: r.CoProvinciaDesc, alicuota: r.Alicuota ?? r.PIBAlicuota ?? 0, monto: r.Importe, sujeto: r.Sujeto ?? 0 }));
+      }
+      return [] as Percepcion[];
+    });
+  let filas: Percepcion[] = [];
+  await expect
+    .poll(async () => (filas = await leer()).length, { timeout })
+    .toBeGreaterThan(0)
+    .catch(() => {});
+  return filas;
+}
+
+// ---- Pagos (Financiera › Pagos) ------------------------------------------------------------------
+// Mismo formulario que Cobranzas (Datos Básicos / Comprobantes / Detalle de Valores, grilla de deudas con
+// "Deuda ARS", modal "Detalle de Valor", "Saldo: X", Guardar, Consultar "No. Liquidación: N"): se reutilizan
+// `seleccionarComprobanteCobranza`, `agregarValorCobranza`, `leerSaldoCobranza`, `leerComprobantesCobranza`,
+// `leerValoresCobranza`, `filaCobranzaEnGrilla` y `cabeceraCobranza`. Lo propio de Pagos es la solapa Retenciones.
+
+/** Abre Financiera › Pagos (`#/30/30040`); devuelve la mayor No. Liquidación de la grilla. */
+export function abrirPagos(page: Page): Promise<number> {
+  return abrirExplorador(page, 'Pagos', 'Financiera');
+}
+
+/** "Agregar" (`add()`) en el explorador de Pagos y espera el formulario (Co. Cuenta = proveedor). */
+export function nuevoPago(page: Page) {
+  return nuevaCobranza(page);
+}
+
+/** Retenciones de un comprobante (fila de la solapa Retenciones) y, si se pidió, el detalle de cada modal. */
+export type RetencionComprobante = {
+  letraLugarNumero: string;
+  aplicado: number;
+  sujeto: number;
+  iva: number;
+  retIva: number;
+  retGanancias: number;
+  retIIBB: number;
+  retSUSS: number;
+  retOtros: number;
+  /** Modal "Edición de Retenciones <tipo>" de cada celda: filas (Sujeto, IVA, concepto, alícuota, importe). */
+  detalle?: Record<string, { titulo: string; filas: { sujeto: number; iva: number; concepto: string | null; alicuota: number; importe: number }[] } | string>;
+};
+
+const COLUMNAS_RETENCION = [
+  ['IvaButton', 'retIva'],
+  ['GananciasButton', 'retGanancias'],
+  ['IIBBButton', 'retIIBB'],
+  ['SUSSButton', 'retSUSS'],
+  ['OtrosButton', 'retOtros'],
+] as const;
+
+/** Suma de las 5 retenciones de un comprobante. */
+export const totalRetenciones = (r: RetencionComprobante) => Math.round(COLUMNAS_RETENCION.reduce((s, [, k]) => s + Number(r[k] ?? 0), 0) * 100) / 100;
+
+/**
+ * Sección Comprobantes › solapa **Retenciones** (`.nav-tabs` "Retenciones (N)", panel `#tab-2`): grilla con
+ * `LetraLugarNumero`, `AplicadoBase`, `Sujeto`, `Iva` y las celdas-botón `IvaButton`, `GananciasButton`,
+ * `IIBBButton`, `SUSSButton`, `OtrosButton` (`span.explorer-grid-clickable-cell`, title "Editar Retenciones").
+ * Con `detalle`, hace clic en cada celda y lee el modal "Edición de Retenciones <tipo>" (Cerrar = `ok()`).
+ * Al terminar vuelve a la solapa Comprobantes.
+ */
+export async function leerRetencionesPago(page: Page, opciones: { detalle?: boolean } = {}): Promise<RetencionComprobante[]> {
+  await irASeccion(page, 'Comprobantes');
+  const solapa = (nombre: string) => page.locator('.nav-tabs:visible > li', { hasText: new RegExp(`^\s*${nombre}`) }).locator('a');
+  await solapa('Retenciones').click();
+  const grilla = page.locator('#tab-2 .jqx-grid').filter({ visible: true }).first();
+  await expect(grilla).toBeVisible();
+  const leerFilas = () =>
+    grilla.evaluate((el) =>
+      (((window as any).$(el).jqxGrid('getrows') ?? []) as any[]).map((r) => ({
+        letraLugarNumero: r.LetraLugarNumero,
+        aplicado: r.AplicadoBase,
+        sujeto: r.Sujeto,
+        iva: r.Iva,
+        retIva: r.IvaButton,
+        retGanancias: r.GananciasButton,
+        retIIBB: r.IIBBButton,
+        retSUSS: r.SUSSButton,
+        retOtros: r.OtrosButton,
+      })),
+    );
+  let filas: RetencionComprobante[] = [];
+  await expect.poll(async () => (filas = await leerFilas()).length, { message: 'filas de la solapa Retenciones' }).toBeGreaterThan(0);
+
+  if (opciones.detalle) {
+    const columnas: string[] = await grilla.evaluate((el) => ((window as any).$(el).jqxGrid('columns').records as any[]).map((c) => c.datafield));
+    for (const fila of filas) {
+      fila.detalle = {};
+      const row = grilla.locator('[role=row]').filter({ hasText: fila.letraLugarNumero });
+      for (const [campo, clave] of COLUMNAS_RETENCION) {
+        const celda = row.locator(`[role=gridcell][columnindex="${columnas.indexOf(campo)}"] span.explorer-grid-clickable-cell`);
+        if (!(await celda.count())) {
+          fila.detalle[clave] = 'sin detalle (celda no clickeable)';
+          continue;
+        }
+        const modal = page.locator('.modal-dialog:visible', { hasText: 'Edición de Retenciones' }).last();
+        // El primer clic a veces solo selecciona la fila: se reintenta hasta que abre el modal
+        const abrio = await expect(async () => {
+          if (!(await modal.isVisible())) await celda.click({ timeout: 3000 });
+          await expect(modal).toBeVisible({ timeout: 3000 });
+        })
+          .toPass({ timeout: 10_000 })
+          .then(() => true, () => false);
+        if (!abrio) {
+          fila.detalle[clave] = 'el modal no abrió';
+          continue;
+        }
+        const titulo = (await modal.locator('.modal-header, .modal-title').first().innerText().catch(() => '')).replace(/\s+/g, ' ').trim();
+        const filasModal = await modal.locator('.jqx-grid').first().evaluate((el) =>
+          (((window as any).$(el).jqxGrid('getrows') ?? []) as any[]).map((r) => ({
+            sujeto: r.ImporteSujeto,
+            iva: r.ImporteIva,
+            concepto: r.CoConceptoPagoDescripcion ?? null,
+            alicuota: r.Alicuota,
+            importe: r.Importe,
+          })),
+        ).catch(() => []);
+        fila.detalle[clave] = { titulo, filas: filasModal };
+        await modal.locator('button:visible', { hasText: /^\s*Cerrar\s*$/ }).last().click();
+        await expect(modal).toBeHidden();
+      }
+    }
+  }
+  await solapa('Comprobantes').click();
   return filas;
 }
