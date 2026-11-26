@@ -204,8 +204,8 @@ export type Imputacion = { totalImputado: string; pendienteImputar: string | nul
  * Abre una solapa de la sección Imputaciones (Contables, Conceptos, Provincias, Internos)
  * y devuelve el "Total Imputado" del encabezado y los importes de cada fila de la grilla.
  */
-export async function leerImputacion(page: Page, solapa: 'Contables' | 'Conceptos' | 'Provincias' | 'Internos'): Promise<Imputacion> {
-  const tab = page.locator('.nav-tabs:visible > li', { hasText: solapa }).locator('a');
+export async function leerImputacion(page: Page, solapa: 'Contables' | 'Conceptos' | 'Provincias' | 'Internos' | (string & {})): Promise<Imputacion> {
+  const tab = page.locator('.nav-tabs:visible > li', { hasText: new RegExp(`^\\s*${solapa}\\s*$`) }).locator('a');
   await tab.click();
   const panel = page.locator((await tab.getAttribute('href')) as string); // p. ej. #taba-2
   const titulo = panel.locator('.ibox-title h5').first();
@@ -262,15 +262,34 @@ export type Importes = {
   conceptos: Imputacion;
   provincias: Imputacion;
   percepciones?: Percepcion[];
+  /** Solapas de Imputaciones además de Contables/Conceptos/Provincias (p. ej. "Internos"), con `todasLasSolapas`. */
+  otrasImputaciones?: Record<string, Imputacion>;
   totales: Record<string, string>;
 };
 
-/** Captura Imputaciones (Contables, Conceptos y Provincias), Percepciones (opcional) y Totales del comprobante abierto. */
-export async function capturarImportes(page: Page, opciones: { percepciones?: boolean } = {}): Promise<Importes> {
+/** Títulos de las solapas visibles de Imputaciones (Contables, Conceptos, Provincias, Internos…). */
+export async function solapasImputaciones(page: Page): Promise<string[]> {
+  return (await page.locator('.nav-tabs:visible > li > a').allInnerTexts()).map((t) => t.trim()).filter(Boolean);
+}
+
+/**
+ * Captura Imputaciones (Contables, Conceptos y Provincias), Percepciones (opcional) y Totales del comprobante abierto.
+ * Con `todasLasSolapas` lee además cualquier otra solapa disponible (Facturas/Remitos: "Internos" `#taba-7`)
+ * en `otrasImputaciones`.
+ */
+export async function capturarImportes(page: Page, opciones: { percepciones?: boolean; todasLasSolapas?: boolean } = {}): Promise<Importes> {
   await irASeccion(page, 'Imputaciones');
   const contables = await leerImputacion(page, 'Contables');
   const conceptos = await leerImputacion(page, 'Conceptos');
   const provincias = await leerImputacion(page, 'Provincias');
+  let otrasImputaciones: Record<string, Imputacion> | undefined;
+  if (opciones.todasLasSolapas) {
+    otrasImputaciones = {};
+    for (const solapa of await solapasImputaciones(page)) {
+      if (['Contables', 'Conceptos', 'Provincias'].includes(solapa)) continue;
+      otrasImputaciones[solapa] = await leerImputacion(page, solapa);
+    }
+  }
   let percepciones: Percepcion[] | undefined;
   if (opciones.percepciones) {
     await irASeccion(page, 'Percepciones');
@@ -278,7 +297,7 @@ export async function capturarImportes(page: Page, opciones: { percepciones?: bo
   }
   await irASeccion(page, 'Totales');
   const totales = await leerTotales(page);
-  return { contables, conceptos, provincias, ...(percepciones ? { percepciones } : {}), totales };
+  return { contables, conceptos, provincias, ...(otrasImputaciones ? { otrasImputaciones } : {}), ...(percepciones ? { percepciones } : {}), totales };
 }
 
 // ---- Detalle y Pendientes -----------------------------------------------------------
@@ -464,6 +483,24 @@ export async function consultarUltimoComprobante(
     .poll(async () => Math.max(0, ...(await comprobantesEnGrilla(page))), { timeout: 30_000 })
     .toBeGreaterThan(maxPrevio);
   const nuevo = Math.max(...(await comprobantesEnGrilla(page)));
+  await consultarPorNumero(page, nuevo, cabeceraEsperada);
+  return nuevo;
+}
+
+/**
+ * Clic derecho sobre el comprobante `nro` de la grilla del explorador -> Consultar, y espera la cabecera
+ * "<Tipo> | N°: <nro>" (o la numeración fiscal "FACTURA | A-0010-…" / "Remito | R-0001-…").
+ * Si el comprobante todavía no está en la grilla (p. ej. recién generado por Convertir), refresca y reintenta.
+ */
+export async function consultarPorNumero(page: Page, nro: number, cabeceraEsperada?: (nro: number) => RegExp) {
+  await expect(async () => {
+    await clickIfVisible(page.getByRole('button', { name: 'Continuar' }), page, 500);
+    if (await celdaComprobante(page, nro).first().isVisible()) return;
+    await page.locator('#s2_explorer_refresh:visible').click({ timeout: 3000 }).catch(() => {});
+    await esperarGrillaCargada(page).catch(() => {});
+    await expect(celdaComprobante(page, nro).first()).toBeVisible({ timeout: 5000 });
+  }).toPass({ timeout: 90_000, intervals: [2000, 5000, 10_000] });
+  const nuevo = nro;
 
   // Cabecera de la consulta: "Pedido | N°: 245"; un comprobante con numeración fiscal (factura generada)
   // muestra esa numeración en su lugar: "FACTURA | A-0010-00000057". Cobranzas: "No. Liquidación: 101".
@@ -638,6 +675,145 @@ export async function generarRemito(page: Page, nro: number): Promise<string> {
 
   await expect(fila).toContainText(/R-\d{4}-\d{8}/, { timeout: 30_000 });
   return (await fila.innerText()).match(/R-\d{4}-\d{8}/)![0];
+}
+
+// ---- Convertir (Ventas: Pedido -> Remito -> Factura sin Pendientes) ------------------------
+/** Resultado de "Más > Convertir a …": número del comprobante generado y numeración fiscal (si la asigna). */
+export type ResultadoConversion = {
+  origen: number;
+  destino: 'Remito' | 'Factura';
+  numero: number;
+  /** Textos del toast y de los carteles mostrados durante la conversión. */
+  mensajes: string[];
+  /** Factura: "Generación de comprobante fiscal exitosa … Numeración Fiscal: A-0010-…" (cartel). Remito: null (se lee de la grilla). */
+  numeracionFiscal: string | null;
+};
+
+/**
+ * Desde la grilla del explorador (Pedidos o Remitos de Venta): selecciona el comprobante `nro` y ejecuta
+ * `Más` (`#s2_explorer_more`) > "Convertir a Remito" (`convertirARemito()`, acción CONVERTTORT) o
+ * "Convertir a Factura" (`convertirAFactura()`, CONVERTTOFC). No pide confirmación:
+ *  - toast `.toast-wait` "Convertir Comprobantes / Convirtiendo 1 Comprobantes" y luego
+ *    `.toast-success` "Comprobante N°<nro> convertido con éxito" + `.toast-message` "Remito N°116." /
+ *    "Facturas N°362." (desaparece a los ~5 s);
+ *  - Factura: además GENERA la factura fiscal y muestra el sweet-alert "Generación de comprobante fiscal
+ *    exitosa … Numeración Fiscal: A-0010-00000088" -> Aceptar (`button.confirm`).
+ * El menú contextual (clic derecho) solo tiene Editar / Consultar: la conversión está únicamente en "Más".
+ */
+export async function convertirComprobante(page: Page, nro: number, destino: 'Remito' | 'Factura'): Promise<ResultadoConversion> {
+  const exito = page.locator('.toast.toast-success', { hasText: new RegExp(`N[º°]\\s*${nro}\\s+convertido con éxito`) });
+  const error = page.locator('.toast.toast-error, .toast.toast-warning');
+  const sweet = page.locator('.sweet-alert:visible');
+  const mensajes: string[] = [];
+
+  // IMPORTANTE: un comprobante que se abrió con **Consultar** queda "en uso" de forma persistente (también desde
+  // otra sesión) y la conversión responde `.toast-error` "No se pudo procesar la conversión. Comprobante en uso o en
+  // estado Inactivo o con cantidades originales distintas a las cantidades pendientes." (Ver Detalles no bloquea).
+  // Por eso el spec convierte ANTES de Consultar. Se reintenta una vez por si fue un bloqueo transitorio.
+  const intentos: string[] = [];
+  for (let intento = 1; ; intento++) {
+    await accionMas(page, nro, `Convertir a ${destino}`);
+    await expect(exito.or(error).first(), `Convertir ${nro} a ${destino}: toast de resultado`).toBeVisible({ timeout: 90_000 });
+    if (await exito.first().isVisible()) break;
+    const motivo = (await error.first().innerText()).replace(/[×\s]+/g, ' ').trim();
+    intentos.push(`Intento ${intento}: ${motivo}`);
+    if (!/en uso/i.test(motivo) || intento >= 2) {
+      throw new Error(`Convertir ${nro} a ${destino} falló (¿se consultó el comprobante antes de convertirlo?): ${intentos.join(' | ')}`);
+    }
+    await page.locator('.toast .toast-close-button:visible').first().click({ timeout: 2000 }).catch(() => {});
+    await expect(error).toHaveCount(0, { timeout: 15_000 }).catch(() => {});
+    await page.locator('#s2_explorer_refresh:visible').click({ timeout: 3000 }).catch(() => {});
+    await esperarGrillaCargada(page).catch(() => {});
+  }
+  mensajes.push(...intentos);
+  const textoToast = (await exito.first().innerText()).replace(/[×\s]+/g, ' ').trim();
+  mensajes.push(textoToast);
+  const numero = Number((await exito.first().locator('.toast-message').innerText()).match(/N[º°]\s*(\d+)/)?.[1] ?? NaN);
+  expect(numero, `Convertir ${nro} a ${destino}: número generado en "${textoToast}"`).toBeGreaterThan(0);
+
+  // La factura convertida se genera fiscalmente: cartel con la numeración (A-XXXX-XXXXXXXX) -> Aceptar.
+  // El Remito no muestra cartel (se espera un instante por si el sandbox agrega uno).
+  let numeracionFiscal: string | null = null;
+  const continuar = page.getByRole('button', { name: 'Continuar' });
+  const modalAceptar = page.locator('.modal-dialog:visible').getByRole('button', { name: 'Aceptar' });
+  const hayCartel = await sweet.first().waitFor({ state: 'visible', timeout: destino === 'Factura' ? 60_000 : 3000 }).then(() => true, () => false);
+  if (destino === 'Factura') expect(hayCartel, `Convertir ${nro} a Factura: cartel "Generación de comprobante fiscal exitosa"`).toBe(true);
+  if (hayCartel) {
+    await expect(async () => {
+      await clickIfVisible(continuar, page, 300);
+      if (await modalAceptar.first().isVisible()) await modalAceptar.first().click({ timeout: 3000 });
+      if (await sweet.first().isVisible()) {
+        const texto = (await sweet.first().innerText()).replace(/\s+/g, ' ').trim();
+        mensajes.push(texto);
+        numeracionFiscal ??= texto.match(/Numeraci[oó]n Fiscal:\s*([A-Z]-\d{4}-\d{8})/)?.[1] ?? null;
+        await sweet.first().locator('button:visible', { hasText: /^\s*(Aceptar|OK)\s*$/ }).first().click({ timeout: 3000 });
+      }
+      await expect(sweet).toHaveCount(0, { timeout: 2000 });
+    }).toPass({ timeout: 60_000 });
+  }
+  return { origen: nro, destino, numero, mensajes, numeracionFiscal };
+}
+
+/**
+ * Después de guardar: espera que la grilla muestre un comprobante mayor a `maxPrevio` y devuelve su número
+ * SIN abrirlo (Consultar bloquea la conversión posterior: ver `convertirComprobante`).
+ */
+export async function nuevoNumeroEnGrilla(page: Page, maxPrevio: number): Promise<number> {
+  await expect.poll(async () => Math.max(0, ...(await comprobantesEnGrilla(page))), { timeout: 30_000 }).toBeGreaterThan(maxPrevio);
+  return Math.max(...(await comprobantesEnGrilla(page)));
+}
+
+/** Datos de la fila del comprobante `nro` en la grilla del explorador (jqx `getrows`), o null si no está. */
+export type FilaExplorador = {
+  numero: number;
+  coCliente: number;
+  cliente: string;
+  estado: string;
+  letraLugarNumero: string | null;
+  total: number;
+  /** Facturas: numeración del remito de origen (`NoComprobanteRemito`). */
+  remitoOrigen: string | null;
+};
+
+export function filaEnExplorador(page: Page, nro: number): Promise<FilaExplorador | null> {
+  return page.evaluate((n) => {
+    for (const g of Array.from(document.querySelectorAll<HTMLElement>('.jqx-grid'))) {
+      if (!g.offsetParent) continue;
+      let filas: any[] = [];
+      try {
+        filas = ((window as any).$(g).jqxGrid('getrows') ?? []) as any[];
+      } catch {
+        continue;
+      }
+      const r = filas.find((x) => Number(x.NoComprobante) === n && x.CoCliente !== undefined);
+      if (r)
+        return {
+          numero: r.NoComprobante,
+          coCliente: r.CoCliente,
+          cliente: r.Cliente,
+          estado: r._state_text,
+          letraLugarNumero: r.LetraLugarNumero || null,
+          total: r.Total_Base,
+          remitoOrigen: r.NoComprobanteRemito || null,
+        };
+    }
+    return null;
+  }, nro);
+}
+
+/** Espera (refrescando la grilla) a que el comprobante `nro` aparezca en el explorador y devuelve su fila. */
+export async function esperarEnExplorador(page: Page, nro: number): Promise<FilaExplorador> {
+  let fila: FilaExplorador | null = null;
+  await expect(async () => {
+    await clickIfVisible(page.getByRole('button', { name: 'Continuar' }), page, 500);
+    fila = await filaEnExplorador(page, nro);
+    if (fila) return;
+    await page.locator('#s2_explorer_refresh:visible').click({ timeout: 3000 }).catch(() => {});
+    await esperarGrillaCargada(page).catch(() => {});
+    fila = await filaEnExplorador(page, nro);
+    expect(fila, `comprobante ${nro} en la grilla`).not.toBeNull();
+  }).toPass({ timeout: 90_000, intervals: [2000, 5000, 10_000] });
+  return fila!;
 }
 
 // ---- Comprobantes de Ventas (solo importes, sin líneas de artículos) ------------------

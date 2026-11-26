@@ -1,0 +1,121 @@
+[     180ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ http://rawgithub.com/angular/code.angularjs.org/master/1.5.0/angular-csp.css:1
+[     191ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ http://rawgithub.com/justin-lau/ui-iconpicker/v0.1.4/dist/styles/ui-iconpicker.min.css:1
+[     307ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ http://rawgithub.com/justin-lau/ui-iconpicker/v0.1.4/dist/scripts/ui-iconpicker.min.js:1
+[     322ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://rawgit.com/marceljuenemann/angular-drag-and-drop-lists/master/angular-drag-and-drop-lists.min.js:1
+[     322ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://rawgit.com/schmich/instascan-builds/master/instascan.min.js:1
+[     348ms] [WARNING] Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading @ http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyC8oz3Gg28rxkGvfQy_lxDcPg2KJyVgpMM&libraries=places:2845
+[     387ms] [LOG] Loaded claygl, version 1.2.1 @ http://sandbox.igglobal.net/Scripts/plugins/echarts4/echarts-gl.min.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:30
+[     387ms] [LOG] Loaded echarts, version 4.1.0 @ http://sandbox.igglobal.net/Scripts/plugins/echarts4/echarts-gl.min.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:30
+[     456ms] [ERROR] Permissions policy violation: unload is not allowed in this document. @ http://sandbox.igglobal.net/Scripts/plugins/jqwidgets/jqxdata.export.js:8
+[    1103ms] [LOG] refresh_instanceId @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.module.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:500
+[    1103ms] [LOG] 1795641436612 @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.module.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:501
+[    1132ms] [ERROR] Permissions policy violation: unload is not allowed in this document. @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.module.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:4186
+[    2657ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://sandbox.igglobal.net/api/request?cid=DEMOIG&id=S2-1&version=9.26.08:1
+[    2658ms] [LOG] localForageInterceptor_responseError @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.platform.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:986
+[    2658ms] [LOG] {data: Object, status: 401, headers: , config: Object, statusText: Unauthorized} @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.platform.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:987
+[    2660ms] TypeError: Cannot read properties of null (reading 'access_token')
+    at http://sandbox.igglobal.net/Scripts/igglobal/igglobal.module.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:1154:55
+    at responseError (http://sandbox.igglobal.net/Scripts/framework/s2.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:114:38)
+    at processQueue (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:15552:28)
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:15568:27
+    at Scope.$eval (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16820:28)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16636:31)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7)
+    at XMLHttpRequest.requestLoaded (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11405:9)
+[    2661ms] [ERROR] {data: Object, status: 401, headers: , config: Object, statusText: Unauthorized} undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2662ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2662ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2662ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2662ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2662ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2662ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2662ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2663ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2663ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2663ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2663ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2663ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2663ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2663ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2663ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2663ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2663ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2663ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2663ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2663ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2663ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2696ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2696ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2696ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2697ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2697ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2697ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2697ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2697ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2697ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2697ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2697ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2697ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2697ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2697ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2697ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2697ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2697ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2697ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2697ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2697ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2698ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2727ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2727ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2727ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2727ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2727ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2727ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2728ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2728ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2728ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2728ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2728ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2728ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2728ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2728ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2728ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2728ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2728ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2728ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2728ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2728ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2728ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2800ms] [LOG] [cycle] terminating; too few slides: 1 @ http://sandbox.igglobal.net/Scripts/plugins/maximage/jquery.cycle.all.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:25
+[    4002ms] [ERROR] An invalid form control with name='u' is not focusable. @ http://sandbox.igglobal.net/Auth/Login?YWN0aW9uPXdhcm5pbmcmdT1zdXBlcnZpc29yQGdsb2JhbC5jb20uYXImbWVzc2FnZUlkPTEmdGl0bGU9TnVldm8gaW5pY2lvIGRlIHNlc2nDs24mc3VidGl0bGU9VHUgY3VlbnRhIGRlIElHR0xPQkFMICUodSlzIGhhIHNpZG8gdXRpbGl6YWRhIHBhcmEgaW5pY2lhciBzZXNpw7NuIGVuIG90cm8gZGlzcG9zaXRpdm8u:1
+[    4104ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/Auth/Files/Images/global.com.ar/BG_Canicas1.png:1
+[    4105ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/Auth/Files/Images/global.com.ar/BG_Canicas2.png:1
+[    4105ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/Auth/Files/Images/global.com.ar/logo.png:1
+[    4150ms] [ERROR] An invalid form control with name='u' is not focusable. @ http://sandbox.igglobal.net/Auth/Login?YWN0aW9uPXdhcm5pbmcmdT1zdXBlcnZpc29yQGdsb2JhbC5jb20uYXImbWVzc2FnZUlkPTEmdGl0bGU9TnVldm8gaW5pY2lvIGRlIHNlc2nDs24mc3VidGl0bGU9VHUgY3VlbnRhIGRlIElHR0xPQkFMICUodSlzIGhhIHNpZG8gdXRpbGl6YWRhIHBhcmEgaW5pY2lhciBzZXNpw7NuIGVuIG90cm8gZGlzcG9zaXRpdm8u:1
+[    4336ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ http://rawgithub.com/angular/code.angularjs.org/master/1.5.0/angular-csp.css:1
+[    4337ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ http://rawgithub.com/justin-lau/ui-iconpicker/v0.1.4/dist/styles/ui-iconpicker.min.css:1
+[    4354ms] [WARNING] Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading @ http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyC8oz3Gg28rxkGvfQy_lxDcPg2KJyVgpMM&libraries=places:2845
+[    4361ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ http://rawgithub.com/justin-lau/ui-iconpicker/v0.1.4/dist/scripts/ui-iconpicker.min.js:1
+[    4361ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://rawgit.com/schmich/instascan-builds/master/instascan.min.js:1
+[    4361ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://rawgit.com/marceljuenemann/angular-drag-and-drop-lists/master/angular-drag-and-drop-lists.min.js:1
+[    4392ms] [LOG] Loaded claygl, version 1.2.1 @ http://sandbox.igglobal.net/Scripts/plugins/echarts4/echarts-gl.min.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:30
+[    4392ms] [LOG] Loaded echarts, version 4.1.0 @ http://sandbox.igglobal.net/Scripts/plugins/echarts4/echarts-gl.min.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:30
+[    4445ms] [ERROR] Permissions policy violation: unload is not allowed in this document. @ http://sandbox.igglobal.net/Scripts/plugins/jqwidgets/jqxdata.export.js:8
+[    4546ms] [LOG] refresh_instanceId @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.module.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:500
+[    4546ms] [LOG] 1795641440054 @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.module.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:501
+[    4564ms] [ERROR] Permissions policy violation: unload is not allowed in this document. @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.module.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:4186
+[    6496ms] [ERROR] WebSocket connection to 'ws://sandbox.igglobal.net/signalr/connect?transport=webSockets&clientProtocol=1.5&connectionToken=hUsXmq%2FxM8gSq9rIBUiddlpLz79tFQiczwJuXz7lztzMfZNIZnKsUD2ebrhn1Gr9ryg2QDhA2dttiXdWe5cTSWdQxDCizVki0V%2BvqwCblemLSa%2FuwlFXLUo9P1YprzXB&connectionData=%5B%7B%22name%22%3A%22notificationshub%22%7D%5D&tid=9' failed: Error during WebSocket handshake: Unexpected response code: 403 @ http://sandbox.igglobal.net/Scripts/jquery.signalR-2.2.2.js:1739
+[    6649ms] [ERROR] Failed to load resource: the server responded with a status of 403 (Forbidden) @ http://sandbox.igglobal.net/signalr/connect?transport=serverSentEvents&clientProtocol=1.5&connectionToken=hUsXmq%2FxM8gSq9rIBUiddlpLz79tFQiczwJuXz7lztzMfZNIZnKsUD2ebrhn1Gr9ryg2QDhA2dttiXdWe5cTSWdQxDCizVki0V%2BvqwCblemLSa%2FuwlFXLUo9P1YprzXB&connectionData=%5B%7B%22name%22%3A%22notificationshub%22%7D%5D&tid=3:1
+[    6937ms] [ERROR] Permissions policy violation: unload is not allowed in this document. @ http://sandbox.igglobal.net/Scripts/jquery/jquery-3.1.1.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5057
+[    7136ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/%7B%7Bdb.logo_sistema%7D%7D:1
+[    7136ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/%7B%7Blegajo._gallery_picture%7D%7D:1
+[    7137ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/%7B%7Bcontacto._gallery_picture%7D%7D:1
+[    7567ms] [WARNING] The database "igglobal" can't be downgraded from version 2 to version 1.1. @ http://sandbox.igglobal.net/Scripts/plugins/localForage/localforage.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:689
+[    7743ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/%7B%7Bdb.logo_sistema%7D%7D:1
+[    8525ms] [LOG] success:  {data: Object, status: 200, headers: , config: Object, statusText: OK} @ http://sandbox.igglobal.net/Scripts/framework/s2.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:927
+[    9369ms] [WARNING] Google Maps JavaScript API warning: SensorNotRequired https://developers.google.com/maps/documentation/javascript/error-messages#sensor-not-required @ http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyC8oz3Gg28rxkGvfQy_lxDcPg2KJyVgpMM&libraries=places:2189
+[   11274ms] [LOG] {name: Ventas, items: Array(1), $$hashKey: object:1517} @ http://sandbox.igglobal.net/Scripts/plugins/angular-spotlight/angularSpotlight.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:154
+[   12669ms] [LOG] barra_barra @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.module.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:698
+[   12669ms] [LOG] {name: $stateChangeStart, targetScope: Scope, preventDefault: , defaultPrevented: true, currentScope: null} {url: /10/1530/explorer, templateUrl: /Ventas/Remitos, controller: remitos, resolve: Object, name: root.ventas_remitos_explorer} {globals: Object, extras: Object} {url: /home?:notification, templateUrl: /App/Home, controller: home, params: Object, resolve: Object} {notification: undefined, extras: Object, globals: Object} @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.module.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:699

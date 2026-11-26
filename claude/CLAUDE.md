@@ -40,7 +40,8 @@ Ejecutar: `npx playwright test`.
   **"Ruta"** entre Artículo y Cantidad): por eso se tabula hasta cada campo (`tabularHasta`) en vez de
   asumir un orden fijo de Tabs.
 - `utils/igglobal.ts`: login, `abrirPedidos`, `nuevoComprobante`, `cargarClienteYArticulos`,
-  `irASeccion`, `leerImputacion`, `leerTotales`, `guardarComprobante`, `consultarUltimoComprobante`.
+  `irASeccion`, `leerImputacion`, `leerTotales`, `guardarComprobante`, `consultarUltimoComprobante`,
+  `consultarPorNumero`; Convertir: `convertirComprobante`, `filaEnExplorador`, `esperarEnExplorador`, `solapasImputaciones`.
   Usarlos en los tests nuevos en lugar de duplicar selectores.
 - Compras: `abrirExploradorCompras`, `seleccionarProveedor`/`seleccionarCuenta`, `cargarArticulos`,
   `comprobanteFicticio`, `cargarComprobanteProveedor`, `agregarPercepcionCompra`, `cargarPercepcionesTotales`,
@@ -174,6 +175,46 @@ Ejecutar: `npx playwright test`.
   a aplicar; saldo final 0; en Consultar: el comprobante aplicado con el mismo importe, mismos valores
   (No. Operación / subcuenta / importe) y total; grilla: Total = factura y liquidado = pagado.
 - Cada corrida **cancela la factura del circuito** con esa cobranza (en el sandbox quedan cobradas).
+
+## Circuito Ventas (Convertir): Pedido → Remito → Factura sin Pendientes
+Spec `tests/circuito-ventas-convertir.spec.ts`. Mismo cliente `59`, mismos artículos y descuento que el circuito por
+Pendientes, pero Remito y Factura se generan con **Más › Convertir a …** desde la grilla. Cada corrida arma todo desde cero.
+- **⚠️ Consultar bloquea Convertir (sandbox 25/11/2026):** abrir un comprobante con **Consultar** lo deja "en uso" de forma
+  persistente (también desde otra sesión y después de Volver) y "Convertir a …" responde `.toast-error` "No se pudo procesar la
+  conversión. Comprobante en uso o en estado Inactivo o con cantidades originales distintas a las cantidades pendientes."
+  **Consultar el Pedido de origen bloquea además la conversión del Remito derivado.** "Más › Ver Detalles" (sidebar) NO bloquea.
+  Pedidos/Remitos que quedaron así (299, 300, 301 y remito 119) ya no se pueden convertir. Por eso el orden del spec es:
+  Pedido Precarga → grabar (`nuevoNumeroEnGrilla`, sin abrirlo) → Sidebar → Convertir a Remito → Remitos: fila + Sidebar →
+  Convertir a Factura → **recién ahí** Consultar Pedido, Consultar Remito y Factura (Consultar + Percepciones + Sidebar).
+  Las validaciones son las mismas; se informa como observación en la etapa Remito.
+- **Etapa 1 Pedido:** Precarga (antes de grabar), Sidebar y (después de las conversiones) Consultar; Imputaciones de **todas
+  las solapas** (`capturarImportes(page, { todasLasSolapas: true })` → `otrasImputaciones`, p. ej. "Internos" `#taba-7`) y Totales.
+- **Convertir** (`convertirComprobante(page, nro, 'Remito' | 'Factura')`): seleccionar la fila → `#s2_explorer_more` →
+  "Convertir a Remito" (Pedidos, `convertirARemito()` / CONVERTTORT) o "Convertir a Factura" (Remitos, `convertirAFactura()` /
+  CONVERTTOFC). En Pedidos también existen "Convertir a Factura" y "Convertir a Orden de Despacho" (no se usan).
+  **El menú contextual (clic derecho) solo tiene Editar / Consultar**: la conversión está únicamente en "Más". No pide confirmación:
+  toast `.toast-wait` "Convirtiendo 1 Comprobantes" → `.toast.toast-success` "Comprobante N°<origen> convertido con éxito" con
+  `.toast-message` "Remito N°116." / "Facturas N°362." (dura ~5 s; de ahí sale el número generado). Error → `.toast-error`.
+- **Remito convertido:** nace en estado "Pendiente" **ya con numeración fiscal** `R-0001-…` (no hace falta "Generar"; si algún
+  día no la trae, el spec ejecuta `generarRemito` y lo informa como observación). Remitos de Venta: `esperarEnExplorador`
+  (refresca hasta ver la fila; jqx `NoComprobante`, `LetraLugarNumero`, `Total_Base`, `_state_text`) → `consultarPorNumero`
+  (clic derecho → Consultar sobre un número dado) → Imputaciones/Totales/Detalle (`NoPedido`) → Sidebar `Más › Ver Detalles`.
+- **Factura convertida:** queda **GENERADA**: al convertir aparece el sweet-alert "Generación de comprobante fiscal exitosa …
+  Numeración Fiscal: A-0010-00000088" → Aceptar (`button.confirm`; el helper devuelve la numeración). En la grilla de Facturas
+  `NoComprobanteRemito` = numeración del remito de origen. Detalle con `NoPedido` y `NoRemito`.
+- **Percepciones (solo Factura):** grilla `PIBAlicuota` / `Monto` (percibido) / `Importe` (sujeto = Total Neto). Se exige
+  suma de `Monto` = **PERC. IIBB** de Totales = PERC. IIBB del Sidebar, y `alícuota × sujeto = monto`. Hoy CABA 5 %.
+  Observación vigente (25/11/2026): **PERC. IVA muestra el mismo importe que PERC. IIBB** (5,714.10) ya desde el Pedido y ambos
+  suman al IMPORTE $; se informa como observación (parametrización), no como falla.
+- Corrida OK de referencia (25/11/2026, 4.8 min): Pedido 305 → Remito 120 `R-0001-00000083` → Factura 365 `A-0010-00000091`
+  (Neto 114,282.00, Total 149,709.42, Perc. IIBB CABA 5 % 5,714.10) → Cobranza 112 (2 × 74,854.71, estado "Cobrado").
+- Comparación con el origen (`compararConOrigen`): GRAV/IVA/Bruto/Descuento/Neto iguales al Pedido/Remito = FALLA si difieren;
+  `PERC.*` / `IMPORTE $` distintos se informan como observación. Etapas 4 (Comprobantes) y 5 (Cobranza, 2 valores 53/1000/1-2,
+  segundo valor = Total − Valor 1) iguales al circuito por Pendientes, sobre la factura convertida.
+- Resumen: claves `pedido`, `remito`, `factura`, `comprobante`, `cobranza`; Remito/Factura llevan `conversion` (`desde`,
+  `origen`, `mensajes`), `diferencias`, `observaciones` y la Factura `percepcionesIIBB` → adaptador `etapaConvertida` en
+  `informeHtml.ts` (filas "Remitos (Convertir)" / "Facturas (Convertir)"; Pre-grabado = conversión igual al origen). Asunto
+  `Global - Circuito Ventas ✅` / `❌`.
 
 ## Circuito de Compras: Orden de Compra → Remito → Factura
 Spec `tests/circuito-orden-remito-factura-compra.spec.ts` (primera etapa, sin pagos). Cada corrida arma

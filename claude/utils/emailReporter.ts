@@ -7,7 +7,8 @@ import { asuntoCorreo, construirInforme, documentoHtml, type Circuito, type Resu
 /**
  * Reporter de Playwright que, al terminar la corrida:
  *  1. escribe `test-results/resumen-ejecucion.json` (estado de cada test + datos de su circuito: Ventas
- *     `pedido`…`cobranza`; Compras `ordenCompra`, `remitoCompra`, `facturaCompra`, `comprobanteCompra`, `pago`),
+ *     `pedido`…`cobranza` — también el circuito por Convertir, cuyo Remito/Factura traen `conversion` y se
+ *     muestran como "Remitos (Convertir)" / "Facturas (Convertir)"; Compras `ordenCompra`, `remitoCompra`, `facturaCompra`, `comprobanteCompra`, `pago`),
  *  2. arma el informe ejecutivo (`utils/informeHtml.ts`) y lo guarda en `test-results/informe-email.html`,
  *  3. lo envía por correo adjuntando el JSON, el informe HTML y el reporte de Playwright.
  *

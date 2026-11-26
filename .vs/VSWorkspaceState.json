@@ -2,6 +2,7 @@
   "ExpandedNodes": [
     "",
     "\\claude",
+    "\\claude\\tests",
     "\\claude\\utils"
   ],
   "SelectedNode": "\\claude\\utils\\informeHtml.ts",

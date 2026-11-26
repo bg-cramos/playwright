@@ -1,0 +1,274 @@
+[     210ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ http://rawgithub.com/angular/code.angularjs.org/master/1.5.0/angular-csp.css:1
+[     213ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ http://rawgithub.com/justin-lau/ui-iconpicker/v0.1.4/dist/styles/ui-iconpicker.min.css:1
+[     368ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ http://rawgithub.com/justin-lau/ui-iconpicker/v0.1.4/dist/scripts/ui-iconpicker.min.js:1
+[     384ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://rawgit.com/marceljuenemann/angular-drag-and-drop-lists/master/angular-drag-and-drop-lists.min.js:1
+[     384ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://rawgit.com/schmich/instascan-builds/master/instascan.min.js:1
+[     413ms] [WARNING] Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading @ http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyC8oz3Gg28rxkGvfQy_lxDcPg2KJyVgpMM&libraries=places:2845
+[     455ms] [LOG] Loaded claygl, version 1.2.1 @ http://sandbox.igglobal.net/Scripts/plugins/echarts4/echarts-gl.min.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:30
+[     456ms] [LOG] Loaded echarts, version 4.1.0 @ http://sandbox.igglobal.net/Scripts/plugins/echarts4/echarts-gl.min.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:30
+[     540ms] [ERROR] Permissions policy violation: unload is not allowed in this document. @ http://sandbox.igglobal.net/Scripts/plugins/jqwidgets/jqxdata.export.js:8
+[    1088ms] [LOG] refresh_instanceId @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.module.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:500
+[    1088ms] [LOG] 1795640037710 @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.module.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:501
+[    1116ms] [ERROR] Permissions policy violation: unload is not allowed in this document. @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.module.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:4186
+[    2719ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://sandbox.igglobal.net/api/request?cid=DEMOIG&id=S2-1&version=9.26.08:1
+[    2719ms] [LOG] localForageInterceptor_responseError @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.platform.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:986
+[    2719ms] [LOG] {data: Object, status: 401, headers: , config: Object, statusText: Unauthorized} @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.platform.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:987
+[    2720ms] TypeError: Cannot read properties of null (reading 'access_token')
+    at http://sandbox.igglobal.net/Scripts/igglobal/igglobal.module.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:1154:55
+    at responseError (http://sandbox.igglobal.net/Scripts/framework/s2.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:114:38)
+    at processQueue (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:15552:28)
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:15568:27
+    at Scope.$eval (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16820:28)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16636:31)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7)
+    at XMLHttpRequest.requestLoaded (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11405:9)
+[    2722ms] [ERROR] {data: Object, status: 401, headers: , config: Object, statusText: Unauthorized} undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2723ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2723ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2723ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2723ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2723ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2723ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2723ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2723ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2723ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2723ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2723ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2723ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2723ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2724ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2724ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2724ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2724ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2724ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2724ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2724ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2724ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2752ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://sandbox.igglobal.net/api/request?caching=false&cid=DEMOIG&id=GR-302&version=9.26.08:1
+[    2752ms] [LOG] localForageInterceptor_responseError @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.platform.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:986
+[    2753ms] [LOG] {data: Object, status: 401, headers: , config: Object, statusText: Unauthorized} @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.platform.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:987
+[    2753ms] [ERROR] TypeError: Cannot read properties of null (reading 'dom')
+    at responseError (http://sandbox.igglobal.net/Scripts/framework/s2.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:88:42)
+    at processQueue (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:15552:28)
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:15568:27
+    at Scope.$eval (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16820:28)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16636:31)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7)
+    at XMLHttpRequest.requestLoaded (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11405:9) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2753ms] [ERROR] Broken interceptor detected: Config object not supplied in rejection:
+ https://github.com/chieffancypants/angular-loading-bar/pull/50 @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2753ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2754ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2754ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2754ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2754ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2754ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2754ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2754ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2754ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2754ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2754ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2754ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2754ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2754ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2754ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2754ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2754ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2754ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2755ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2755ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2755ms] [ERROR] Unauthorized: user name not found. undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[    2812ms] [LOG] [cycle] terminating; too few slides: 1 @ http://sandbox.igglobal.net/Scripts/plugins/maximage/jquery.cycle.all.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:25
+[    4059ms] [ERROR] An invalid form control with name='u' is not focusable. @ http://sandbox.igglobal.net/Auth/Login?YWN0aW9uPXdhcm5pbmcmdT1zdXBlcnZpc29yQGdsb2JhbC5jb20uYXImbWVzc2FnZUlkPTEmdGl0bGU9TnVldm8gaW5pY2lvIGRlIHNlc2nDs24mc3VidGl0bGU9VHUgY3VlbnRhIGRlIElHR0xPQkFMICUodSlzIGhhIHNpZG8gdXRpbGl6YWRhIHBhcmEgaW5pY2lhciBzZXNpw7NuIGVuIG90cm8gZGlzcG9zaXRpdm8u:1
+[    4147ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/Auth/Files/Images/global.com.ar/BG_Canicas2.png:1
+[    4148ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/Auth/Files/Images/global.com.ar/logo.png:1
+[    4148ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/Auth/Files/Images/global.com.ar/BG_Canicas1.png:1
+[    4191ms] [ERROR] An invalid form control with name='u' is not focusable. @ http://sandbox.igglobal.net/Auth/Login?YWN0aW9uPXdhcm5pbmcmdT1zdXBlcnZpc29yQGdsb2JhbC5jb20uYXImbWVzc2FnZUlkPTEmdGl0bGU9TnVldm8gaW5pY2lvIGRlIHNlc2nDs24mc3VidGl0bGU9VHUgY3VlbnRhIGRlIElHR0xPQkFMICUodSlzIGhhIHNpZG8gdXRpbGl6YWRhIHBhcmEgaW5pY2lhciBzZXNpw7NuIGVuIG90cm8gZGlzcG9zaXRpdm8u:1
+[    4362ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ http://rawgithub.com/angular/code.angularjs.org/master/1.5.0/angular-csp.css:1
+[    4362ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ http://rawgithub.com/justin-lau/ui-iconpicker/v0.1.4/dist/styles/ui-iconpicker.min.css:1
+[    4362ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://rawgit.com/schmich/instascan-builds/master/instascan.min.js:1
+[    4362ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://rawgit.com/marceljuenemann/angular-drag-and-drop-lists/master/angular-drag-and-drop-lists.min.js:1
+[    4375ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ http://rawgithub.com/justin-lau/ui-iconpicker/v0.1.4/dist/scripts/ui-iconpicker.min.js:1
+[    4379ms] [WARNING] Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading @ http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyC8oz3Gg28rxkGvfQy_lxDcPg2KJyVgpMM&libraries=places:2845
+[    4415ms] [LOG] Loaded claygl, version 1.2.1 @ http://sandbox.igglobal.net/Scripts/plugins/echarts4/echarts-gl.min.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:30
+[    4415ms] [LOG] Loaded echarts, version 4.1.0 @ http://sandbox.igglobal.net/Scripts/plugins/echarts4/echarts-gl.min.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:30
+[    4462ms] [ERROR] Permissions policy violation: unload is not allowed in this document. @ http://sandbox.igglobal.net/Scripts/plugins/jqwidgets/jqxdata.export.js:8
+[    4554ms] [LOG] refresh_instanceId @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.module.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:500
+[    4555ms] [LOG] 1795640041177 @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.module.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:501
+[    4573ms] [ERROR] Permissions policy violation: unload is not allowed in this document. @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.module.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:4186
+[    6289ms] [ERROR] WebSocket connection to 'ws://sandbox.igglobal.net/signalr/connect?transport=webSockets&clientProtocol=1.5&connectionToken=aPn8R6KDW8aklYlXBxSpPxM9SJ5AaTkk8w1E87wMyH8wWxYJ8Be4LLvoVfP4tVWTYGT2WPQUSUnfYCwra%2Fge3Nov7f3LpNoJwSzdkC61K2GRYo6neYx%2FjTm4WOOXhpQG&connectionData=%5B%7B%22name%22%3A%22notificationshub%22%7D%5D&tid=2' failed: Error during WebSocket handshake: Unexpected response code: 403 @ http://sandbox.igglobal.net/Scripts/jquery.signalR-2.2.2.js:1739
+[    6663ms] [ERROR] Failed to load resource: the server responded with a status of 403 (Forbidden) @ http://sandbox.igglobal.net/signalr/connect?transport=serverSentEvents&clientProtocol=1.5&connectionToken=aPn8R6KDW8aklYlXBxSpPxM9SJ5AaTkk8w1E87wMyH8wWxYJ8Be4LLvoVfP4tVWTYGT2WPQUSUnfYCwra%2Fge3Nov7f3LpNoJwSzdkC61K2GRYo6neYx%2FjTm4WOOXhpQG&connectionData=%5B%7B%22name%22%3A%22notificationshub%22%7D%5D&tid=7:1
+[    6795ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/%7B%7Bdb.logo_sistema%7D%7D:1
+[    6948ms] [ERROR] Permissions policy violation: unload is not allowed in this document. @ http://sandbox.igglobal.net/Scripts/jquery/jquery-3.1.1.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5057
+[    6989ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/%7B%7Bcontacto._gallery_picture%7D%7D:1
+[    7046ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/%7B%7Blegajo._gallery_picture%7D%7D:1
+[    7316ms] [WARNING] The database "igglobal" can't be downgraded from version 2 to version 1.1. @ http://sandbox.igglobal.net/Scripts/plugins/localForage/localforage.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:689
+[    7544ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/%7B%7Bdb.logo_sistema%7D%7D:1
+[    8329ms] [LOG] success:  {data: Object, status: 200, headers: , config: Object, statusText: OK} @ http://sandbox.igglobal.net/Scripts/framework/s2.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:927
+[    9406ms] [WARNING] Google Maps JavaScript API warning: SensorNotRequired https://developers.google.com/maps/documentation/javascript/error-messages#sensor-not-required @ http://maps.googleapis.com/maps/api/js?sensor=false&key=AIzaSyC8oz3Gg28rxkGvfQy_lxDcPg2KJyVgpMM&libraries=places:2189
+[   11298ms] [LOG] {name: Ventas, items: Array(1), $$hashKey: object:1517} @ http://sandbox.igglobal.net/Scripts/plugins/angular-spotlight/angularSpotlight.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:154
+[   29069ms] [LOG] _onContextMenu @ http://sandbox.igglobal.net/Scripts/framework/s2.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5748
+[   29069ms] [LOG] {cellsrenderers: Object, extraPropertiesCellRender: , cellsactions: Object, clearSelection: , getSelectedIndex: } @ http://sandbox.igglobal.net/Scripts/framework/s2.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5749
+[   44525ms] [LOG] [object Object] cleared @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.config.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:319
+[   44562ms] [LOG] COMPROBANTESVTCP cleared @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.config.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:271
+[   45623ms] [ERROR] Error: [$parse:syntax] Syntax Error: Token '}' not a primary expression at column 16 of the expression [{'has-error':  }] starting at [}].
+http://errors.angularjs.org/1.5.0/$parse/syntax?p0=%7D&p1=not%20a%20primary%20expression&p2=16&p3=%7B'has-error'%3A%20%20%7D&p4=%7D
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:68:12
+    at AST.throwError (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13816:11)
+    at AST.primary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13719:12)
+    at AST.unary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13699:19)
+    at AST.multiplicative (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13686:21)
+    at AST.additive (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13677:21)
+    at AST.relational (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13668:21)
+    at AST.equality (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13659:21)
+    at AST.logicalAND (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13651:21)
+    at AST.logicalOR (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13643:21) <div class="form-group" ng-class="{'has-error':  }" ng-hide="false"> @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   45700ms] [ERROR] Error: [$parse:syntax] Syntax Error: Token '}' not a primary expression at column 16 of the expression [{'btn-danger': }] starting at [}].
+http://errors.angularjs.org/1.5.0/$parse/syntax?p0=%7D&p1=not%20a%20primary%20expression&p2=16&p3=%7B'btn-danger'%3A%20%7D&p4=%7D
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:68:12
+    at AST.throwError (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13816:11)
+    at AST.primary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13719:12)
+    at AST.unary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13699:19)
+    at AST.multiplicative (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13686:21)
+    at AST.additive (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13677:21)
+    at AST.relational (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13668:21)
+    at AST.equality (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13659:21)
+    at AST.logicalAND (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13651:21)
+    at AST.logicalOR (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13643:21) <button type="button" class="btn btn-primary ng-scope" ng-if="!disabledUISelect('FechaComprobante', false)" ng-class="{'btn-danger': }" ng-click="openCalendarPopUp('FechaComprobanteCalendarOpened')"> @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   45716ms] [ERROR] Error: [$parse:syntax] Syntax Error: Token '}' not a primary expression at column 16 of the expression [{'btn-danger': }] starting at [}].
+http://errors.angularjs.org/1.5.0/$parse/syntax?p0=%7D&p1=not%20a%20primary%20expression&p2=16&p3=%7B'btn-danger'%3A%20%7D&p4=%7D
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:68:12
+    at AST.throwError (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13816:11)
+    at AST.primary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13719:12)
+    at AST.unary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13699:19)
+    at AST.multiplicative (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13686:21)
+    at AST.additive (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13677:21)
+    at AST.relational (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13668:21)
+    at AST.equality (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13659:21)
+    at AST.logicalAND (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13651:21)
+    at AST.logicalOR (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13643:21) <button type="button" class="btn btn-primary ng-scope" ng-if="!disabledUISelect('FechaEntrega', false)" ng-class="{'btn-danger': }" ng-click="openCalendarPopUp('FechaEntregaCalendarOpened')"> @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   45822ms] [LOG] ----$stateParams.extras.pendientes @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.herramientas.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5900
+[   49273ms] [ERROR] TypeError: $scope.optionPercepciones.set_data is not a function
+    at _recalcular_percepciones (http://sandbox.igglobal.net/Scripts/igglobal/igglobal.herramientas.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:9295:47)
+    at http://sandbox.igglobal.net/Scripts/igglobal/igglobal.herramientas.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:9213:21
+    at processQueue (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:15552:28)
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:15568:27
+    at Scope.$eval (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16820:28)
+    at Scope.$digest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16636:31)
+    at Scope.$apply (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:16928:24)
+    at done (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11266:47)
+    at completeRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11464:7)
+    at XMLHttpRequest.requestLoaded (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:11405:9) undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   50119ms] [ERROR] Error: [$parse:syntax] Syntax Error: Token '}' not a primary expression at column 16 of the expression [{'btn-danger': }] starting at [}].
+http://errors.angularjs.org/1.5.0/$parse/syntax?p0=%7D&p1=not%20a%20primary%20expression&p2=16&p3=%7B'btn-danger'%3A%20%7D&p4=%7D
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:68:12
+    at AST.throwError (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13816:11)
+    at AST.primary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13719:12)
+    at AST.unary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13699:19)
+    at AST.multiplicative (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13686:21)
+    at AST.additive (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13677:21)
+    at AST.relational (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13668:21)
+    at AST.equality (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13659:21)
+    at AST.logicalAND (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13651:21)
+    at AST.logicalOR (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13643:21) <button type="button" class="btn btn-primary ng-scope" ng-if="!disabledUISelect('FechaEntrega', false)" ng-class="{'btn-danger': }" ng-click="openCalendarPopUp('FechaEntregaCalendarOpened')"> @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   50143ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/%7B%7BgetImagenGaleria()%7D%7D:1
+[   52644ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://sandbox.igglobal.net/api/request?CoConceptoAlmacenes=1&CoCondicionDescuento=0&cid=DEMOIG&id=GR-402&version=9.26.08:1
+[   52645ms] [LOG] localForageInterceptor_responseError @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.platform.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:986
+[   52645ms] [LOG] {data: Object, status: 500, headers: , config: Object, statusText: Internal Server Error} @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.platform.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:987
+[   52704ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/Files/Attachments/igglobal.net/DEMOIG/St_Articulos/jeringa.jpg:1
+[   53695ms] [LOG] ----$stateParams.extras.pendientes @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.herramientas.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5900
+[   54167ms] [ERROR] Error: [$parse:syntax] Syntax Error: Token '}' not a primary expression at column 16 of the expression [{'btn-danger': }] starting at [}].
+http://errors.angularjs.org/1.5.0/$parse/syntax?p0=%7D&p1=not%20a%20primary%20expression&p2=16&p3=%7B'btn-danger'%3A%20%7D&p4=%7D
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:68:12
+    at AST.throwError (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13816:11)
+    at AST.primary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13719:12)
+    at AST.unary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13699:19)
+    at AST.multiplicative (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13686:21)
+    at AST.additive (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13677:21)
+    at AST.relational (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13668:21)
+    at AST.equality (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13659:21)
+    at AST.logicalAND (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13651:21)
+    at AST.logicalOR (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13643:21) <button type="button" class="btn btn-primary ng-scope" ng-if="!disabledUISelect('FechaEntrega', false)" ng-class="{'btn-danger': }" ng-click="openCalendarPopUp('FechaEntregaCalendarOpened')"> @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[   54183ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/%7B%7BgetImagenGaleria()%7D%7D:1
+[   61018ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://sandbox.igglobal.net/fonts/glyphicons-halflings-regular.woff2:1
+[   61185ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://sandbox.igglobal.net/api/request?CoConceptoAlmacenes=1&CoCondicionDescuento=0&cid=DEMOIG&id=GR-402&version=9.26.08:1
+[   61186ms] [LOG] localForageInterceptor_responseError @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.platform.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:986
+[   61186ms] [LOG] {data: Object, status: 500, headers: , config: Object, statusText: Internal Server Error} @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.platform.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:987
+[   63084ms] [LOG] ----$stateParams.extras.pendientes @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.herramientas.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5900
+[   63142ms] [LOG] {contables: Array(0), conceptos: Array(0), provincias: Array(0), internos: Array(0)} @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.herramientas.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:8896
+[   64930ms] [LOG] dto  {cabezal: Object, usoComprobante: , imputaciones: Object, percepciones: Object, totalesDigitados: Object} @ http://sandbox.igglobal.net/Scripts/framework/s2.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:8890
+[   67732ms] [LOG] COMPROBANTESVTCP cleared @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.config.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:271
+[   68241ms] [LOG] COMPROBANTESVTCP cleared @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.config.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:271
+[   97584ms] [LOG] {name: Ventas, items: Array(1), $$hashKey: object:4078} @ http://sandbox.igglobal.net/Scripts/plugins/angular-spotlight/angularSpotlight.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:154
+[  200279ms] [LOG] {name: Ventas, items: Array(1), $$hashKey: object:4418} @ http://sandbox.igglobal.net/Scripts/plugins/angular-spotlight/angularSpotlight.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:154
+[  251323ms] [LOG] _onContextMenu @ http://sandbox.igglobal.net/Scripts/framework/s2.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5748
+[  251323ms] [LOG] {cellsrenderers: Object, cellsactions: Object, clearSelection: , getSelectedIndex: , getSelectedIndexes: } @ http://sandbox.igglobal.net/Scripts/framework/s2.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5749
+[  254527ms] [LOG] COMPROBANTESVTCP cleared @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.config.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:271
+[  254599ms] [LOG] [object Object] cleared @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.config.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:319
+[  255636ms] [ERROR] Error: [$parse:syntax] Syntax Error: Token '}' not a primary expression at column 16 of the expression [{'has-error':  }] starting at [}].
+http://errors.angularjs.org/1.5.0/$parse/syntax?p0=%7D&p1=not%20a%20primary%20expression&p2=16&p3=%7B'has-error'%3A%20%20%7D&p4=%7D
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:68:12
+    at AST.throwError (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13816:11)
+    at AST.primary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13719:12)
+    at AST.unary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13699:19)
+    at AST.multiplicative (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13686:21)
+    at AST.additive (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13677:21)
+    at AST.relational (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13668:21)
+    at AST.equality (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13659:21)
+    at AST.logicalAND (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13651:21)
+    at AST.logicalOR (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13643:21) <div class="form-group" ng-class="{'has-error':  }" ng-hide="false"> @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  255707ms] [ERROR] Error: [$parse:syntax] Syntax Error: Token '}' not a primary expression at column 16 of the expression [{'btn-danger': }] starting at [}].
+http://errors.angularjs.org/1.5.0/$parse/syntax?p0=%7D&p1=not%20a%20primary%20expression&p2=16&p3=%7B'btn-danger'%3A%20%7D&p4=%7D
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:68:12
+    at AST.throwError (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13816:11)
+    at AST.primary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13719:12)
+    at AST.unary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13699:19)
+    at AST.multiplicative (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13686:21)
+    at AST.additive (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13677:21)
+    at AST.relational (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13668:21)
+    at AST.equality (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13659:21)
+    at AST.logicalAND (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13651:21)
+    at AST.logicalOR (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13643:21) <button type="button" class="btn btn-primary ng-scope" ng-if="!disabledUISelect('FechaComprobante', false)" ng-class="{'btn-danger': }" ng-click="openCalendarPopUp('FechaComprobanteCalendarOpened')"> @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  255728ms] [ERROR] Error: [$parse:syntax] Syntax Error: Token '}' not a primary expression at column 16 of the expression [{'btn-danger': }] starting at [}].
+http://errors.angularjs.org/1.5.0/$parse/syntax?p0=%7D&p1=not%20a%20primary%20expression&p2=16&p3=%7B'btn-danger'%3A%20%7D&p4=%7D
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:68:12
+    at AST.throwError (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13816:11)
+    at AST.primary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13719:12)
+    at AST.unary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13699:19)
+    at AST.multiplicative (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13686:21)
+    at AST.additive (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13677:21)
+    at AST.relational (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13668:21)
+    at AST.equality (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13659:21)
+    at AST.logicalAND (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13651:21)
+    at AST.logicalOR (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13643:21) <button type="button" class="btn btn-primary ng-scope" ng-if="!disabledUISelect('FechaEmision', false)" ng-class="{'btn-danger': }" ng-click="openCalendarPopUp('FechaEmisionCalendarOpened')"> @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  255731ms] [ERROR] Error: [$parse:syntax] Syntax Error: Token '}' not a primary expression at column 16 of the expression [{'btn-danger': }] starting at [}].
+http://errors.angularjs.org/1.5.0/$parse/syntax?p0=%7D&p1=not%20a%20primary%20expression&p2=16&p3=%7B'btn-danger'%3A%20%7D&p4=%7D
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:68:12
+    at AST.throwError (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13816:11)
+    at AST.primary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13719:12)
+    at AST.unary (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13699:19)
+    at AST.multiplicative (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13686:21)
+    at AST.additive (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13677:21)
+    at AST.relational (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13668:21)
+    at AST.equality (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13659:21)
+    at AST.logicalAND (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13651:21)
+    at AST.logicalOR (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13643:21) <button type="button" class="btn btn-primary ng-scope" ng-if="!disabledUISelect('FechaEntrega', false)" ng-class="{'btn-danger': }" ng-click="openCalendarPopUp('FechaEntregaCalendarOpened')"> @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  255799ms] [ERROR] TypeError: $scope.optionPercepciones.set_data is not a function
+    at http://sandbox.igglobal.net/Scripts/igglobal/igglobal.herramientas.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:8212:59
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:18744:31
+    at completeOutstandingRequest (http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5804:10)
+    at http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:6081:7 undefined @ http://sandbox.igglobal.net/Scripts/angular/angular.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:13236
+[  255848ms] [LOG] ----$stateParams.extras.pendientes @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.herramientas.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5900
+[  257429ms] [LOG] ----$stateParams.extras.pendientes @ http://sandbox.igglobal.net/Scripts/igglobal/igglobal.herramientas.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:5900
+[  277426ms] TypeError: Cannot read properties of undefined (reading 'height')
+    at b.jqx.define.c.<computed>._render (http://sandbox.igglobal.net/Scripts/plugins/jqwidgets/jqxgrid.js:8:106141)
+    at dataview.update (http://sandbox.igglobal.net/Scripts/plugins/jqwidgets/jqxgrid.js:8:60059)
+    at n (http://sandbox.igglobal.net/Scripts/plugins/jqwidgets/jqxgrid.js:8:287192)
+    at b.jqx.dataview.databind (http://sandbox.igglobal.net/Scripts/plugins/jqwidgets/jqxgrid.js:8:287220)
+    at b.jqx.define.c.<computed>.databind (http://sandbox.igglobal.net/Scripts/plugins/jqwidgets/jqxgrid.js:8:63302)
+    at b.jqx.define.c.<computed>.updatebounddata (http://sandbox.igglobal.net/Scripts/plugins/jqwidgets/jqxgrid.js:8:99469)
+    at http://sandbox.igglobal.net/Scripts/igglobal/igglobal.modals.js?v=6169ce39-868d-48f6-b95c-5bb9380cb8d5:20050:39

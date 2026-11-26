@@ -97,10 +97,22 @@ export type Pago = {
   diferencias: string[];
   observaciones: string[];
 };
+/**
+ * Ventas por Convertir (`tests/circuito-ventas-convertir.spec.ts`): Remito/Factura generados con
+ * "Más › Convertir a …". No hay pre-grabado (pre = Consultar); el spec deja en `diferencias` lo que no
+ * coincide con el origen ("Conversión: …"), con Consultar (grilla, detalle, percepciones) o con el Sidebar.
+ */
+export type EtapaConvertida = EtapaComercial & {
+  conversion: { desde: string; origen: number; mensajes: string[] };
+  estado?: string;
+  diferencias: string[];
+  observaciones: string[];
+  percepcionesIIBB?: { suma: string; totales: string; sidebar: string | null; detalle: Percepcion[] };
+};
 export type Circuito = {
   pedido?: EtapaComercial;
-  remito?: EtapaComercial;
-  factura?: EtapaComercial;
+  remito?: EtapaComercial | EtapaConvertida;
+  factura?: EtapaComercial | EtapaConvertida;
   comprobante?: Comprobante;
   cobranza?: Cobranza;
   pago?: Pago;
@@ -226,6 +238,51 @@ function etapaComercial(nombre: string, e: EtapaComercial): FilaEtapa {
     observaciones: [],
     fallas,
     detalle: detalleErrorComercial(nombre, e),
+  };
+}
+
+const esConvertida = (e: unknown): e is EtapaConvertida => !!e && typeof e === 'object' && 'conversion' in e;
+
+/**
+ * Remito / Factura generados por Convertir. Columnas: Pre-grabado = "Conversión" (Bruto/Desc/Neto/IVA iguales
+ * al origen, número y numeración asignados); Consultar = grilla, detalle y Percepciones IIBB = Totales;
+ * Sidebar = Más › Ver detalles igual a Consultar.
+ */
+function etapaConvertida(nombre: string, e: EtapaConvertida): FilaEtapa {
+  const deConversion = e.diferencias.filter((d) => /^Conversi[oó]n:/.test(d));
+  const deConsultar = e.diferencias.filter((d) => !/^Conversi[oó]n:/.test(d) && !/^Sidebar:/.test(d));
+  const fallas = [...e.diferencias];
+  let sidebar: Check = 'na';
+  if (e.sidebar) {
+    const dSb = [...difTotales(e.post.totales, e.sidebar.totales), ...difImputSidebar(e.post, e.sidebar).map((t) => `Imputaciones ${t}`)];
+    if (e.sidebar.resumen.total !== e.post.totales['IMPORTE $']) dSb.push('Total del encabezado');
+    const propias = e.diferencias.filter((d) => /^Sidebar:/.test(d));
+    sidebar = dSb.length || propias.length ? 'fail' : 'ok';
+    if (dSb.length) fallas.push(`Sidebar ≠ Consultar: ${dSb.join(', ')}`);
+  }
+  const fiscal = e.numeracionFiscal ? `<br><span style="color:${C.suave}">${esc(e.numeracionFiscal)}</span>` : '';
+  const origen = `<br><span style="color:${C.suave};font-size:12px">convertido desde ${esc(e.conversion.desde)}</span>`;
+  let importes = resumenImportes(e.post.totales);
+  if (e.percepcionesIIBB) {
+    const p = e.percepcionesIIBB;
+    const ok = p.suma === p.totales;
+    importes += `<br><span style="color:${C.suave}">Perc. IIBB grilla</span>&nbsp;<span style="${numStyle};color:${ok ? C.okTexto : C.malTexto};font-weight:600">${esc(p.suma)} ${ok ? '= Totales' : `≠ ${esc(p.totales)}`}</span>`;
+  }
+  let detalle = detalleErrorComercial(nombre, { ...e, pre: e.post });
+  if (e.diferencias.length) {
+    detalle += bloqueError(`${nombre} N° ${e.numero} · diferencias`, [`<ul style="margin:4px 0;padding-left:18px;font-size:12px">${e.diferencias.map((d) => `<li>${esc(d)}</li>`).join('')}</ul>`]);
+  }
+  return {
+    etapa: `${nombre} (Convertir)`,
+    comprobante: `N° ${e.numero}${fiscal}${origen}`,
+    pre: deConversion.length ? 'fail' : 'ok',
+    consultar: deConsultar.length ? 'fail' : 'ok',
+    sidebar,
+    importes,
+    imputaciones: resumenImputaciones(e.post),
+    observaciones: e.observaciones.map(esc),
+    fallas,
+    detalle,
   };
 }
 
@@ -506,8 +563,8 @@ type Adaptador = { clave: string; nombre: string; circuito: 'ventas' | 'compras'
 /** Etapas conocidas, en orden. Las claves desconocidas con pre/post usan el adaptador genérico. */
 const ADAPTADORES: Adaptador[] = [
   { clave: 'pedido', nombre: 'Pedidos', circuito: 'ventas', fila: (c) => etapaComercial('Pedidos', c.pedido!) },
-  { clave: 'remito', nombre: 'Remitos', circuito: 'ventas', fila: (c) => etapaComercial('Remitos', c.remito!) },
-  { clave: 'factura', nombre: 'Facturas', circuito: 'ventas', fila: (c) => etapaComercial('Facturas', c.factura!) },
+  { clave: 'remito', nombre: 'Remitos', circuito: 'ventas', fila: (c) => (esConvertida(c.remito) ? etapaConvertida('Remitos', c.remito) : etapaComercial('Remitos', c.remito!)) },
+  { clave: 'factura', nombre: 'Facturas', circuito: 'ventas', fila: (c) => (esConvertida(c.factura) ? etapaConvertida('Facturas', c.factura) : etapaComercial('Facturas', c.factura!)) },
   { clave: 'comprobante', nombre: 'Comprobantes', circuito: 'ventas', fila: (c) => etapaComprobantes(c.comprobante!, c.factura) },
   { clave: 'cobranza', nombre: 'Cobranzas', circuito: 'ventas', fila: (c) => etapaCobranza(c.cobranza!) },
   { clave: 'ordenCompra', nombre: 'Compras › Orden de Compra', circuito: 'compras', fila: (c) => etapaCompra('Compras › Orden de Compra', c.ordenCompra!) },
@@ -689,8 +746,10 @@ export function construirInforme(r: ResumenEjecucion): { asunto: string; html: s
       `<div style="font-size:16px;font-weight:700">${valor}</div>${sub ? `<div style="font-size:12px;color:${C.suave}">${sub}</div>` : ''}</td>`;
     html += `<table role="presentation" style="border-collapse:separate;border-spacing:6px 0;margin:0 -6px 14px"><tr>`;
     if (p) html += tarjeta('Pedido', `N° ${p.numero}`, p.detalle ? `${p.detalle.length} ítems` : '');
-    if (rm) html += tarjeta('Remito', `N° ${rm.numero}`, esc(rm.numeracionFiscal ?? ''));
-    if (f) html += tarjeta('Factura', `N° ${f.numero}`, esc(f.numeracionFiscal ?? ''));
+    const viaConvertir = (e: unknown) => (esConvertida(e) ? ` · por Convertir` : '');
+    if (rm) html += tarjeta('Remito', `N° ${rm.numero}`, `${esc(rm.numeracionFiscal ?? '')}${viaConvertir(rm)}`);
+    if (f) html += tarjeta('Factura', `N° ${f.numero}`, `${esc(f.numeracionFiscal ?? '')}${viaConvertir(f)}`);
+    if (esConvertida(f) && f.percepcionesIIBB) html += tarjeta('Percepciones IIBB', `$ ${esc(f.percepcionesIIBB.totales)}`, f.percepcionesIIBB.detalle.map((p) => `${esc(p.provincia)} ${p.alicuota}%`).join(' · ') || 'sin percepciones');
     if (cp) html += tarjeta('Comprobante', esc(cp.letraLugarNumero), `${esc(cp.estado)} · ${cp.edicion.permitido ? 'editable' : 'edición bloqueada'}`);
     if (f) html += tarjeta('Importe facturado', `$ ${esc(f.post.totales['IMPORTE $'])}`, `Desc. ${esc(f.post.totales['DESCUENTO / RECARGO'])}`);
     const cb = circuito.cobranza;
@@ -734,7 +793,7 @@ export function construirInforme(r: ResumenEjecucion): { asunto: string; html: s
         `</tr>`;
     }
     html += `</tbody></table>`;
-    html += `<div style="font-size:11px;color:${C.suave};margin-bottom:12px">Pre-grabado = importes capturados antes de grabar (en Cobranzas: importe a aplicar = total y valores sin saldo) · Consultar = igual a Pre-grabado (en Comprobantes: Datos Básicos igual a la Factura) · Sidebar = Más › Ver detalles igual a lo grabado · Compras › Comprobantes: Pre-grabado = Grilla + Editar vs. la factura grabada · — = no aplica.</div>`;
+    html += `<div style="font-size:11px;color:${C.suave};margin-bottom:12px">Pre-grabado = importes capturados antes de grabar (en Cobranzas: importe a aplicar = total y valores sin saldo) · Consultar = igual a Pre-grabado (en Comprobantes: Datos Básicos igual a la Factura) · Sidebar = Más › Ver detalles igual a lo grabado · Compras › Comprobantes: Pre-grabado = Grilla + Editar vs. la factura grabada · (Convertir): Pre-grabado = comprobante convertido igual a su origen, Consultar = grilla/detalle/Percepciones IIBB = Totales · — = no aplica.</div>`;
   }
 
   // Fallas y observaciones (visibles: es lo que hay que leer)
